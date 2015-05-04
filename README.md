@@ -1,1 +1,1 @@
-# Official NASA Space Simulator™
+# Amazing NASA Universe Simulator™
