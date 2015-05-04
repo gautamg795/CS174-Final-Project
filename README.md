@@ -1,1 +1,1 @@
-# Amazing NASA Universe Simulator™
+# Amazing NASA Universe Simulator™ (ANUS)
