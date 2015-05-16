@@ -3,7 +3,7 @@ function initGL(c) {
     gl.viewport(0, 0, c.width, c.height);
 }
 
-function initShaders() {
+function initAllShaders() {
 
 }
 
