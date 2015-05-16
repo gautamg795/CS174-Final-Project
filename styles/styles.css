@@ -45,3 +45,54 @@ sup {
 	text-align: center;	
 	cursor: pointer;
 }
+
+#hud {
+	display: none;
+	margin: 20px auto;
+	position: absolute;
+	width: 1280px;
+	height: 720px;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+#speed-needle {
+	position: absolute;
+	width: 50px;
+	height: 3px;
+	bottom: 50px;
+	right: 80px;
+	background-color: #EEE;
+	-webkit-transform: rotate(60deg); 
+	-webkit-transform-origin: 100% 100%;
+}
+
+#fuel-bar {
+	position: absolute;
+	width: 50px;
+	height: 100px;
+	bottom: 50px;
+	left: 80px;
+	background-color: #EEE;
+	-webkit-transform: scale(1, 0.6);
+	-webkit-transform-origin: 100% 100%;
+}
+
+#fuel-bar-inner {
+	position: absolute;
+	width: 60px;
+	height: 110px;
+	bottom: 45px;
+	left: 75px;
+	background-color: #333;
+}
+
+#fuel-bar-outer {
+	position: absolute;
+	width: 70px;
+	height: 120px;
+	bottom: 40px;
+	left: 70px;
+	background-color: #EEE;
+}
