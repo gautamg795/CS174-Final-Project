@@ -1,12 +1,21 @@
-/**
- * Dictionary that we can use to check which keys are pressed. 
- * Doing things this way allows us to support multiple keys being pressed at once
- * @type {Object}
- */
-var keysPressed = {};
 window.onkeydown = function(event) {
-    keysPressed[event.keyCode] = true;
+    app.keysPressed[event.keyCode] = true;
 }
 window.onkeyup = function(event) {
-    keysPressed[event.keyCode] = false;
+    app.keysPressed[event.keyCode] = false;
+}
+
+/**
+ * Check which keys are being pressed and act accordingly.
+ * Should be called once per frame in the game loop.
+ */
+function handleKeysPressed() {
+	if (app.mode === GAMESTATE_PLAY) {
+		// for each key in app.keysPressed that is true
+		// handle that key's action
+		;
+	}
+	else {
+		// Do something for the other game state(s)
+	}
 }
