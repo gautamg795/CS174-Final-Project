@@ -6,16 +6,26 @@
 		<script type="text/javascript" src="lib/webgl-utils.js"></script>
 		<script type="text/javascript" src="lib/initShaders.js"></script>
 		<script type="text/javascript" src="lib/MV.js"></script>
-		<style type="text/css">
-		canvas {
-			display: block;
-			margin: 0 auto;
-		}
-		</style>
+		<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="scripts/menu.js"></script>
+		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato'>
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
 	</head>
 	<body>
 		<canvas id="gl-canvas" width="1280" height="720">
-		Oops ... your browser doesn't support the HTML5 canvas element
+			Oops ... your browser doesn't support the HTML5 canvas element
 		</canvas>
+		<div id="menu">
+			<img id="menu-logo" src="assets/textures/ANUS-logo-final.png">
+			<div id="menu-title">
+				Amazing Nasa Universe Simulator<sup>TM</sup>
+			</div>
+			<div id="start-button" class="menu-button">
+				START
+			</div>
+			<div id="controls-button" class="menu-button">
+				CONTROLS
+			</div>
+		</div>
 	</body>
 </html>

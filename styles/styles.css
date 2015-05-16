@@ -1,0 +1,47 @@
+body {
+	background-color: #222;
+	font-size: 28px;
+	color: #CCC;
+	font-family: 'Lato', sans-serif;
+}
+
+canvas {
+	display: none;
+	margin: 20px auto;
+}
+
+sup {
+	font-size: 20px;
+}
+
+#menu {
+	background-color: #444;
+	width: 1240px;
+	height: 680px;
+	display: block;
+	margin: 20px auto;
+	padding: 20px;
+}
+
+#menu-logo {
+	display: block;
+	margin: 0px auto;
+}
+
+#menu-title {
+	display: block;
+	margin: 20px auto;
+	padding: 20px;
+	text-align: center;
+	font-size: 40px;
+}
+
+.menu-button {
+	padding: 20px;
+	background-color: #111;
+	width: 300px;
+	display: block;
+	margin: 50px auto;
+	text-align: center;	
+	cursor: pointer;
+}
