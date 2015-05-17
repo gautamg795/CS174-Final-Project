@@ -8,13 +8,18 @@ function initGL(c) {
  * Sets up the vertex attribute arrays and uniforms, storing their locations into the program variable
  */
 function initAllShaders() {
+    // NOTE: These functions might cause warnings in your console--this is because the GLSL compiler
+    // optimizes out unused variables, so the unused vNormal and vTexCoord don't actually exist yet
+    // This is OK.
     shaderProgram = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(shaderProgram);
 
     shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "vPosition");
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
+
     shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "vNormal");
     gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
+
     shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "vTexCoord");
     gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
 
