@@ -10,7 +10,7 @@ window.onkeyup = function(event) {
  * Should be called once per frame in the game loop.
  */
 function handleKeysPressed() {
-	if (app.mode === GAMESTATE_PLAY) {
+	if (app.mode === GAMESTATE_PLAYING) {
 		// for each key in app.keysPressed that is true
 		// handle that key's action
 		;
