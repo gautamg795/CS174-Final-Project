@@ -26,5 +26,5 @@ app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
 
 // Set this variable to the current drawing function dependent on the mode (2d vs 3d)
-app.drawScene;
+app.drawScene = function() {};
 
