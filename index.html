@@ -10,6 +10,30 @@
 		<script type="text/javascript" src="lib/webgl-obj-loader.js"></script>
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato'>
 		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<script id="vertex-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec4 vNormal;
+			attribute vec2 vTexCoord;
+
+			uniform mat4 projection;
+			uniform mat4 modelView;
+
+			varying vec4 fColor;
+			varying highp vec2 fTexCoord;
+			void main()
+			{
+
+			}
+		</script>
+		<script id="fragment-shader" type="x-shader/x-fragment">
+			precision mediump float;
+			varying vec4 fColor;
+
+			void main()
+			{
+				
+			}
+		</script>
 	</head>
 	<body>
 		<canvas id="gl-canvas" width="1280" height="720">
