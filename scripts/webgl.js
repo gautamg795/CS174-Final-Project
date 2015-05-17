@@ -9,7 +9,9 @@ function ready(meshes) {
 
 window.onload = function() {
     OBJ.downloadMeshes({
-            'spaceship': 'assets/models/low-poly-spaceship.obj',
+            'spaceship': 'assets/models/higher-poly-spaceship.obj',
+            'skybox': 'assets/models/cube.obj',
+            'planet': 'assets/models/sphere.obj',
         },
         ready);
 }
