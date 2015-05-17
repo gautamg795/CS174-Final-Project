@@ -3,7 +3,7 @@ $(document).ready(function() {
         $('#gl-canvas').css('display', 'block');
         $('#hud').css('display', 'block');
         $('#menu').hide();
-        // initialize webgl
+        startPlaying();
     });
 });
 

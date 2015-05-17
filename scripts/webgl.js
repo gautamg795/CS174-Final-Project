@@ -4,6 +4,7 @@
 
 function ready(meshes) {
     app.meshes = meshes;
+    app.mode = GAMESTATE_LOADED;
     canvas = document.getElementById("gl-canvas");
     initGL(canvas);
     initAllShaders();
@@ -12,8 +13,6 @@ function ready(meshes) {
     // Might as well do this now
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.enable(gl.DEPTH_TEST);
-
-    tick();
 }
 
 
@@ -32,7 +31,7 @@ window.onload = function() {
  */
 
 function tick(timeNow) {
-	requestAnimFrame(tick);
+	app.animFrame = requestAnimFrame(tick);
 	app.elapsed = timeNow - app.lastTime;
 	app.lastTime = timeNow;
 	app.drawScene();
