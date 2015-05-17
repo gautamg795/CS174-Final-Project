@@ -22,7 +22,7 @@ function setSpeed(val) {
  * @param {float} pct Fuel amount from 0 to 100
  */
 function setFuel(pct) {
-	// clamp pct to [0, 100] range
-	pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
-	$("#fuel-bar").css("-webkit-transform", "scale(1, " + pct/100.0 + ")");
+    // clamp pct to [0, 100] range
+    pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
+    $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct/100.0 + ")");
 }

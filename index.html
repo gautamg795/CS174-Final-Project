@@ -1,71 +1,71 @@
 <!DOCTYPE HTML>
 <html lang='en'>
-	<head>
-		<meta charset="utf-8" />
-		<title>Amazing NASA Universe Simulator</title>
-		<script type="text/javascript" src="lib/webgl-utils.js"></script>
-		<script type="text/javascript" src="lib/initShaders.js"></script>
-		<script type="text/javascript" src="lib/MV.js"></script>
-		<script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
-		<script type="text/javascript" src="lib/webgl-obj-loader.js"></script>
-		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato'>
-		<link rel="stylesheet" type="text/css" href="styles/styles.css">
-		<script id="vertex-shader" type="x-shader/x-vertex">
-			// Our model loader sends vec3s instead of vec4s
-			// So we need to manually make it a vec4(vPosition, 1.0)
-			// to put it in homogenous coordinates. Such is life.
-			attribute vec3 vPosition;
-			attribute vec3 vNormal;
-			attribute vec2 vTexCoord;
+    <head>
+        <meta charset="utf-8" />
+        <title>Amazing NASA Universe Simulator</title>
+        <script type="text/javascript" src="lib/webgl-utils.js"></script>
+        <script type="text/javascript" src="lib/initShaders.js"></script>
+        <script type="text/javascript" src="lib/MV.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="lib/webgl-obj-loader.js"></script>
+        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Lato'>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <script id="vertex-shader" type="x-shader/x-vertex">
+            // Our model loader sends vec3s instead of vec4s
+            // So we need to manually make it a vec4(vPosition, 1.0)
+            // to put it in homogenous coordinates. Such is life.
+            attribute vec3 vPosition;
+            attribute vec3 vNormal;
+            attribute vec2 vTexCoord;
 
-			uniform mat4 projection;
-			uniform mat4 modelView;
+            uniform mat4 projection;
+            uniform mat4 modelView;
 
-			varying vec4 fColor;
-			varying highp vec2 fTexCoord;
-			void main()
-			{
+            varying vec4 fColor;
+            varying highp vec2 fTexCoord;
+            void main()
+            {
 
-			}
-		</script>
-		<script id="fragment-shader" type="x-shader/x-fragment">
-			precision mediump float;
-			varying vec4 fColor;
+            }
+        </script>
+        <script id="fragment-shader" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec4 fColor;
 
-			void main()
-			{
-				
-			}
-		</script>
-	</head>
-	<body>
-		<canvas id="gl-canvas" width="1280" height="720">
-			Oops ... your browser doesn't support the HTML5 canvas element
-		</canvas>
-		<div id="menu">
-			<img id="menu-logo" src="assets/textures/ANUS-logo-final.png">
-			<div id="menu-title">
-				Amazing NASA Universe Simulator<sup>TM</sup>
-			</div>
-			<div id="start-button" class="menu-button">
-				START
-			</div>
-			<div id="controls-button" class="menu-button">
-				CONTROLS
-			</div>
-		</div>
-		<div id="hud">
-			<div id="speedometer-outer"></div>
-			<div id="speedometer-inner"></div>
-			<div id="speed-needle"></div>
-			<div id="fuel-bar-outer"></div>
-			<div id="fuel-bar-inner"></div>
-			<div id="fuel-bar"></div>
-		</div>
-		<script type="text/javascript" src="scripts/menu.js"></script>
-		<script type="text/javascript" src="scripts/globals.js"></script>
-		<script type="text/javascript" src="scripts/keyboard.js"></script>
-		<script type="text/javascript" src="scripts/initialize.js"></script>
-		<script type="text/javascript" src="scripts/webgl.js"></script>
-	</body>
+            void main()
+            {
+                
+            }
+        </script>
+    </head>
+    <body>
+        <canvas id="gl-canvas" width="1280" height="720">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+        <div id="menu">
+            <img id="menu-logo" src="assets/textures/ANUS-logo-final.png">
+            <div id="menu-title">
+                Amazing NASA Universe Simulator<sup>TM</sup>
+            </div>
+            <div id="start-button" class="menu-button">
+                START
+            </div>
+            <div id="controls-button" class="menu-button">
+                CONTROLS
+            </div>
+        </div>
+        <div id="hud">
+            <div id="speedometer-outer"></div>
+            <div id="speedometer-inner"></div>
+            <div id="speed-needle"></div>
+            <div id="fuel-bar-outer"></div>
+            <div id="fuel-bar-inner"></div>
+            <div id="fuel-bar"></div>
+        </div>
+        <script type="text/javascript" src="scripts/menu.js"></script>
+        <script type="text/javascript" src="scripts/globals.js"></script>
+        <script type="text/javascript" src="scripts/keyboard.js"></script>
+        <script type="text/javascript" src="scripts/initialize.js"></script>
+        <script type="text/javascript" src="scripts/webgl.js"></script>
+    </body>
 </html>

@@ -1,118 +1,118 @@
 body {
-	background-color: #222;
-	font-size: 28px;
-	color: #CCC;
-	font-family: 'Lato', sans-serif;
+    background-color: #222;
+    font-size: 28px;
+    color: #CCC;
+    font-family: 'Lato', sans-serif;
 }
 
 canvas {
-	display: none;
-	margin: 20px auto;
+    display: none;
+    margin: 20px auto;
 }
 
 sup {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 #menu {
-	background-color: #444;
-	width: 1240px;
-	height: 680px;
-	display: block;
-	margin: 20px auto;
-	padding: 20px;
+    background-color: #444;
+    width: 1240px;
+    height: 680px;
+    display: block;
+    margin: 20px auto;
+    padding: 20px;
 }
 
 #menu-logo {
-	display: block;
-	margin: 0px auto;
+    display: block;
+    margin: 0px auto;
 }
 
 #menu-title {
-	display: block;
-	margin: 20px auto;
-	padding: 20px;
-	text-align: center;
-	font-size: 40px;
+    display: block;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 40px;
 }
 
 .menu-button {
-	padding: 20px;
-	background-color: #111;
-	width: 300px;
-	display: block;
-	margin: 50px auto;
-	text-align: center;	
-	cursor: pointer;
+    padding: 20px;
+    background-color: #111;
+    width: 300px;
+    display: block;
+    margin: 50px auto;
+    text-align: center; 
+    cursor: pointer;
 }
 
 #hud {
-	display: none;
-	margin: 20px auto;
-	position: absolute;
-	width: 1280px;
-	height: 720px;
-	top: 0;
-	left: 0;
-	right: 0;
+    display: none;
+    margin: 20px auto;
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 #speed-needle {
-	position: absolute;
-	width: 50px;
-	height: 3px;
-	bottom: 60px;
-	right: 145px;
-	background-color: #EEE;
-	-webkit-transform: rotate(90deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
-	-webkit-transform-origin: 100% 100%;
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    bottom: 60px;
+    right: 145px;
+    background-color: #EEE;
+    -webkit-transform: rotate(90deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
+    -webkit-transform-origin: 100% 100%;
 }
 
 #speedometer-inner {
-	height: 65px;
-	width: 130px;
-	position: absolute;
-	bottom: 50px;
-	right: 80px;
-	-webkit-border-radius: 100px 100px 0 0;
-	background-color: #333;
+    height: 65px;
+    width: 130px;
+    position: absolute;
+    bottom: 50px;
+    right: 80px;
+    -webkit-border-radius: 100px 100px 0 0;
+    background-color: #333;
 }
 
 #speedometer-outer {
-	height: 80px;
-	width: 150px;
-	position: absolute;
-	bottom: 45px;
-	right: 70px;
-	-webkit-border-radius: 100px 100px 0 0;
-	background-color: #EEE;
+    height: 80px;
+    width: 150px;
+    position: absolute;
+    bottom: 45px;
+    right: 70px;
+    -webkit-border-radius: 100px 100px 0 0;
+    background-color: #EEE;
 }
 
 #fuel-bar {
-	position: absolute;
-	width: 50px;
-	height: 100px;
-	bottom: 50px;
-	left: 80px;
-	background-color: #EEE;
-	-webkit-transform: scale(1, 0.6); /* The second parameter is the percentage of how full the bar is*/
-	-webkit-transform-origin: 100% 100%;
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    bottom: 50px;
+    left: 80px;
+    background-color: #EEE;
+    -webkit-transform: scale(1, 0.6); /* The second parameter is the percentage of how full the bar is*/
+    -webkit-transform-origin: 100% 100%;
 }
 
 #fuel-bar-inner {
-	position: absolute;
-	width: 60px;
-	height: 110px;
-	bottom: 45px;
-	left: 75px;
-	background-color: #333;
+    position: absolute;
+    width: 60px;
+    height: 110px;
+    bottom: 45px;
+    left: 75px;
+    background-color: #333;
 }
 
 #fuel-bar-outer {
-	position: absolute;
-	width: 70px;
-	height: 120px;
-	bottom: 40px;
-	left: 70px;
-	background-color: #EEE;
+    position: absolute;
+    width: 70px;
+    height: 120px;
+    bottom: 40px;
+    left: 70px;
+    background-color: #EEE;
 }
