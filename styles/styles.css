@@ -47,7 +47,7 @@ sup {
 }
 
 #hud {
-	display: none;
+	display: block;
 	margin: 20px auto;
 	position: absolute;
 	width: 1280px;
@@ -61,11 +61,31 @@ sup {
 	position: absolute;
 	width: 50px;
 	height: 3px;
+	bottom: 60px;
+	right: 145px;
+	background-color: #EEE;
+	-webkit-transform: rotate(90deg); 
+	-webkit-transform-origin: 100% 100%;
+}
+
+#speedometer-inner {
+	height: 65px;
+	width: 130px;
+	position: absolute;
 	bottom: 50px;
 	right: 80px;
+	-webkit-border-radius: 100px 100px 0 0;
+	background-color: #333;
+}
+
+#speedometer-outer {
+	height: 80px;
+	width: 150px;
+	position: absolute;
+	bottom: 45px;
+	right: 70px;
+	-webkit-border-radius: 100px 100px 0 0;
 	background-color: #EEE;
-	-webkit-transform: rotate(60deg); 
-	-webkit-transform-origin: 100% 100%;
 }
 
 #fuel-bar {
