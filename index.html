@@ -25,7 +25,7 @@
             varying highp vec2 fTexCoord;
             void main()
             {
-
+                gl_Position = projection * modelView * vec4(vPosition, 1.0);
             }
         </script>
         <script id="fragment-shader" type="x-shader/x-fragment">
@@ -34,7 +34,7 @@
 
             void main()
             {
-                
+                gl_FragColor = fColor;
             }
         </script>
     </head>
