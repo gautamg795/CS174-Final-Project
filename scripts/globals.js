@@ -3,8 +3,8 @@
  */
 
 // enums
-var X = 1, Y = 1, Z = 2;
-var GAMESTATE_PLAN = 0, GAMESTATE_PLAY = 1;
+var X = 0, Y = 1, Z = 2;
+var GAMESTATE_LOADING = 0, GAMESTATE_LOADED = 1, GAMESTATE_PLAYING = 2;
 var gl;
 var canvas;
 
@@ -21,8 +21,10 @@ app.camera = {
 app.models = {};
 app.meshes = {};
 app.textures = {};
+app.levels = {};
 app.keysPressed = {};
-app.mode = GAMESTATE_PLAN;
+app.mode = GAMESTATE_LOADING;
+
 // Set this variable to the current drawing function dependent on the mode (2d vs 3d)
 app.drawScene;
 
