@@ -47,7 +47,7 @@ sup {
 }
 
 #hud {
-	display: block;
+	display: none;
 	margin: 20px auto;
 	position: absolute;
 	width: 1280px;
@@ -64,7 +64,7 @@ sup {
 	bottom: 60px;
 	right: 145px;
 	background-color: #EEE;
-	-webkit-transform: rotate(90deg); 
+	-webkit-transform: rotate(90deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
 	-webkit-transform-origin: 100% 100%;
 }
 
@@ -95,7 +95,7 @@ sup {
 	bottom: 50px;
 	left: 80px;
 	background-color: #EEE;
-	-webkit-transform: scale(1, 0.6);
+	-webkit-transform: scale(1, 0.6); /* The second parameter is the percentage of how full the bar is*/
 	-webkit-transform-origin: 100% 100%;
 }
 
