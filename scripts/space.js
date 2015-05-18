@@ -101,6 +101,6 @@ function moveShip() {
 }
 
 function calculateAcceleration() {
-    var thrustVector = vec3(app.ship.thrust/60 * Math.sin(radians(app.ship.heading)), 0, app.ship.thrust/60 * Math.cos(radians(app.ship.heading)));
+    var thrustVector = vec3(app.ship.thrust/60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust/60 * Math.cos(radians(-app.ship.heading)));
     return thrustVector;
 }
