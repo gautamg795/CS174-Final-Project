@@ -19,8 +19,8 @@ app.camera = {
     heading: 0.0,
     fovy: 50,
     aspect: undefined,
-    near: 1.0,
-    far: 300.0
+    near: .1,
+    far: 80000.0
 };
 app.ship = {
     velocity: [0.0, 0.0, 0.0],

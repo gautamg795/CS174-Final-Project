@@ -21,21 +21,35 @@
 
             uniform mat4 projection;
             uniform mat4 modelView;
+            uniform vec4 vColor;
 
             varying vec4 fColor;
             varying highp vec2 fTexCoord;
             void main()
             {
+                fTexCoord = vTexCoord;
+                fColor = vColor;
                 gl_Position = projection * modelView * vec4(vPosition, 1.0);
             }
         </script>
         <script id="fragment-shader" type="x-shader/x-fragment">
             precision mediump float;
             varying vec4 fColor;
+            varying vec2 fTexCoord;
+
+            uniform sampler2D uSampler;
+            uniform bool hasTexture;
 
             void main()
             {
-                gl_FragColor = fColor;
+                if (hasTexture)
+                {
+                    gl_FragColor = texture2D(uSampler, fTexCoord*8.0);
+                }
+                else
+                {
+                    gl_FragColor = fColor;
+                }
             }
         </script>
     </head>

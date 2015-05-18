@@ -29,7 +29,7 @@ function stopPlaying() {
 function drawSpace() {
     // do the drawing for all space objects
     gl.clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT);
-    var pMatrix = perspective(50, canvas.width / canvas.height, 0.1, 1000.0);
+    var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
     var viewMatrix = translate(add(app.camera.position, app.ship.position));
     viewMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), viewMatrix);
@@ -46,6 +46,10 @@ function drawSpace() {
     mvMatrix = mult(translate(0, 10, -20), mvMatrix);
     mvMatrix = mult(viewMatrix, mvMatrix);
     drawObject(app.models.planet, mvMatrix);
+
+    mvMatrix = scale(6000, 6000, 6000);
+    mvMatrix = mult(viewMatrix, mvMatrix);
+    drawObject(app.models.skybox, mvMatrix);
     moveShip();
     updateUI();
 }
@@ -59,19 +63,20 @@ function drawObject(model, mvMatrix) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.vertexBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, model.mesh.vertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-    // gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.textureBuffer);
-    // gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, model.mesh.textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.textureBuffer);
+    gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, model.mesh.textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     // gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.normalBuffer);
     // gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, model.mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-    // Uncomment once textures are in initAllShaders and initTextures
-    // if ('texture' in model) {
-    //     // TODO: rewrite this to take advantage of different texture units
-    //     gl.activeTexture(gl.TEXTURE0);
-    //     gl.bindTexture(gl.TEXTURE_2D, model.texture);
-    //     gl.uniform1i(shaderProgram.texSamplerUniform);
-    // }
+    if ('texture' in model) {
+        gl.activeTexture(gl.TEXTURE0 + model.num);
+        gl.bindTexture(gl.TEXTURE_2D, model.texture);
+        gl.uniform1i(shaderProgram.samplerUniform, model.num);
+        gl.uniform1i(shaderProgram.hasTexture, true);
+    }
+    else
+        gl.uniform1i(shaderProgram.hasTexture, false);
 
     // TODO: Send lighting/material data
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, flatten(mvMatrix));

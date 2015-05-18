@@ -20,11 +20,14 @@ function initAllShaders() {
     // shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "vNormal");
     // gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
 
-    // shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "vTexCoord");
-    // gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+    shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "vTexCoord");
+    gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
 
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "projection");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "modelView");
+    shaderProgram.hasTexture = gl.getUniformLocation(shaderProgram, "hasTexture");
+    shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
+    shaderProgram.colorUniform = gl.getUniformLocation(shaderProgram, "vColor");
 }
 
 /**
@@ -39,6 +42,7 @@ function initBuffers() {
         OBJ.initMeshBuffers(gl, app.meshes[mesh]);
         app.models[mesh] = {};
         app.models[mesh].mesh = app.meshes[mesh];
+        app.models[mesh].num = Object.keys(app.models).length - 1;
     }
 }
 
@@ -47,8 +51,8 @@ function initBuffers() {
  */
 function initTextures() {
     // initTexture(app.models.spaceship, "assets/textures/some_texture.jpg");
-    // initTexture(app.models.skybox, "assets/textures/some_texture.jpg");
-    // initTexture(app.models.planet, "assets/textures/some_texture.jpg");
+    initTexture(app.models.planet, "assets/textures/moon.gif");
+    initTexture(app.models.skybox, "assets/textures/sky.jpg");
 }
 
 /**
@@ -69,12 +73,12 @@ function initTexture(object, path) {
 
 function handleLoadedTexture(texture) {
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-    gl.bindTexture(TEXTURE_2D, texture);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);
     gl.generateMipmap(gl.TEXTURE_2D);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
+    
     // Good practice to leave the active texture unbound
     gl.bindTexture(gl.TEXTURE_2D, null);
 }
