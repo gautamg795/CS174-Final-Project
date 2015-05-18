@@ -55,13 +55,14 @@ sup {
     top: 0;
     left: 0;
     right: 0;
+    font-size: 16px;
 }
 
 #speed-needle {
     position: absolute;
     width: 50px;
     height: 3px;
-    bottom: 60px;
+    bottom: 65px;
     right: 145px;
     background-color: #EEE;
     -webkit-transform: rotate(90deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
@@ -72,7 +73,7 @@ sup {
     height: 65px;
     width: 130px;
     position: absolute;
-    bottom: 50px;
+    bottom: 55px;
     right: 80px;
     -webkit-border-radius: 100px 100px 0 0;
     background-color: #333;
@@ -82,18 +83,27 @@ sup {
     height: 80px;
     width: 150px;
     position: absolute;
-    bottom: 45px;
+    bottom: 50px;
     right: 70px;
     -webkit-border-radius: 100px 100px 0 0;
     background-color: #EEE;
+}
+
+#speed-label {
+    height: 20px;
+    width: 150px;
+    position: absolute;
+    bottom: 25px;
+    right: 70px;
+    text-align: center;
 }
 
 #fuel-bar {
     position: absolute;
     width: 50px;
     height: 100px;
-    bottom: 50px;
-    left: 80px;
+    bottom: 60px;
+    left: 60px;
     background-color: #EEE;
     -webkit-transform: scale(1, 0.6); /* The second parameter is the percentage of how full the bar is*/
     -webkit-transform-origin: 100% 100%;
@@ -103,8 +113,8 @@ sup {
     position: absolute;
     width: 60px;
     height: 110px;
-    bottom: 45px;
-    left: 75px;
+    bottom: 55px;
+    left: 55px;
     background-color: #333;
 }
 
@@ -112,7 +122,54 @@ sup {
     position: absolute;
     width: 70px;
     height: 120px;
-    bottom: 40px;
-    left: 70px;
+    bottom: 50px;
+    left: 50px;
     background-color: #EEE;
+}
+
+#fuel-label {
+    height: 20px;
+    width: 70px;
+    position: absolute;
+    bottom: 25px;
+    left: 50px;
+    text-align: center;
+}
+
+#thrust-bar {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    bottom: 60px;
+    left: 140px;
+    background-color: #EEE;
+    -webkit-transform: scale(1, 0.6);
+    -webkit-transform-origin: 100% 100%;
+}
+
+#thrust-bar-inner {
+    position: absolute;
+    width: 60px;
+    height: 110px;
+    bottom: 55px;
+    left: 135px;
+    background-color: #333;
+}
+
+#thrust-bar-outer {
+    position: absolute;
+    width: 70px;
+    height: 120px;
+    bottom: 50px;
+    left: 130px;
+    background-color: #EEE;
+}
+
+#thrust-label {
+    height: 20px;
+    width: 70px;
+    position: absolute;
+    bottom: 25px;
+    left: 130px;
+    text-align: center;
 }
