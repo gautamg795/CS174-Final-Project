@@ -9,7 +9,7 @@ function startPlaying() {
     app.mode = GAMESTATE_PLAYING;
     app.drawScene = drawSpace;
     app.lastTime = window.performance.now();
-    tick();
+    requestAnimFrame(tick);
 }
 
 /**
