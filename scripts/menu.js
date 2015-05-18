@@ -30,7 +30,13 @@ function setFuel(pct) {
     } 
 }
 
+function setThrust(val) {
+    val = val < 0 ? 0 : (val > 100 ? 100 : val);
+    $("#thrust-bar").css("-webkit-transform", "scale(1, " + val/100.0 + ")");
+}
+
 function updateUI() {
     setSpeed(length(app.ship.velocity));
     setFuel(app.ship.fuel);
+    setThrust(app.ship.thrust);
 }
