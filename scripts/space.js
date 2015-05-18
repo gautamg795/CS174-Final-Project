@@ -94,8 +94,13 @@ function moveShip() {
     // Calculate the acceleration created by the ship's thrust
     // (How do we find a vector for the ship's thrust based off of its heading?)
     // Add them together; alter velocity by v = a * dt like below
-    // var accelVector = calculateAcceleration();
-    // for (var i = 0; i < 3; i++) {
-    //     app.ship.velocity[i] += accelVector[i] * app.elapsed/60.0;
-    // }
+    var accelVector = calculateAcceleration();
+    for (var i = 0; i < 3; i++) {
+        app.ship.velocity[i] += accelVector[i] * app.elapsed/60.0;
+    }
+}
+
+function calculateAcceleration() {
+    var thrustVector = vec3(app.ship.thrust/500 * Math.sin(radians(app.ship.heading)), 0, app.ship.thrust/500 * Math.cos(radians(app.ship.heading)));
+    return thrustVector;
 }
