@@ -24,7 +24,6 @@ app.camera = {
 };
 app.ship = {
     velocity: [0.0, 0.0, 0.0],
-    acceleration: [0.0, 0.0, 0.0],
     position: [0.0, 0.0, 0.0],
     heading: 0.0,
     fuel: 100.0,
