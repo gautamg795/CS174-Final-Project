@@ -30,7 +30,7 @@ function handleKeysPressed() {
 
         // Up arrow key
         if (app.keysPressed[38] === true) {
-            if (app.ship.fuel > 0)
+            if (app.ship.fuel > 0 && app.ship.thrust < 100)
                 app.ship.thrust++;
         }
 

@@ -30,11 +30,19 @@ function setFuel(pct) {
     } 
 }
 
+/**
+ * Updates the thrust UI element
+ * @param {[float]} val Thrust from 0 to 100
+ */
 function setThrust(val) {
+    // clamp val to [0, 100] range
     val = val < 0 ? 0 : (val > 100 ? 100 : val);
     $("#thrust-bar").css("-webkit-transform", "scale(1, " + val/100.0 + ")");
 }
 
+/**
+ * Updates the UI as part of the game loop
+ */
 function updateUI() {
     setSpeed(length(app.ship.velocity));
     setFuel(app.ship.fuel);
