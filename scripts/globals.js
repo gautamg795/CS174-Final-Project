@@ -82,3 +82,19 @@ app.levels[0] = [
     },
 
 ];
+
+app.reset = function() {
+    app.ship = {
+        velocity: [0.0, 0.0, 0.0],
+        position: [0.0, 0.0, -250],
+        heading: 0.0,
+        fuel: 100.0,
+        thrust: 0.0,
+        material: {
+            ambient: [1.0, 1.0, 1.0, 1.0],
+            diffuse: [1.0, 1.0, 1.0, 1.0],
+            specular: [1.0, 1.0, 1.0, 1.0],
+            shininess: 100.0
+        },
+    };
+}
