@@ -24,7 +24,7 @@ app.camera = {
 };
 app.ship = {
     velocity: [0.0, 0.0, 0.0],
-    position: [0.0, 0.0, 0.0],
+    position: [0.0, 0.0, -250],
     heading: 0.0,
     fuel: 100.0,
     thrust: 0.0,
@@ -46,7 +46,8 @@ app.globalLight = {
 app.models = {};
 app.meshes = {};
 app.textures = {};
-app.levels = {};
+app.levels = [];
+app.currentLevel = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
 app.elapsed = 0;
@@ -54,3 +55,29 @@ app.lastTime = window.performance.now();
 
 // Set this variable to the current drawing function dependent on the mode (2d vs 3d)
 app.drawScene = function() {};
+
+app.levels.push([
+    {
+        position: [110, 0, -20],
+        size: .5,
+        material: {
+            ambient: [1.0, 1.0, 1.0, 1.0],
+            diffuse: [1.0, 1.0, 1.0, 1.0],
+            specular: [1.0, 1.0, 1.0, 1.0],
+            shininess: 100.0
+        },
+        mass: 100,
+    },
+    {
+        position: [-20, 0, -10],
+        size: .1,
+        material: {
+            ambient: [1.0, 1.0, 1.0, 1.0],
+            diffuse: [1.0, 1.0, 1.0, 1.0],
+            specular: [1.0, 1.0, 1.0, 1.0],
+            shininess: 100.0
+        },
+        mass: 100,
+    },
+
+]);

@@ -41,15 +41,17 @@ function drawSpace() {
     mvMatrix = mult(rotate(-1*app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
 
     drawObject(app.models.spaceship, mvMatrix);
-
-    mvMatrix = scale(.1, .1, .1);
-    mvMatrix = mult(translate(0, 10, -20), mvMatrix);
-    mvMatrix = mult(viewMatrix, mvMatrix);
-    drawObject(app.models.planet, mvMatrix);
+    app.levels[app.currentLevel].forEach(function(planet) {
+        mvMatrix = scale(planet.size, planet.size, planet.size);
+        mvMatrix = mult(translate(planet.position), mvMatrix);
+        mvMatrix = mult(viewMatrix, mvMatrix);
+        drawObject(app.models.planet, mvMatrix);
+    });
 
     mvMatrix = scale(6000, 6000, 6000);
     mvMatrix = mult(viewMatrix, mvMatrix);
     drawObject(app.models.skybox, mvMatrix);
+
     moveShip();
     updateUI();
 }
