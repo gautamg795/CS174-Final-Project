@@ -62,7 +62,7 @@ function initTexture(object, path) {
     object.texture.image = new Image();
     object.texture.image.crossOrigin = "anonymous";
     object.texture.image.onload = function() {
-         handleLoadedTexture(object.texture);
+        handleLoadedTexture(object.texture);
     }
     object.texture.image.src = path;
 }
