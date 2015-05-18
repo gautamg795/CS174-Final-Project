@@ -68,8 +68,8 @@ function drawObject(model, mvMatrix) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.textureBuffer);
     gl.vertexAttribPointer(shaderProgram.textureCoordAttribute, model.mesh.textureBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-    // gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.normalBuffer);
-    // gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, model.mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
+    gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.normalBuffer);
+    gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, model.mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
     if ('texture' in model) {
         gl.activeTexture(gl.TEXTURE0 + model.num);

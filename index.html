@@ -27,6 +27,7 @@
             varying highp vec2 fTexCoord;
             void main()
             {
+                vNormal;
                 fTexCoord = vTexCoord;
                 fColor = vColor;
                 gl_Position = projection * modelView * vec4(vPosition, 1.0);
