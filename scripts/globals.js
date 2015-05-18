@@ -56,7 +56,8 @@ app.lastTime = window.performance.now();
 // Set this variable to the current drawing function dependent on the mode (2d vs 3d)
 app.drawScene = function() {};
 
-app.levels.push([
+// Level 1
+app.levels[0] = [
     {
         position: [110, 0, -20],
         size: .5,
@@ -80,4 +81,4 @@ app.levels.push([
         mass: 100,
     },
 
-]);
+];
