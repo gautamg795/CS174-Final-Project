@@ -6,7 +6,7 @@ function ready(meshes) {
     app.meshes = meshes;
     app.mode = GAMESTATE_LOADED;
     canvas = document.getElementById("gl-canvas");
-    initGL(canvas);
+    initGL();
     initAllShaders();
     initBuffers();
     initTextures();
@@ -31,8 +31,11 @@ window.onload = function() {
  */
 
 function tick(timeNow) {
-	app.animFrame = requestAnimFrame(tick);
-	app.elapsed = timeNow - app.lastTime;
-	app.lastTime = timeNow;
-	app.drawScene();
+    app.animFrame = requestAnimFrame(tick);
+    // Clamp elapsed time (dt) to 30 msec so that switching tabs (and pausing render)
+    // doesn't cause a jump when switching back
+    app.elapsed = Math.max(timeNow - app.lastTime, 30);
+    app.lastTime = timeNow;
+    app.drawScene();
+    handleKeysPressed();
 }
