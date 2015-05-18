@@ -26,3 +26,8 @@ function setFuel(pct) {
     pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
     $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct/100.0 + ")");
 }
+
+function updateUI() {
+    setSpeed(length(app.ship.velocity));
+    setFuel(app.ship.fuel);
+}

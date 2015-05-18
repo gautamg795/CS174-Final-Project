@@ -1,6 +1,6 @@
-function initGL(c) {
-    gl = WebGLUtils.setupWebGL(c);
-    gl.viewport(0, 0, c.width, c.height);
+function initGL() {
+    gl = WebGLUtils.setupWebGL(canvas);
+    gl.viewport(0, 0, canvas.width, canvas.height);
 }
 
 /**
@@ -17,11 +17,11 @@ function initAllShaders() {
     shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "vPosition");
     gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
 
-    shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "vNormal");
-    gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
+    // shaderProgram.vertexNormalAttribute = gl.getAttribLocation(shaderProgram, "vNormal");
+    // gl.enableVertexAttribArray(shaderProgram.vertexNormalAttribute);
 
-    shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "vTexCoord");
-    gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
+    // shaderProgram.textureCoordAttribute = gl.getAttribLocation(shaderProgram, "vTexCoord");
+    // gl.enableVertexAttribArray(shaderProgram.textureCoordAttribute);
 
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "projection");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "modelView");
