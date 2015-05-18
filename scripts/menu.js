@@ -25,6 +25,9 @@ function setFuel(pct) {
     // clamp pct to [0, 100] range
     pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
     $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct/100.0 + ")");
+    if (pct < 20 && $("#fuel-bar").css("background-color") != "rgb(255, 0, 0)") {
+        $("#fuel-bar").css("background-color", "rgb(255, 0, 0)");
+    } 
 }
 
 function updateUI() {
