@@ -60,7 +60,7 @@ app.drawScene = function() {};
 app.levels[0] = [
     {
         position: [110, 0, -20],
-        size: .5,
+        size: 50,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
             diffuse: [1.0, 1.0, 1.0, 1.0],
@@ -71,7 +71,7 @@ app.levels[0] = [
     },
     {
         position: [-20, 0, -10],
-        size: .1,
+        size: 20,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
             diffuse: [1.0, 1.0, 1.0, 1.0],

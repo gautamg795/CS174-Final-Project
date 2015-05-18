@@ -39,7 +39,6 @@ function drawSpace() {
     mvMatrix = mult(translate(app.ship.position.map(function(e){return -e;})), mvMatrix);
 
     mvMatrix = mult(rotate(-1*app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
-
     drawObject(app.models.spaceship, mvMatrix);
     app.levels[app.currentLevel].forEach(function(planet) {
         mvMatrix = scale(planet.size, planet.size, planet.size);
@@ -48,10 +47,11 @@ function drawSpace() {
         drawObject(app.models.planet, mvMatrix);
     });
 
+    gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
     mvMatrix = scale(6000, 6000, 6000);
     mvMatrix = mult(viewMatrix, mvMatrix);
     drawObject(app.models.skybox, mvMatrix);
-
+    gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
     moveShip();
     updateUI();
 }

@@ -28,6 +28,7 @@ function initAllShaders() {
     shaderProgram.hasTexture = gl.getUniformLocation(shaderProgram, "hasTexture");
     shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
     shaderProgram.colorUniform = gl.getUniformLocation(shaderProgram, "vColor");
+    shaderProgram.textureScaleUniform = gl.getUniformLocation(shaderProgram, "scale")
 }
 
 /**
@@ -38,12 +39,81 @@ function initBuffers() {
     // Initialize the mesh buffers,
     // then set app.models to contain the mesh
     // app.models will also contain other model data
+    app.meshes["planet"] = initMoon();
     for (mesh in app.meshes) {
         OBJ.initMeshBuffers(gl, app.meshes[mesh]);
         app.models[mesh] = {};
         app.models[mesh].mesh = app.meshes[mesh];
         app.models[mesh].num = Object.keys(app.models).length - 1;
     }
+}
+
+function initMoon() {
+    var mesh = {};
+    var latitudeBands = 60;
+    var longitudeBands = 60;
+    var radius = 1;
+    var vertexPositionData = [];
+    var normalData = [];
+    var textureCoordData = [];
+    for (var latNumber = 0; latNumber <= latitudeBands; latNumber++) {
+        var theta = latNumber * Math.PI / latitudeBands;
+        var sinTheta = Math.sin(theta);
+        var cosTheta = Math.cos(theta);
+
+        for (var longNumber = 0; longNumber <= longitudeBands; longNumber++) {
+            var phi = longNumber * 2 * Math.PI / longitudeBands;
+            var sinPhi = Math.sin(phi);
+            var cosPhi = Math.cos(phi);
+
+            var x = cosPhi * sinTheta;
+            var y = cosTheta;
+            var z = sinPhi * sinTheta;
+            var u = 1 - (longNumber / longitudeBands);
+            var v = 1 - (latNumber / latitudeBands);
+
+            normalData.push(x);
+            normalData.push(y);
+            normalData.push(z);
+            textureCoordData.push(u);
+            textureCoordData.push(v);
+            vertexPositionData.push(radius * x);
+            vertexPositionData.push(radius * y);
+            vertexPositionData.push(radius * z);
+        }
+    }
+    var indexData = [];
+    for (var latNumber = 0; latNumber < latitudeBands; latNumber++) {
+        for (var longNumber = 0; longNumber < longitudeBands; longNumber++) {
+            var first = (latNumber * (longitudeBands + 1)) + longNumber;
+            var second = first + longitudeBands + 1;
+            indexData.push(first);
+            indexData.push(second);
+            indexData.push(first + 1);
+
+            indexData.push(second);
+            indexData.push(second + 1);
+            indexData.push(first + 1);
+        }
+    }
+    function buildBuffer(gl, type, data, itemSize) {
+        var buffer = gl.createBuffer();
+        var arrayView = type === gl.ARRAY_BUFFER ? Float32Array : Uint16Array;
+        gl.bindBuffer(type, buffer);
+        gl.bufferData(type, new arrayView(data), gl.STATIC_DRAW);
+        buffer.itemSize = itemSize;
+        buffer.numItems = data.length / itemSize;
+        return buffer;
+    }
+    mesh.indices = indexData;
+    mesh.textures = textureCoordData;
+    mesh.vertexNormals = normalData;
+    mesh.vertices = vertexPositionData;
+    mesh.normalBuffer = buildBuffer(gl, gl.ARRAY_BUFFER, mesh.vertexNormals, 3);
+    mesh.textureBuffer = buildBuffer(gl, gl.ARRAY_BUFFER, mesh.textures, 2);
+    mesh.vertexBuffer = buildBuffer(gl, gl.ARRAY_BUFFER, mesh.vertices, 3);
+    mesh.indexBuffer = buildBuffer(gl, gl.ELEMENT_ARRAY_BUFFER, mesh.indices, 1);
+    return mesh;
 }
 
 /**

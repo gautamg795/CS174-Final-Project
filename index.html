@@ -40,12 +40,12 @@
 
             uniform sampler2D uSampler;
             uniform bool hasTexture;
-
+            uniform float scale;
             void main()
             {
                 if (hasTexture)
                 {
-                    gl_FragColor = texture2D(uSampler, fTexCoord*8.0);
+                    gl_FragColor = texture2D(uSampler, fTexCoord * scale);
                 }
                 else
                 {

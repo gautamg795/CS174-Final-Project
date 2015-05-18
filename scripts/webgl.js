@@ -21,7 +21,7 @@ window.onload = function() {
     OBJ.downloadMeshes({
             'spaceship': 'assets/models/higher-poly-spaceship.obj',
             'skybox': 'assets/models/cube2.obj',
-            'planet': 'assets/models/sphere.obj',
+            // 'planet': 'assets/models/sphere.obj',
         },
         ready);
 }
