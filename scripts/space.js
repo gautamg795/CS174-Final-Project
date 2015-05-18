@@ -31,18 +31,22 @@ function drawSpace() {
     gl.clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT);
     var pMatrix = perspective(50, canvas.width / canvas.height, 0.1, 1000.0);
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
-    var viewMatrix = mult(rotate(app.camera.heading, [0, 1, 0]), translate(app.camera.position));
+    var viewMatrix = translate(add(app.camera.position, app.ship.position));
+    viewMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), viewMatrix);
     // Only need the next line if we end up switching shaders
     // gl.useProgram(shaderProgram)
     var mvMatrix = scale(0.05, 0.05, 0.05);
-    mvMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), mvMatrix);
-    mvMatrix = mult(translate(app.ship.position), mvMatrix);
-    mvMatrix = mult(viewMatrix, mvMatrix);
-    gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, flatten(mvMatrix));
+    mvMatrix = mult(translate(app.ship.position.map(function(e){return -e;})), mvMatrix);
+
+    mvMatrix = mult(rotate(-1*app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
 
     drawObject(app.models.spaceship, mvMatrix);
 
-
+    mvMatrix = scale(.1, .1, .1);
+    mvMatrix = mult(translate(0, 10, -20), mvMatrix);
+    mvMatrix = mult(viewMatrix, mvMatrix);
+    drawObject(app.models.planet, mvMatrix);
+    moveShip();
     updateUI();
 }
 
@@ -73,4 +77,25 @@ function drawObject(model, mvMatrix) {
     gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, flatten(mvMatrix));
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, model.mesh.indexBuffer);
     gl.drawElements(gl.TRIANGLES, model.mesh.indexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
+}
+
+function moveShip() {
+    // Increment position by x = v*dt
+    // Divide dt by 60 just to make it smaller 
+    for (var i = 0; i < 3; i++) {
+        app.ship.position[i] += app.ship.velocity[i] * app.elapsed/60.0;
+    }
+    // Decrement fuel proportionally to your thrust (500 is just an arbitrary constant that works for now)
+    app.ship.fuel -= app.ship.thrust / 500.0;
+    // No fuel == no thrust
+    if (app.ship.fuel <= 0)
+        app.ship.thrust = 0;
+    // TODO: Calculate the acceleration vectors from all planets
+    // Calculate the acceleration created by the ship's thrust
+    // (How do we find a vector for the ship's thrust based off of its heading?)
+    // Add them together; alter velocity by v = a * dt like below
+    // var accelVector = calculateAcceleration();
+    // for (var i = 0; i < 3; i++) {
+    //     app.ship.velocity[i] += accelVector[i] * app.elapsed/60.0;
+    // }
 }
