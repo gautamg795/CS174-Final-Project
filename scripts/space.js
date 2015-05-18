@@ -81,12 +81,12 @@ function drawObject(model, mvMatrix) {
 
 function moveShip() {
     // Increment position by x = v*dt
-    // Divide dt by 60 just to make it smaller 
+    // Divide dt just to make it smaller 
     for (var i = 0; i < 3; i++) {
-        app.ship.position[i] += app.ship.velocity[i] * app.elapsed/60.0;
+        app.ship.position[i] += app.ship.velocity[i] * app.elapsed/1000.0;
     }
-    // Decrement fuel proportionally to your thrust (500 is just an arbitrary constant that works for now)
-    app.ship.fuel -= app.ship.thrust / 500.0;
+    // Decrement fuel proportionally to your thrust (1000 is just an arbitrary constant that works for now)
+    app.ship.fuel -= app.ship.thrust / 1000.0;
     // No fuel == no thrust
     if (app.ship.fuel <= 0)
         app.ship.thrust = 0;
@@ -96,11 +96,11 @@ function moveShip() {
     // Add them together; alter velocity by v = a * dt like below
     var accelVector = calculateAcceleration();
     for (var i = 0; i < 3; i++) {
-        app.ship.velocity[i] += accelVector[i] * app.elapsed/60.0;
+        app.ship.velocity[i] += accelVector[i] * app.elapsed/120.0;
     }
 }
 
 function calculateAcceleration() {
-    var thrustVector = vec3(app.ship.thrust/500 * Math.sin(radians(app.ship.heading)), 0, app.ship.thrust/500 * Math.cos(radians(app.ship.heading)));
+    var thrustVector = vec3(app.ship.thrust/60 * Math.sin(radians(app.ship.heading)), 0, app.ship.thrust/60 * Math.cos(radians(app.ship.heading)));
     return thrustVector;
 }
