@@ -173,3 +173,44 @@ sup {
     left: 130px;
     text-align: center;
 }
+
+#controls-menu {
+    display: none;
+    background-color: #444;
+    width: 1240px;
+    height: 680px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+#controls-container {
+    display: block;
+    margin: 20px auto;
+    width: 730px;
+}
+
+.control {
+    padding: 10px;
+}
+
+.control-key {
+    float: left;
+    padding: 20px;
+    background-color: #333;
+    width: 300px;
+    text-align: right;
+}
+
+.control-description {
+    float: right;
+    padding: 20px;
+    background-color: #333;
+    width: 300px;
+    text-align: left;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}

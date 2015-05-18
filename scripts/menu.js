@@ -5,6 +5,14 @@ $(document).ready(function() {
         $('#menu').hide();
         startPlaying();
     });
+    $('#controls-button').click(function() {
+        $('#controls-menu').css('display', 'block');
+        $('#menu').hide();
+    });
+    $('#back-button').click(function() {
+        $('#menu').css('display', 'block');
+        $('#controls-menu').hide();
+    });
 });
 
 /**
