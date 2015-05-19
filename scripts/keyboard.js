@@ -72,12 +72,17 @@ function handleKeysPressed() {
                 z: finalZ,
                 fuel: finalFuel
             }, {
-                duration: (300*Math.log(length(app.ship.velocity))+80),
+                duration: (300 * Math.log(length(app.ship.velocity)) + 80),
                 step: function() {
                     app.ship.velocity = [this.x, this.y, this.z];
                     app.ship.fuel = this.fuel;
                 }
             });
+        }
+
+        // r
+        if (app.keysPressed[82] === true) {
+            app.reset();
         }
     } else {
         // Do something for the other game state(s)
