@@ -29,10 +29,14 @@ function stopPlaying() {
 function drawSpace() {
     // do the drawing for all space objects
     gl.clear(gl.COLOR_BUFFER_BIT, gl.DEPTH_BUFFER_BIT);
+
+    // update heading buffer
+    app.headingBuffer.unshift(app.ship.heading);
+
     var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
     var viewMatrix = translate(add(app.camera.position, app.ship.position));
-    viewMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), viewMatrix);
+    viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
     // Only need the next line if we end up switching shaders
     // gl.useProgram(shaderProgram)
     var mvMatrix = scale(0.05, 0.05, 0.05);

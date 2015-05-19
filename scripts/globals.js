@@ -36,6 +36,8 @@ app.ship = {
     },
 };
 
+app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
+
 app.globalLight = {
     position: [0.0, 20.0, 0.0],
     ambient: [1.0, 1.0, 1.0, 1.0],
