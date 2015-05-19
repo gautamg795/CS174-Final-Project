@@ -69,7 +69,7 @@ function handleKeysPressed() {
                 z: finalZ,
                 fuel: finalFuel
             }, {
-                duration: 1500,
+                duration: (300*Math.log(length(app.ship.velocity))+80),
                 step: function() {
                     app.ship.velocity = [this.x, this.y, this.z];
                     app.ship.fuel = this.fuel;
