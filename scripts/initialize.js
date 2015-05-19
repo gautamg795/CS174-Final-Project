@@ -96,6 +96,7 @@ function initMoon() {
             indexData.push(first + 1);
         }
     }
+
     function buildBuffer(gl, type, data, itemSize) {
         var buffer = gl.createBuffer();
         var arrayView = type === gl.ARRAY_BUFFER ? Float32Array : Uint16Array;

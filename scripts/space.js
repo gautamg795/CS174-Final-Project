@@ -36,9 +36,11 @@ function drawSpace() {
     // Only need the next line if we end up switching shaders
     // gl.useProgram(shaderProgram)
     var mvMatrix = scale(0.05, 0.05, 0.05);
-    mvMatrix = mult(translate(app.ship.position.map(function(e){return -e;})), mvMatrix);
+    mvMatrix = mult(translate(app.ship.position.map(function(e) {
+        return -e;
+    })), mvMatrix);
 
-    mvMatrix = mult(rotate(-1*app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
+    mvMatrix = mult(rotate(-1 * app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
     drawObject(app.models.spaceship, mvMatrix);
     app.levels[app.currentLevel].forEach(function(planet) {
         mvMatrix = scale(planet.size, planet.size, planet.size);
@@ -76,8 +78,7 @@ function drawObject(model, mvMatrix) {
         gl.bindTexture(gl.TEXTURE_2D, model.texture);
         gl.uniform1i(shaderProgram.samplerUniform, model.num);
         gl.uniform1i(shaderProgram.hasTexture, true);
-    }
-    else
+    } else
         gl.uniform1i(shaderProgram.hasTexture, false);
 
     // TODO: Send lighting/material data
@@ -90,7 +91,7 @@ function moveShip() {
     // Increment position by x = v*dt
     // Divide dt just to make it smaller 
     for (var i = 0; i < 3; i++) {
-        app.ship.position[i] += app.ship.velocity[i] * app.elapsed/1000.0;
+        app.ship.position[i] += app.ship.velocity[i] * app.elapsed / 1000.0;
     }
     // Decrement fuel proportionally to your thrust (1000 is just an arbitrary constant that works for now)
     app.ship.fuel -= app.ship.thrust / 1000.0;
@@ -103,11 +104,11 @@ function moveShip() {
     // Add them together; alter velocity by v = a * dt like below
     var accelVector = calculateAcceleration();
     for (var i = 0; i < 3; i++) {
-        app.ship.velocity[i] += accelVector[i] * app.elapsed/120.0;
+        app.ship.velocity[i] += accelVector[i] * app.elapsed / 120.0;
     }
 }
 
 function calculateAcceleration() {
-    var thrustVector = vec3(app.ship.thrust/60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust/60 * Math.cos(radians(-app.ship.heading)));
+    var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     return thrustVector;
 }

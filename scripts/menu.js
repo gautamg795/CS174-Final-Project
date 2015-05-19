@@ -32,10 +32,10 @@ function setSpeed(val) {
 function setFuel(pct) {
     // clamp pct to [0, 100] range
     pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
-    $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct/100.0 + ")");
+    $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct / 100.0 + ")");
     if (pct < 20 && $("#fuel-bar").css("background-color") != "rgb(255, 0, 0)") {
         $("#fuel-bar").css("background-color", "rgb(255, 0, 0)");
-    } 
+    }
 }
 
 /**
@@ -45,7 +45,7 @@ function setFuel(pct) {
 function setThrust(val) {
     // clamp val to [0, 100] range
     val = val < 0 ? 0 : (val > 100 ? 100 : val);
-    $("#thrust-bar").css("-webkit-transform", "scale(1, " + val/100.0 + ")");
+    $("#thrust-bar").css("-webkit-transform", "scale(1, " + val / 100.0 + ")");
 }
 
 /**

@@ -45,12 +45,15 @@ function handleKeysPressed() {
             app.ship.thrust = 0;
         }
 
+        // z
         if (app.keysPressed[90] === true) {
             app.ship.thrust = 0;
             if (app.ship.fuel <= 0)
                 return;
             var finalFuel = app.ship.fuel - length(app.ship.velocity) / 8;
-            var finalX = 0, finalY = 0, finalZ = 0;
+            var finalX = 0,
+                finalY = 0,
+                finalZ = 0;
             if (finalFuel < 0) {
                 var offset = Math.abs(finalFuel) * 8;
                 var norm = normalize(vec3(app.ship.velocity));
