@@ -47,16 +47,26 @@ function handleKeysPressed() {
 
         if (app.keysPressed[90] === true) {
             app.ship.thrust = 0;
+            if (app.ship.fuel <= 0)
+                return;
             var finalFuel = app.ship.fuel - length(app.ship.velocity) / 8;
+            var finalX = 0, finalY = 0, finalZ = 0;
+            if (finalFuel < 0) {
+                var offset = Math.abs(finalFuel) * 8;
+                var norm = normalize(vec3(app.ship.velocity));
+                finalX += offset * norm[0];
+                finalY += offset * norm[1];
+                finalZ += offset * norm[2];
+            }
             $({
                 x: app.ship.velocity[0],
                 y: app.ship.velocity[1],
                 z: app.ship.velocity[2],
                 fuel: app.ship.fuel
             }).animate({
-                x: 0,
-                y: 0,
-                z: 0,
+                x: finalX,
+                y: finalY,
+                z: finalZ,
                 fuel: finalFuel
             }, {
                 duration: 1500,
