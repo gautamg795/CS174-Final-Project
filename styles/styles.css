@@ -67,6 +67,12 @@ sup {
     background-color: #EEE;
     -webkit-transform: rotate(90deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
     -webkit-transform-origin: 100% 100%;
+    -ms-transform: rotate(90deg);
+    -ms-transform-origin: 100% 100%;
+    -moz-transform: rotate(90deg);
+    -moz-transform-origin: 100% 100%;
+    transform: rotate(90deg);
+    transform-origin: 100% 100%;
 }
 
 #speedometer-inner {
@@ -75,8 +81,10 @@ sup {
     position: absolute;
     bottom: 55px;
     right: 80px;
-    -webkit-border-radius: 100px 100px 0 0;
     background-color: #333;
+    -webkit-border-radius: 100px 100px 0 0;
+    -moz-border-radius: 100px 100px 0 0;
+    border-radius: 100px 100px 0 0;
 }
 
 #speedometer-outer {
@@ -85,8 +93,10 @@ sup {
     position: absolute;
     bottom: 50px;
     right: 70px;
-    -webkit-border-radius: 100px 100px 0 0;
     background-color: #EEE;
+    -webkit-border-radius: 100px 100px 0 0;
+    -moz-border-radius: 100px 100px 0 0;
+    border-radius: 100px 100px 0 0;
 }
 
 #speed-label {
@@ -107,6 +117,12 @@ sup {
     background-color: #EEE;
     -webkit-transform: scale(1, 0.6); /* The second parameter is the percentage of how full the bar is*/
     -webkit-transform-origin: 100% 100%;
+    -ms-transform: scale(1, 0.6);
+    -ms-transform-origin: 100% 100%;
+    -moz-transform: scale(1, 0.6);
+    -moz-transform-origin: 100% 100%;
+    transform: scale(1, 0.6);
+    transform-origin: 100% 100%;
 }
 
 #fuel-bar-inner {
@@ -145,6 +161,12 @@ sup {
     background-color: #EEE;
     -webkit-transform: scale(1, 0.6);
     -webkit-transform-origin: 100% 100%;
+    -ms-transform: scale(1, 0.6);
+    -ms-transform-origin: 100% 100%;
+    -moz-transform: scale(1, 0.6);
+    -moz-transform-origin: 100% 100%;
+    transform: scale(1, 0.6);
+    transform-origin: 100% 100%;
 }
 
 #thrust-bar-inner {

@@ -23,6 +23,9 @@ function setSpeed(val) {
     // clamp val to [0, 180] range
     val = val < 0 ? 0 : (val > 180 ? 180 : val);
     $("#speed-needle").css("-webkit-transform", "rotate(" + val + "deg)");
+    $("#speed-needle").css("-ms-transform", "rotate(" + val + "deg)");
+    $("#speed-needle").css("-moz-transform", "rotate(" + val + "deg)");
+    $("#speed-needle").css("transform", "rotate(" + val + "deg)");
 }
 
 /**
@@ -33,6 +36,9 @@ function setFuel(pct) {
     // clamp pct to [0, 100] range
     pct = pct < 0 ? 0 : (pct > 100 ? 100 : pct);
     $("#fuel-bar").css("-webkit-transform", "scale(1, " + pct / 100.0 + ")");
+    $("#fuel-bar").css("-ms-transform", "scale(1, " + pct / 100.0 + ")");
+    $("#fuel-bar").css("-moz-transform", "scale(1, " + pct / 100.0 + ")");
+    $("#fuel-bar").css("transform", "scale(1, " + pct / 100.0 + ")");
     if (pct < 20 && $("#fuel-bar").css("background-color") != "rgb(255, 0, 0)") {
         $("#fuel-bar").css("background-color", "rgb(255, 0, 0)");
     }
@@ -46,6 +52,9 @@ function setThrust(val) {
     // clamp val to [0, 100] range
     val = val < 0 ? 0 : (val > 100 ? 100 : val);
     $("#thrust-bar").css("-webkit-transform", "scale(1, " + val / 100.0 + ")");
+    $("#thrust-bar").css("-ms-transform", "scale(1, " + val / 100.0 + ")");
+    $("#thrust-bar").css("-moz-transform", "scale(1, " + val / 100.0 + ")");
+    $("#thrust-bar").css("transform", "scale(1, " + val / 100.0 + ")");
 }
 
 /**
