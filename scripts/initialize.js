@@ -121,7 +121,7 @@ function initMoon() {
  * Load the textures for the models and store them in app.models.*
  */
 function initTextures() {
-    // initTexture(app.models.spaceship, "assets/textures/some_texture.jpg");
+    initTexture(app.models.spaceship, "assets/textures/ship.png");
     initTexture(app.models.planet, "assets/textures/moon.gif");
     initTexture(app.models.skybox, "assets/textures/sky.jpg");
 }
