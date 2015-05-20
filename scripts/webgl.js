@@ -34,7 +34,7 @@ function tick(timeNow) {
     app.animFrame = requestAnimFrame(tick);
     // Clamp elapsed time (dt) to 30 msec so that switching tabs (and pausing render)
     // doesn't cause a jump when switching back
-    app.elapsed = Math.max(timeNow - app.lastTime, 30);
+    app.elapsed = Math.min(timeNow - app.lastTime, 30);
     app.lastTime = timeNow;
     app.drawScene();
     handleKeysPressed();
