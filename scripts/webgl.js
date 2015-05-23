@@ -2,7 +2,7 @@
  * WebGL Setup Code
  */
 
-function ready(meshes) {
+function meshesLoaded(meshes) {
     app.meshes = meshes;
     app.mode = GAMESTATE_LOADED;
     canvas = document.getElementById("gl-canvas");
@@ -23,7 +23,7 @@ window.onload = function() {
             'skybox': 'assets/models/cube2.obj',
             // 'planet': 'assets/models/sphere.obj',
         },
-        ready);
+        meshesLoaded);
 }
 
 /**

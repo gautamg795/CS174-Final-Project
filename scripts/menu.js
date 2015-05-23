@@ -3,12 +3,6 @@ $(document).ready(function() {
     $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[app.textureQuality]);
 
     // Menu button interactions
-    $('#start-button').click(function() {
-        $('#gl-canvas').css('display', 'block');
-        $('#hud').css('display', 'block');
-        $('#menu').hide();
-        startPlaying();
-    });
     $('#controls-button').click(function() {
         $('#controls-menu').css('display', 'block');
         $('#menu').hide();
@@ -49,6 +43,17 @@ $(document).ready(function() {
         }
     });
 });
+
+function everythingLoaded() {
+    $("#start-button").removeAttr('style');
+    $("#start-button").text("START");
+    $('#start-button').click(function() {
+        $('#gl-canvas').css('display', 'block');
+        $('#hud').css('display', 'block');
+        $('#menu').hide();
+        startPlaying();
+    });
+}
 
 /**
  * Updates the speedometer UI element

@@ -44,7 +44,7 @@ app.globalLight = {
     diffuse: [1.0, 1.0, 1.0, 1.0],
     specular: [1.0, 1.0, 1.0, 1.0],
 };
-
+app.textureCount = 0;
 app.rotationSensitivity = 50;
 app.textureQualityOptions = ["Very Low", "Low", "Normal", "High", "Very High"];
 app.textureQuality = 4;

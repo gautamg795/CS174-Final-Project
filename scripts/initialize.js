@@ -134,11 +134,14 @@ function initTextures() {
  * @param  {String} path   Relative path to the texture image
  */
 function initTexture(object, path) {
+    ++app.textureCount;
     object.texture = gl.createTexture();
     object.texture.image = new Image();
     object.texture.image.crossOrigin = "anonymous";
     object.texture.image.onload = function() {
         handleLoadedTexture(object.texture);
+        if (--app.textureCount == 0)
+            everythingLoaded();
     }
     object.texture.image.src = path;
 }
