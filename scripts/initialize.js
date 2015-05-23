@@ -39,7 +39,7 @@ function initBuffers() {
     // Initialize the mesh buffers,
     // then set app.models to contain the mesh
     // app.models will also contain other model data
-    app.meshes["planet"] = initMoon();
+    app.meshes["planet"] = initPlanet();
     for (mesh in app.meshes) {
         OBJ.initMeshBuffers(gl, app.meshes[mesh]);
         app.models[mesh] = {};
@@ -48,7 +48,7 @@ function initBuffers() {
     }
 }
 
-function initMoon() {
+function initPlanet() {
     var mesh = {};
     var latitudeBands = 60;
     var longitudeBands = 60;
