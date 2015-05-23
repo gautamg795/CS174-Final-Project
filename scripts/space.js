@@ -113,16 +113,18 @@ function moveShip() {
     }
 }
 
+// IN PROGRESS
 function checkPlanetCollision() {
     // Loop through all planet positions and check against ship position
     var distance;
 
     for (var i = 0; i < app.levels[0].length; i++) {
+        // Sum of squares of positions for distance
         distance = Math.pow( app.levels[0][i].position[0] + app.ship.position[0], 2) + 
                    Math.pow( app.levels[0][i].position[2] + app.ship.position[2], 2);
-        console.log(distance);
+        // Compare against square of sum of radii
         if (distance < Math.pow(40 + app.levels[0][i].size, 2)) {
-            console.log('true');
+            // console.log('true');
         }
     }
 }

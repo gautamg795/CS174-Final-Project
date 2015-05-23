@@ -16,14 +16,14 @@ function handleKeysPressed() {
 
         // Right arrow key
         if (app.keysPressed[39] === true) {
-            app.ship.heading++;
+            app.ship.heading += app.rotationSensitivity / 50;
             if (app.ship.heading > 180)
                 app.ship.heading -= 360;
         }
 
         // Left arrow key
         if (app.keysPressed[37] === true) {
-            app.ship.heading--;
+            app.ship.heading -= app.rotationSensitivity / 50;
             if (app.ship.heading < -180)
                 app.ship.heading += 360;
         }

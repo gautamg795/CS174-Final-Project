@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    $("#sensitivity-slider").parent().siblings(".option-value").text(app.rotationSensitivity);
+    $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[app.textureQuality]);
+
+    // Menu button interactions
     $('#start-button').click(function() {
         $('#gl-canvas').css('display', 'block');
         $('#hud').css('display', 'block');
@@ -9,9 +13,40 @@ $(document).ready(function() {
         $('#controls-menu').css('display', 'block');
         $('#menu').hide();
     });
-    $('#back-button').click(function() {
+    $('#back-controls-button').click(function() {
         $('#menu').css('display', 'block');
         $('#controls-menu').hide();
+    });
+    $('#options-button').click(function() {
+        $('#options-menu').css('display', 'block');
+        $('#menu').hide();
+    });
+    $('#back-options-button').click(function() {
+        $('#menu').css('display', 'block');
+        $('#options-menu').hide();
+    });
+
+    // Option settings
+    $("#sensitivity-slider").slider({
+        value: app.rotationSensitivity,
+        min: 0,
+        max: 100,
+        step: 10,
+        slide: function( event, ui ) {
+            $("#sensitivity-slider").parent().siblings(".option-value").text(ui.value);
+            app.rotationSensitivity = ui.value;
+        }
+    });
+
+    $("#texture-slider").slider({
+        value: app.textureQuality,
+        min: 0,
+        max: 4,
+        step: 1,
+        slide: function( event, ui ) {
+            $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[ui.value]);
+            app.textureQuality = ui.value;
+        }
     });
 });
 
