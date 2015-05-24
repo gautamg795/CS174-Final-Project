@@ -40,6 +40,7 @@ $(document).ready(function() {
         slide: function( event, ui ) {
             $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[ui.value]);
             app.textureQuality = ui.value;
+            initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
         }
     });
 });
