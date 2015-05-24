@@ -123,8 +123,8 @@ function initPlanet() {
 function initTextures() {
     initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
     console.log("Using ship-" + app.textureQuality + ".png");
-    initTexture(app.models.planet, "assets/textures/moon.gif");
     initTexture(app.models.skybox, "assets/textures/sky.jpg");
+    initTexture(app.models.planet, ["assets/textures/moon.gif", "assets/textures/neptune.jpg", "assets/textures/nebula.png", "assets/textures/mercury.jpg"]);
 }
 
 /**
@@ -134,14 +134,31 @@ function initTextures() {
  * @param  {String} path   Relative path to the texture image
  */
 function initTexture(object, path) {
+    if (path.constructor === Array) {
+        object.texture = [];
+        for (var i = 0; i < path.length; i++) {
+            ++app.textureCount;
+            object.texture[i] = gl.createTexture();
+            object.texture[i].image = new Image();
+            object.texture[i].crossOrigin = "anonymous";
+            // This is way hackier than it should be but javascript is dumb sometimes
+            // in regards to how variable scope works with callbacks
+            object.texture[i].image.i = i;
+            object.texture[i].image.onload = function() {
+                if (object.texture.constructor === Array)
+                    handleLoadedTexture(object.texture[this.i]);
+                else handleLoadedTexture(object.texture);
+            }
+            object.texture[i].image.src = path[i];
+        }
+        return;
+    }
     ++app.textureCount;
     object.texture = gl.createTexture();
     object.texture.image = new Image();
     object.texture.image.crossOrigin = "anonymous";
     object.texture.image.onload = function() {
         handleLoadedTexture(object.texture);
-        if (--app.textureCount == 0)
-            everythingLoaded();
     }
     object.texture.image.src = path;
 }
@@ -155,4 +172,6 @@ function handleLoadedTexture(texture) {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     // Good practice to leave the active texture unbound
     gl.bindTexture(gl.TEXTURE_2D, null);
+    if (--app.textureCount == 0)
+        everythingLoaded()
 }

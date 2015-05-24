@@ -72,6 +72,7 @@ app.levels[0] = [{
             specular: [1.0, 1.0, 1.0, 1.0],
             shininess: 100.0
         },
+        textureNum: 0,
         mass: 100,
     }, {
         position: [-20, 0, -10],
@@ -82,6 +83,7 @@ app.levels[0] = [{
             specular: [1.0, 1.0, 1.0, 1.0],
             shininess: 100.0
         },
+        textureNum: 2,
         mass: 100,
     },
 

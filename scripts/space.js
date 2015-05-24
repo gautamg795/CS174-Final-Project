@@ -45,18 +45,18 @@ function drawSpace() {
     })), mvMatrix);
 
     mvMatrix = mult(rotate(-1 * app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
-    drawObject(app.models.spaceship, mvMatrix);
+    drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture);
     app.levels[app.currentLevel].forEach(function(planet) {
         mvMatrix = scale(planet.size, planet.size, planet.size);
         mvMatrix = mult(translate(planet.position), mvMatrix);
         mvMatrix = mult(viewMatrix, mvMatrix);
-        drawObject(app.models.planet, mvMatrix);
+        drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum]);
     });
 
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
     mvMatrix = scale(6000, 6000, 6000);
     mvMatrix = mult(viewMatrix, mvMatrix);
-    drawObject(app.models.skybox, mvMatrix);
+    drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture);
     gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
     moveShip();
     checkPlanetCollision();
@@ -68,7 +68,7 @@ function drawSpace() {
  * @param  {Model} model    The model to be drawn
  * @param  {mat4} mvMatrix Model-view matrix associated with the model
  */
-function drawObject(model, mvMatrix) {
+function drawObject(model, mvMatrix, texture) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.vertexBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, model.mesh.vertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
@@ -78,9 +78,9 @@ function drawObject(model, mvMatrix) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.normalBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, model.mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
-    if ('texture' in model) {
+    if (texture) {
         gl.activeTexture(gl.TEXTURE0 + model.num);
-        gl.bindTexture(gl.TEXTURE_2D, model.texture);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.uniform1i(shaderProgram.samplerUniform, model.num);
         gl.uniform1i(shaderProgram.hasTexture, true);
     } else
@@ -120,8 +120,8 @@ function checkPlanetCollision() {
 
     for (var i = 0; i < app.levels[0].length; i++) {
         // Sum of squares of positions for distance
-        distance = Math.pow( app.levels[0][i].position[0] + app.ship.position[0], 2) + 
-                   Math.pow( app.levels[0][i].position[2] + app.ship.position[2], 2);
+        distance = Math.pow(app.levels[0][i].position[0] + app.ship.position[0], 2) +
+            Math.pow(app.levels[0][i].position[2] + app.ship.position[2], 2);
         // Compare against square of sum of radii
         if (distance < Math.pow(40 + app.levels[0][i].size, 2)) {
             // console.log('true');
