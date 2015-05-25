@@ -145,5 +145,16 @@ function checkPlanetCollision() {
 
 function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
-    return thrustVector;
+    var gravityVector = [0.0, 0.0, 0.0];
+
+    app.levels[app.currentLevel].forEach(function(planet) {
+        var vec_to_planet = subtract(vec3(planet.position), vec3(app.ship.position));
+        var unit_vec = normalize(vec_to_planet, false);
+        var dist_squared = dot(vec_to_planet, vec_to_planet);
+        var gravity_mag = 0.0001 * planet.mass * app.ship.mass / dist_squared;
+        gravityVector[0] += unit_vec[0] * gravity_mag;
+        gravityVector[1] += unit_vec[1] * gravity_mag;
+        gravityVector[2] += unit_vec[2] * gravity_mag;
+    });
+    return add(thrustVector, gravityVector);
 }

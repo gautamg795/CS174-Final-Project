@@ -34,6 +34,7 @@ app.ship = {
         specular: [1.0, 1.0, 1.0, 1.0],
         shininess: 100.0
     },
+    mass: 20
 };
 
 app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
@@ -103,5 +104,6 @@ app.reset = function() {
             specular: [1.0, 1.0, 1.0, 1.0],
             shininess: 100.0
         },
+        mass : 20
     };
 }
