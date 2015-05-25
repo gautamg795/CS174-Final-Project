@@ -21,7 +21,18 @@ function stopPlaying() {
     app.drawScene = function() {};
     cancelAnimationFrame(app.animFrame);
 }
+// Used for multiplying a matrix * vector
+function multMatVec(u, v) {
+    var result = [];
 
+    for (var i = 0; i < u.length; ++i) {
+        var sum = 0;
+        for (var j = 0; j < u.length; j++)
+            sum += u[i][j] * v[j];
+        result.push(sum);
+    }
+    return result;
+}
 /**
  * Draw the space environment. Draws the spaceship, skybox, and planets
  * corresponding to the current level
@@ -35,16 +46,19 @@ function drawSpace() {
 
     var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
-    var viewMatrix = translate(add(app.camera.position, app.ship.position));
-    viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
+    // var viewMatrix = translate(add(app.camera.position, app.ship.position));
+    // viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
+    var eye = mult(rotate(-app.ship.heading+180, [0, 1, 0]), translate(0, 10, 30));
+    eye = mult(translate(app.ship.position), eye);
+    eye = multMatVec(eye, vec4(0, 0, 0, 1)).slice(0, 3);
+    var viewMatrix = lookAt(eye, app.ship.position, [0, 1, 0]);
     // Only need the next line if we end up switching shaders
     // gl.useProgram(shaderProgram)
     var mvMatrix = scale(0.05, 0.05, 0.05);
-    mvMatrix = mult(translate(app.ship.position.map(function(e) {
-        return -e;
-    })), mvMatrix);
+    mvMatrix = mult(rotate(-app.ship.heading+180, [0, 1, 0]), mvMatrix);
+    mvMatrix = mult(translate(app.ship.position), mvMatrix);
 
-    mvMatrix = mult(rotate(-1 * app.ship.heading, [0, 1, 0]), mult(viewMatrix, mvMatrix));
+    mvMatrix = mult(viewMatrix, mvMatrix);
     drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture);
     app.levels[app.currentLevel].forEach(function(planet) {
         mvMatrix = scale(planet.size, planet.size, planet.size);
