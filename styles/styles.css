@@ -271,6 +271,25 @@ sup {
     text-align: left;
 }
 
+#crashed-popup {
+    background-color: #444;
+    position: absolute;
+    display: none;
+    margin: 20px auto;
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    top: 150px;
+    left: 0px;
+    right: 0px;
+}
+
+#crashed-title {
+    text-align: center;
+    font-size: 36px;
+    padding: 30px;
+}
+
 .clearfix:after {
     content: "";
     display: table;

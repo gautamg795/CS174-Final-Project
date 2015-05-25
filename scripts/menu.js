@@ -19,6 +19,10 @@ $(document).ready(function() {
         $('#menu').css('display', 'block');
         $('#options-menu').hide();
     });
+    $('#crashed-try-again').click(function() {
+        $('#crashed-popup').hide();
+        app.reset();
+    });
 
     // Option settings
     $("#sensitivity-slider").slider({
