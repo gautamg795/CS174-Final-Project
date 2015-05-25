@@ -73,7 +73,7 @@ function drawSpace() {
     drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture);
     gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
     moveShip();
-    checkPlanetCollision();
+    checkCollision();
     updateUI();
 }
 
@@ -128,19 +128,27 @@ function moveShip() {
 }
 
 // IN PROGRESS
-function checkPlanetCollision() {
+function checkCollision() {
     // Loop through all planet positions and check against ship position
     var distance;
-
     for (var i = 0; i < app.levels[0].length; i++) {
-        // Sum of squares of positions for distance
+        // Calculate distance to planet
         distance = Math.pow(app.levels[0][i].position[0] - app.ship.position[0], 2) +
             Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
-        if (distance < Math.pow(25 + app.levels[0][i].size, 2)) {
+        if (distance <= Math.pow(25 + app.levels[0][i].size, 2)) {
             //TODO: "stopPlaying" but still make the try again button act as a 'R' press
             stopPlaying();
             $('#crashed-popup').css('display', 'block');
+        }
+    }
+
+    //Calculate if ship is about to hit skybox
+    if (25+ Math.abs(app.ship.position[0]) >= 3000 || 25 + Math.abs(app.ship.position[2]) >= 3000) {
+        $('#crashed-popup').css('display', 'block');
+        //Calculate if ship is about to hit skybox
+        if (25 + Math.abs(app.ship.position[0]) >= 6000 || 25 + Math.abs(app.ship.position[2]) >= 6000) {
+            stopPlaying();
         }
     }
 }
