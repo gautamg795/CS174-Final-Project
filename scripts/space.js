@@ -48,7 +48,7 @@ function drawSpace() {
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
     // var viewMatrix = translate(add(app.camera.position, app.ship.position));
     // viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
-    var eye = mult(rotate(-app.ship.heading+180, [0, 1, 0]), translate(0, 10, 30));
+    var eye = mult(rotate(-app.headingBuffer.pop()+180, [0, 1, 0]), translate(0, 10, 40));
     eye = mult(translate(app.ship.position), eye);
     eye = multMatVec(eye, vec4(0, 0, 0, 1)).slice(0, 3);
     var viewMatrix = lookAt(eye, app.ship.position, [0, 1, 0]);
