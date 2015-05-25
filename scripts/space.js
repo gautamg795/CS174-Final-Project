@@ -137,9 +137,8 @@ function checkPlanetCollision() {
         distance = Math.pow(app.levels[0][i].position[0] - app.ship.position[0], 2) +
             Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
-        if (distance < Math.pow(40 + app.levels[0][i].size, 2)) {
-            console.log('true');
-            app.reset();
+        if (distance <= Math.pow(25 + app.levels[0][i].size, 2)) {
+            stopPlaying();
         }
     }
 }
