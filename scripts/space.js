@@ -6,10 +6,12 @@
  * Start rendering/ticking and drawing with drawSpace()
  */
 function startPlaying() {
-    app.mode = GAMESTATE_PLAYING;
-    app.drawScene = drawSpace;
-    app.lastTime = window.performance.now();
-    requestAnimFrame(tick);
+    if (app.mode != GAMESTATE_PLAYING) {
+        app.mode = GAMESTATE_PLAYING;
+        app.drawScene = drawSpace;
+        app.lastTime = window.performance.now();
+        requestAnimFrame(tick);
+    }
 }
 
 /**
