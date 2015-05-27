@@ -22,14 +22,9 @@ $(document).ready(function() {
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
         startPlaying();
-        app.reset();
+        resetLevel();
     });
-    $('#crashed-quit').click(function() {
-        $('#crashed-popup').hide();
-        $('#gl-canvas').hide();
-        $('#hud').hide();
-        $('#menu').css('display','block');
-    })
+    $('#crashed-quit').click(resetApp);
 
     // Option settings
     $("#sensitivity-slider").slider({
@@ -64,7 +59,7 @@ function everythingLoaded() {
         $('#hud').css('display', 'block');
         $('#menu').hide();
         startPlaying();
-        app.reset();
+        resetLevel();
     });
 }
 

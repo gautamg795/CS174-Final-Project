@@ -82,7 +82,7 @@ function handleKeysPressed() {
 
         // r
         if (app.keysPressed[82] === true) {
-            app.reset();
+            resetLevel();
         }
     } else {
         // Do something for the other game state(s)

@@ -21,6 +21,33 @@ function stopPlaying() {
 }
 
 /**
+ * Reset the current level to its original state
+ */
+function resetLevel() {
+    $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
+    app.ship.velocity = [0.0, 0.0, 0.0];
+    app.ship.position = [0.0, 0.0, -250];
+    app.ship.fuel = 100.0;
+    app.ship.thrust = 0.0;
+    app.ship.heading = 0;
+    app.headingBuffer = [0, 0, 0, 0, 0];
+}
+
+/**
+ * Reset the entire game, bringing you back to the menu
+ * Does not reset user settings by design
+ */
+function resetApp() {
+    stopPlaying();
+    app.currentLevel = 0;
+    resetLevel();
+    $('#crashed-popup').hide();
+    $('#gl-canvas').hide();
+    $('#hud').hide();
+    $('#menu').css('display','block');
+}
+
+/**
  * Draw the space environment. Draws the spaceship, skybox, and planets
  * corresponding to the current level
  */

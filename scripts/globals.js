@@ -89,13 +89,3 @@ app.levels[0] = [{
     },
 
 ];
-
-app.reset = function() {
-    $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
-    app.ship.velocity = [0.0, 0.0, 0.0];
-    app.ship.position = [0.0, 0.0, -250];
-    app.ship.fuel = 100.0;
-    app.ship.thrust = 0.0;
-    app.ship.heading = 0;
-    app.headingBuffer = [0, 0, 0, 0, 0];
-}
