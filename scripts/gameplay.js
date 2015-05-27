@@ -155,22 +155,34 @@ function checkCollision() {
             Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
         if (distance <= Math.pow(25 + app.levels[0][i].size, 2)) {
-            //TODO: "stopPlaying" but still make the try again button act as a 'R' press
-            stopPlaying();
-            $('#crashed-popup').css('display', 'block');
+            crash();
         }
     }
 
-    //Calculate if ship is about to hit skybox
+    //Calculate if ship is nearing skybox
     if (25 + Math.abs(app.ship.position[0]) >= 3000 || 25 + Math.abs(app.ship.position[2]) >= 3000) {
-        $('#crashed-popup').css('display', 'block');
-        //Calculate if ship is about to hit skybox
+        // Show warning popup at this point?
+        //Calculate if ship is hitting skybox
         if (25 + Math.abs(app.ship.position[0]) >= 6000 || 25 + Math.abs(app.ship.position[2]) >= 6000) {
-            stopPlaying();
+            crash();
         }
     }
 }
 
+/**
+ * Called whenever the ship has crashed.
+ * If we decide to add an explosion, do that here
+ */
+function crash() {
+    stopPlaying();
+    $('#crashed-popup').css('display', 'block');
+}
+
+/**
+ * Calculates the acceleration on the ship as a combination of
+ * thrust and gravity
+ * @return {vec3} Acceleration vector
+ */
 function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     var gravityVector = [0.0, 0.0, 0.0];
