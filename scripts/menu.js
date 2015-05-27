@@ -24,6 +24,12 @@ $(document).ready(function() {
         startPlaying();
         app.reset();
     });
+    $('#crashed-quit').click(function() {
+        $('#crashed-popup').hide();
+        $('#gl-canvas').hide();
+        $('#hud').hide();
+        $('#menu').css('display','block');
+    })
 
     // Option settings
     $("#sensitivity-slider").slider({
@@ -58,6 +64,7 @@ function everythingLoaded() {
         $('#hud').css('display', 'block');
         $('#menu').hide();
         startPlaying();
+        app.reset();
     });
 }
 
