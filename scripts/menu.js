@@ -21,6 +21,7 @@ $(document).ready(function() {
     });
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
+        startPlaying();
         app.reset();
     });
 
