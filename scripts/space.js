@@ -1,8 +1,4 @@
 /**
- * I didn't know what to call this file; feel free to rename
- */
-
-/**
  * Start rendering/ticking and drawing with drawSpace()
  */
 function startPlaying() {
@@ -23,18 +19,7 @@ function stopPlaying() {
     app.drawScene = function() {};
     cancelAnimationFrame(app.animFrame);
 }
-// Used for multiplying a matrix * vector
-function multMatVec(u, v) {
-    var result = [];
 
-    for (var i = 0; i < u.length; ++i) {
-        var sum = 0;
-        for (var j = 0; j < u.length; j++)
-            sum += u[i][j] * v[j];
-        result.push(sum);
-    }
-    return result;
-}
 /**
  * Draw the space environment. Draws the spaceship, skybox, and planets
  * corresponding to the current level
