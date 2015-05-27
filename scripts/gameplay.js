@@ -120,6 +120,10 @@ function drawObject(model, mvMatrix, texture) {
     gl.drawElements(gl.TRIANGLES, model.mesh.indexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 }
 
+/**
+ * Moves the ship as per its acceleration
+ * Uses Euler's method to calculate ∆x and ∆v
+ */
 function moveShip() {
     // Increment position by x = v*dt
     // Divide dt just to make it smaller 
