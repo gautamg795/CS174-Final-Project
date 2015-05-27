@@ -1,7 +1,7 @@
 /**
  * globals.js
  */
- 
+
 // enums
 var X = 0,
     Y = 1,

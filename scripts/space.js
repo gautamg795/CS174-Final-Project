@@ -35,14 +35,14 @@ function drawSpace() {
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
     // var viewMatrix = translate(add(app.camera.position, app.ship.position));
     // viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
-    var eye = mult(rotate(-app.headingBuffer.pop()+180, [0, 1, 0]), translate(0, 10, 40));
+    var eye = mult(rotate(-app.headingBuffer.pop() + 180, [0, 1, 0]), translate(0, 10, 40));
     eye = mult(translate(app.ship.position), eye);
     eye = multMatVec(eye, vec4(0, 0, 0, 1)).slice(0, 3);
-    var viewMatrix = lookAt(eye, vec3(app.ship.position[0], app.ship.position[1]+10, app.ship.position[2]), [0, 1, 0]);
+    var viewMatrix = lookAt(eye, vec3(app.ship.position[0], app.ship.position[1] + 10, app.ship.position[2]), [0, 1, 0]);
     // Only need the next line if we end up switching shaders
     // gl.useProgram(shaderProgram)
     var mvMatrix = scale(0.05, 0.05, 0.05);
-    mvMatrix = mult(rotate(-app.ship.heading+180, [0, 1, 0]), mvMatrix);
+    mvMatrix = mult(rotate(-app.ship.heading + 180, [0, 1, 0]), mvMatrix);
     mvMatrix = mult(translate(app.ship.position), mvMatrix);
 
     mvMatrix = mult(viewMatrix, mvMatrix);
@@ -131,7 +131,7 @@ function checkCollision() {
     }
 
     //Calculate if ship is about to hit skybox
-    if (25+ Math.abs(app.ship.position[0]) >= 3000 || 25 + Math.abs(app.ship.position[2]) >= 3000) {
+    if (25 + Math.abs(app.ship.position[0]) >= 3000 || 25 + Math.abs(app.ship.position[2]) >= 3000) {
         $('#crashed-popup').css('display', 'block');
         //Calculate if ship is about to hit skybox
         if (25 + Math.abs(app.ship.position[0]) >= 6000 || 25 + Math.abs(app.ship.position[2]) >= 6000) {
