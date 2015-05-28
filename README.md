@@ -5,7 +5,7 @@
     * Collision Detection
       * With planets
       * With skybox (plus "warning" system?)
-    * Gravity
+    * ~~Gravity~~
   * Logistical:
     * Populate level data
     * Determine if game is fun; if not, make it fun
