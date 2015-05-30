@@ -26,9 +26,12 @@ function initAllShaders() {
     shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "projection");
     shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "modelView");
     shaderProgram.hasTexture = gl.getUniformLocation(shaderProgram, "hasTexture");
+    shaderProgram.usesLighting = gl.getUniformLocation(shaderProgram, "usesLighting");
     shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
     shaderProgram.colorUniform = gl.getUniformLocation(shaderProgram, "vColor");
-    shaderProgram.textureScaleUniform = gl.getUniformLocation(shaderProgram, "scale")
+    shaderProgram.textureScaleUniform = gl.getUniformLocation(shaderProgram, "scale");
+    shaderProgram.lightMatrix = gl.getUniformLocation(shaderProgram, "lightMatrix");
+    shaderProgram.lightDir = gl.getUniformLocation(shaderProgram, "lightDir");
 }
 
 /**
