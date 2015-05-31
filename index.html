@@ -76,8 +76,10 @@
                         vec3 lightDir = vec3(0.0, 0.0, 1.0);
 
                         float lightIntensity = dot(normalize(lightDir), normalize(L));
-                        if(lightIntensity < 0.9)
-                            lightIntensity = 0.0;
+                        lightIntensity = pow(lightIntensity, 14.0);
+                        float dist = dot(L, L);
+                        lightIntensity /= max(0.75, dist / 40000.0);
+                        // max .75 so it gets brighter when closer, but not TOO bright
                         vec3 H = normalize(normalize(L) + normalize(E));
                         vec4 ambient = vec4(0.1, 0.1, 0.1, 1.0);
 
