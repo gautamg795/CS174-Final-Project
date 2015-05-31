@@ -60,31 +60,31 @@ function drawSpace() {
 
     var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
-    // var viewMatrix = translate(add(app.camera.position, app.ship.position));
-    // viewMatrix = mult(rotate(app.headingBuffer[4], [0, 1, 0]), viewMatrix);
-    var eye = mult(rotate(-app.headingBuffer.pop() + 180, [0, 1, 0]), translate(0, 10, 40));
-    eye = mult(translate(app.ship.position), eye);
-    eye = multMatVec(eye, vec4(0, 0, 0, 1)).slice(0, 3);
-    var viewMatrix = lookAt(eye, vec3(app.ship.position[0], app.ship.position[1] + 10, app.ship.position[2]), [0, 1, 0]);
-    // Only need the next line if we end up switching shaders
-    // gl.useProgram(shaderProgram)
-    var mvMatrix = scale(0.05, 0.05, 0.05);
-    mvMatrix = mult(rotate(-app.ship.heading + 180, [0, 1, 0]), mvMatrix);
-    mvMatrix = mult(translate(app.ship.position), mvMatrix);
 
-    mvMatrix = mult(viewMatrix, mvMatrix);
-    drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture);
+    var viewMatrix = translate(app.camera.position);
+    gl.uniformMatrix4fv(shaderProgram.lightMatrix, false, flatten(viewMatrix));
+    var rotMatrix = rotate(app.headingBuffer.pop() - app.ship.heading, [0, 1, 0]);
+    var modelMatrix = mult(rotMatrix, scale(0.05, 0.05, 0.05));
+
+    var mvMatrix = mult(viewMatrix, modelMatrix);
+
+    drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture, false);
+
     app.levels[app.currentLevel].forEach(function(planet) {
-        mvMatrix = scale(planet.size, planet.size, planet.size);
-        mvMatrix = mult(translate(planet.position), mvMatrix);
-        mvMatrix = mult(viewMatrix, mvMatrix);
-        drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum]);
+        modelMatrix = scale(planet.size, planet.size, planet.size);
+        modelMatrix = mult(translate(app.ship.position), modelMatrix);
+        modelMatrix = mult(translate(scaleVec(-1, planet.position)), modelMatrix);
+        modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
+        mvMatrix = mult(viewMatrix, modelMatrix);
+        drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
     });
 
+
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
-    mvMatrix = scale(6000, 6000, 6000);
-    mvMatrix = mult(viewMatrix, mvMatrix);
-    drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture);
+    modelMatrix = mult(translate(app.ship.position), scale(6000, 6000, 6000));
+    modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
+    mvMatrix = mult(viewMatrix, modelMatrix);
+    drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture, false);
     gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
     moveShip();
     checkCollision();
@@ -96,7 +96,7 @@ function drawSpace() {
  * @param  {Model} model    The model to be drawn
  * @param  {mat4} mvMatrix Model-view matrix associated with the model
  */
-function drawObject(model, mvMatrix, texture) {
+function drawObject(model, mvMatrix, texture, lighting) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.vertexBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, model.mesh.vertexBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
@@ -106,6 +106,7 @@ function drawObject(model, mvMatrix, texture) {
     gl.bindBuffer(gl.ARRAY_BUFFER, model.mesh.normalBuffer);
     gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, model.mesh.normalBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
+    gl.uniform1i(shaderProgram.usesLighting, lighting);
     if (texture) {
         gl.activeTexture(gl.TEXTURE0 + model.num);
         gl.bindTexture(gl.TEXTURE_2D, texture);
