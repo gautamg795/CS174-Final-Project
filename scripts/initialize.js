@@ -31,7 +31,7 @@ function initAllShaders() {
     shaderProgram.colorUniform = gl.getUniformLocation(shaderProgram, "vColor");
     shaderProgram.textureScaleUniform = gl.getUniformLocation(shaderProgram, "scale");
     shaderProgram.lightMatrix = gl.getUniformLocation(shaderProgram, "lightMatrix");
-    shaderProgram.lightDir = gl.getUniformLocation(shaderProgram, "lightDir");
+
 }
 
 /**

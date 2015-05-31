@@ -63,8 +63,8 @@ function drawSpace() {
 
     var viewMatrix = translate(app.camera.position);
     gl.uniformMatrix4fv(shaderProgram.lightMatrix, false, flatten(viewMatrix));
-
-    var modelMatrix = mult(rotate(app.headingBuffer.pop() - app.ship.heading, [0, 1, 0]), scale(0.05, 0.05, 0.05));
+    var rotMatrix = rotate(app.headingBuffer.pop() - app.ship.heading, [0, 1, 0]);
+    var modelMatrix = mult(rotMatrix, scale(0.05, 0.05, 0.05));
 
     var mvMatrix = mult(viewMatrix, modelMatrix);
 
@@ -79,6 +79,7 @@ function drawSpace() {
         drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
     });
 
+
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
     modelMatrix = mult(translate(app.ship.position), scale(6000, 6000, 6000));
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
@@ -86,7 +87,7 @@ function drawSpace() {
     drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture, false);
     gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
     moveShip();
-    //checkCollision();
+    checkCollision();
     updateUI();
 }
 
@@ -187,7 +188,7 @@ function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     var gravityVector = [0.0, 0.0, 0.0];
 
-    /*app.levels[app.currentLevel].forEach(function(planet) {
+    app.levels[app.currentLevel].forEach(function(planet) {
         var vec_to_planet = subtract(vec3(planet.position), vec3(app.ship.position));
         var unit_vec = normalize(vec_to_planet, false);
         var dist_squared = dot(vec_to_planet, vec_to_planet);
@@ -195,6 +196,6 @@ function calculateAcceleration() {
         gravityVector[0] += unit_vec[0] * gravity_mag;
         gravityVector[1] += unit_vec[1] * gravity_mag;
         gravityVector[2] += unit_vec[2] * gravity_mag;
-    });*/
+    });
     return add(thrustVector, gravityVector);
 }

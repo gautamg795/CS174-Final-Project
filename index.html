@@ -25,7 +25,7 @@
             uniform mat4 modelView;
             uniform vec4 vColor;
             uniform mat4 lightMatrix;
-            uniform vec3 lightDir;
+            uniform mat4 rotMatrix;
 
             varying vec3 N;
             varying vec3 L;
@@ -40,11 +40,11 @@
                 fColor = vColor;
 
                 vec4 pos = modelView * vec4(vPosition, 1.0);
-                vec3 lightPos = (lightMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+                vec3 lightPos = vec3((lightMatrix * vec4(0.0, 0.0, 0.0, 1.0)).xyz);
 
-                N = normalize((modelView * vec4(vNormal, 1.0)).xyz);
-                L = normalize(lightPos - vPosition);
-                E = -vPosition;
+                N = (modelView * vec4(vNormal, 0.0)).xyz;
+                L = lightPos - pos.xyz;
+                E = -pos.xyz;
 
                 gl_Position = projection * pos;
             }
@@ -58,7 +58,7 @@
             varying highp vec3 L;
             varying highp vec3 E;
 
-            uniform highp vec3 lightDir;
+            uniform highp mat4 rotMatrix;
             uniform sampler2D uSampler;
             uniform bool hasTexture;
             uniform bool usesLighting;
@@ -73,17 +73,19 @@
                     {
                         vec4 color;
 
-                        float lightIntensity = -1.0 * dot(normalize(lightDir), normalize(L));
-                        if(lightIntensity < 0.3)
+                        vec3 lightDir = vec3(0.0, 0.0, 1.0);
+
+                        float lightIntensity = dot(normalize(lightDir), normalize(L));
+                        if(lightIntensity < 0.9)
                             lightIntensity = 0.3;
                         vec3 H = normalize(normalize(L) + normalize(E));
-                        vec4 ambient = vec4(0.3, 0.3, 0.3, 0.3);
+                        vec4 ambient = vec4(0.5, 0.5, 0.5, 1.0);
 
                         float kd = max(dot(normalize(L), normalize(N)), 0.0);
-                        vec4 diffuse = kd * vec4(0.5, 0.5, 0.5, 0.5);
+                        vec4 diffuse = kd * vec4(0.5, 0.5, 0.5, 1.0);
 
-                        float ks = pow(max(dot(normalize(N), normalize(H)), 0.0), 1.0);
-                        vec4 specular = ks * vec4(0.5, 0.5, 0.5, 0.5);
+                        float ks = pow(max(dot(normalize(N), normalize(H)), 0.0), 4.0);
+                        vec4 specular = ks * vec4(0.5, 0.5, 0.5, 1.0);
 
                         if (dot(normalize(L), normalize(N)) < 0.0) {
                             specular = vec4(0.0, 0.0, 0.0, 1.0);
@@ -91,8 +93,7 @@
 
                         color = ambient + diffuse + specular;
                         color.a = 1.0;
-
-                        gl_FragColor = texture2D(uSampler, fTexCoord * scale) * color;
+                        gl_FragColor = texture2D(uSampler, fTexCoord * scale) * color * vec4(lightIntensity, lightIntensity, lightIntensity, 1.0);
                     }
                     else
                         gl_FragColor = texture2D(uSampler, fTexCoord * scale);
