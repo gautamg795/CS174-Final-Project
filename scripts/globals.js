@@ -74,10 +74,10 @@ app.levels[0] = [{
             shininess: 100.0
         },
         textureNum: 0,
-        mass: 100,
+        mass: 300,
     }, {
         position: [-20, 0, -10],
-        size: 20,
+        size: 15,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
             diffuse: [1.0, 1.0, 1.0, 1.0],
