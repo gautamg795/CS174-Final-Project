@@ -23,6 +23,6 @@ Controls for the game are provided on the menu screen.
   * Optional
     * Thrust flame
     * Ship rotation (roll) when turning
-    * Powerups? Fuel pick-ups? 
+    * ~~Powerups? Fuel pick-ups? ~~
     * ???
      
