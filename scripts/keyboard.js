@@ -15,7 +15,7 @@ $("#hud").mousedown(function(event) {
 
     y = (y / canvas.height) - 0.5;
     y *= 1000;
-
+    app.sounds["placePlanet"].play();
     app.levels[app.currentLevel].nPlanetsAdded++;
     app.levels[app.currentLevel].planets.push({
         position: [-y, 0, x],
