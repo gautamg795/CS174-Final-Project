@@ -27,12 +27,6 @@ app.ship = {
     heading: 0.0,
     fuel: 100.0,
     thrust: 0.0,
-    material: {
-        ambient: [1.0, 1.0, 1.0, 1.0],
-        diffuse: [1.0, 1.0, 1.0, 1.0],
-        specular: [1.0, 1.0, 1.0, 1.0],
-        shininess: 100.0
-    },
     mass: 20,
     radius: 18,
     damping: false
@@ -40,12 +34,6 @@ app.ship = {
 
 app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
 
-app.globalLight = {
-    position: [0.0, 20.0, 0.0],
-    ambient: [0.3, 0.3, 0.3, 0.3],
-    diffuse: [1.0, 1.0, 1.0, 1.0],
-    specular: [1.0, 1.0, 1.0, 1.0],
-};
 app.textureCount = 0;
 app.rotationSensitivity = 50;
 app.textureQualityOptions = ["Very Low", "Low", "Normal", "High", "Very High"];
@@ -70,30 +58,32 @@ app.drawScene = function() {};
 //positive z is into the screen
 app.levels[0] = {
     planets: [{
-        position: [-110, 0, -20],
+        position: [0, 0, -20],
         size: 50,
-        material: {
-            ambient: [1.0, 1.0, 1.0, 1.0],
-            diffuse: [1.0, 1.0, 1.0, 1.0],
-            specular: [1.0, 1.0, 1.0, 1.0],
-            shininess: 100.0
-        },
         textureNum: 0,
         mass: 300,
-    }, {
-        position: [20, 0, -10],
-        size: 15,
-        material: {
-            ambient: [1.0, 1.0, 1.0, 1.0],
-            diffuse: [1.0, 1.0, 1.0, 1.0],
-            specular: [1.0, 1.0, 1.0, 1.0],
-            shininess: 100.0
-        },
-        textureNum: 2,
-        mass: 100,
-    }, ],
+    }],
     exit: {
-        position: [200, 0, -10],
+        position: [0, 0, 200],
+        theta: 0,
+        size: 21,
+    }
+};
+
+app.levels[1] = {
+    planets: [{
+        position: [180, 0, 0],
+        size: 40,
+        textureNum: 2,
+        mass: 200,
+    }, {
+        position: [-120, 0, 400],
+        size: 180,
+        textureNum: 6,
+        mass: 800,
+    }],
+    exit: {
+        position: [160, 0, 200],
         theta: 0,
         size: 21,
     }
