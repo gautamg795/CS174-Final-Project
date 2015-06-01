@@ -8,8 +8,10 @@ var X = 0,
     Z = 2;
 var GAMESTATE_LOADING = 0,
     GAMESTATE_LOADED = 1,
-    GAMESTATE_PLAYING = 2;
-    GAMESTATE_PLACING = 3;
+    GAMESTATE_PLAYING = 2,
+    GAMESTATE_PLACING = 3,
+    MODE_NORMAL = 4,
+    MODE_SKILL = 5;
 var gl;
 var canvas;
 
@@ -29,7 +31,7 @@ app.ship = {
     fuel: 100.0,
     thrust: 0.0,
     mass: 20,
-    radius: 18,
+    size: 18,
     damping: false
 };
 
@@ -51,6 +53,11 @@ app.currentLevel = 0;
 app.score = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
+
+//CHANGE THIS ASDFASDF
+app.skill = MODE_SKILL;
+
+
 app.elapsed = 0;
 app.lastTime = window.performance.now();
 

@@ -6,29 +6,26 @@ window.onkeyup = function(event) {
 }
 
 $("#hud").mousedown(function(event) {
-    app.keysPressed[-1] = true;
-    var x = event.offsetX;
-    var y = event.offsetY;
+    if(app.skill == MODE_SKILL){
+        app.keysPressed[-1] = true;
+        var x = event.offsetX;
+        var y = event.offsetY;
 
-    x = (x / canvas.width) - 0.5;
-    x = (x * 1000 * canvas.width / canvas.height) + 300; 
+        x = (x / canvas.width) - 0.5;
+        x = (x * 1000 * canvas.width / canvas.height) + 300; 
 
-    y = (y / canvas.height) - 0.5;
-    y *= 1000;
-    app.sounds["placePlanet"].play();
-    app.levels[app.currentLevel].nPlanetsAdded++;
-    app.levels[app.currentLevel].planets.push({
-        position: [-y, 0, x],
-        size: 0,
-        material: {
-            ambient: [1.0, 1.0, 1.0, 1.0],
-            diffuse: [1.0, 1.0, 1.0, 1.0],
-            specular: [1.0, 1.0, 1.0, 1.0],
-            shininess: 100.0
-        },
-        textureNum: 0,
-        mass: 0,
-    })
+        y = (y / canvas.height) - 0.5;
+        y *= 1000;
+
+        app.levels[app.currentLevel].nPlanetsAdded++;
+        app.levels[app.currentLevel].planets.push({
+            position: [-y, 0, x],
+            size: 0,
+            textureNum: Math.floor(Math.random() * app.planetTextures.length),
+            mass: 0,
+        })
+        
+    }
 });
 
 $("#hud").mouseup(function(event) {
@@ -123,14 +120,19 @@ function handleKeysPressed() {
     }
     else if (app.mode == GAMESTATE_PLACING) {
         //mouse click
-        if (app.keysPressed[-1] !== undefined){
-            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
-            app.levels[app.currentLevel].massLeft -= 6.0;
-            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
-            if(app.levels[app.currentLevel].massLeft <= 0)
-                app.mode = GAMESTATE_PLAYING;
-            checkPlacementCollision();
-        } 
+        if(app.skill == MODE_SKILL){
+            if (app.keysPressed[-1] !== undefined){
+
+                //FIX PLANETS BEING PLACED ON FIRST CLICK EVEN IF INSIDE A PLANET
+                app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
+                app.levels[app.currentLevel].massLeft -= 6.0;
+                app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
+                if(app.levels[app.currentLevel].massLeft <= 0)
+                    //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
+                    app.mode = GAMESTATE_PLAYING;
+                checkPlacementCollision();
+            } 
+        }
     }
     else
         ;
