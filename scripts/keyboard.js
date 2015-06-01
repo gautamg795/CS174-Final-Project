@@ -5,6 +5,17 @@ window.onkeyup = function(event) {
     app.keysPressed[event.keyCode] = false;
 }
 
+$("#hud").mousedown(function(event) {
+    app.keysPressed[-1] = {
+        x: event.offsetX,
+        y: event.offsetY,
+    }
+});
+
+$("#hud").mouseup(function(event) {
+    app.keysPressed[-1] = false;
+});
+
 /**
  * Check which keys are being pressed and act accordingly.
  * Should be called once per frame in the game loop.
