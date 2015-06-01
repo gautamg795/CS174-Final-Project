@@ -42,6 +42,8 @@ function resetApp() {
     app.currentLevel = 0;
     resetLevel();
     $('#crashed-popup').hide();
+    $('#finished-level-popup').hide();
+    $('#finished-game-popup').hide();
     $('#gl-canvas').hide();
     $('#hud').hide();
     $('#menu').css('display','block');
@@ -176,7 +178,8 @@ function checkCollision() {
 
     //Check collision with exit sign
     if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
-        crash();
+        stopPlaying();
+        $('#finished-level-popup').css('display', 'block');
     }
     
     // Loop through all planet positions and check against ship position
