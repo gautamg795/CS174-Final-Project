@@ -4,6 +4,7 @@
 function startPlaying() {
     if (app.mode != GAMESTATE_PLAYING) {
         app.mode = GAMESTATE_PLACING;
+        app.levels[app.currentLevel].nPlanetsAdded = 0;
         app.drawScene = drawSpace;
         app.lastTime = window.performance.now();
         requestAnimFrame(tick);
@@ -230,6 +231,10 @@ function checkPlacementCollision(){
  */
 function crash() {
     stopPlaying();
+    for (var i = 0; i < app.levels[app.currentLevel].nPlanetsAdded; i++){
+        planet = app.levels[app.currentLevel].planets.pop();
+        app.levels[app.currentLevel].massLeft += planet.mass;
+    }
     $('#crashed-popup').css('display', 'block');
 }
 

@@ -94,5 +94,6 @@ app.levels[0] = {
         position: [0, 0, 0],
         theta: 0,
         size: 21,
-    }
+    },
+    massLeft: 500,
 };
