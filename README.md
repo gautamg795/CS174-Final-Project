@@ -9,10 +9,10 @@ Controls for the game are provided on the menu screen.
  * * *
 #### TODO:
   * Requirements:
-    * Lighting
+    * ~~Lighting~~
     * Collision Detection
-      * With planets
-      * With skybox (plus "warning" system?)
+      * ~~With planets~~
+      * ~~With skybox (plus "warning" system?)~~
     * ~~Gravity~~
   * Logistical:
     * Populate level data
