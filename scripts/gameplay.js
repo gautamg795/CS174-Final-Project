@@ -195,6 +195,7 @@ function checkCollision() {
             $('#finished-game-popup').css('display','block');
         }
         else {
+            app.sounds["levelFinished"].play();
             $('#finished-level-popup').css('display', 'block');
         }
     }
@@ -245,6 +246,7 @@ function checkPlacementCollision(){
  * If we decide to add an explosion, do that here
  */
 function crash() {
+    app.sounds["explosion"].play();
     stopPlaying();
     for (var i = 0; i < app.levels[app.currentLevel].nPlanetsAdded; i++){
         planet = app.levels[app.currentLevel].planets.pop();

@@ -14,6 +14,7 @@ Controls for the game are provided on the menu screen.
       * ~~With planets~~
       * ~~With skybox (plus "warning" system?)~~
     * ~~Gravity~~
+    * Remove planets on normal level completion
   * Logistical:
     * Populate level data
      * Game entrance/exit 

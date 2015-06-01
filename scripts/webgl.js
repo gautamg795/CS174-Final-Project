@@ -7,6 +7,7 @@ function meshesLoaded(meshes) {
     app.mode = GAMESTATE_LOADED;
     canvas = document.getElementById("gl-canvas");
     initGL();
+    initSounds();
     initAllShaders();
     initBuffers();
     initTextures();
