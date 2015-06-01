@@ -75,7 +75,7 @@ function drawSpace() {
     app.levels[app.currentLevel].planets.forEach(function(planet) {
         modelMatrix = scale(planet.size, planet.size, planet.size);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
-        modelMatrix = mult(translate(scaleVec(-1, planet.position)), modelMatrix);
+        modelMatrix = mult(translate(negate(planet.position)), modelMatrix);
         modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
         mvMatrix = mult(viewMatrix, modelMatrix);
         drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
@@ -83,7 +83,7 @@ function drawSpace() {
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
-    modelMatrix = mult(translate(scaleVec(-1, app.levels[app.currentLevel].exit.position)), modelMatrix);
+    modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);

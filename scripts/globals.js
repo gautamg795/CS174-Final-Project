@@ -65,9 +65,12 @@ app.lastTime = window.performance.now();
 app.drawScene = function() {};
 
 // Level 1
+
+//positive x is in the left direction
+//positive z is into the screen
 app.levels[0] = {
     planets: [{
-        position: [110, 0, -20],
+        position: [-110, 0, -20],
         size: 50,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
@@ -78,7 +81,7 @@ app.levels[0] = {
         textureNum: 0,
         mass: 300,
     }, {
-        position: [-20, 0, -10],
+        position: [20, 0, -10],
         size: 15,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
@@ -90,7 +93,7 @@ app.levels[0] = {
         mass: 100,
     }, ],
     exit: {
-        position: [0, 0, -500],
+        position: [0, 0, 500],
         theta: 0,
         size: 21,
     }
