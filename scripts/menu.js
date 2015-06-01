@@ -19,12 +19,6 @@ $(document).ready(function() {
         $('#menu').css('display', 'block');
         $('#options-menu').hide();
     });
-    $('#crashed-try-again').click(function() {
-        $('#crashed-popup').hide();
-        startPlaying();
-        resetLevel();
-    });
-    $('#crashed-quit').click(resetApp);
 
     // Option settings
     $("#sensitivity-slider").slider({
@@ -49,6 +43,16 @@ $(document).ready(function() {
             initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
         }
     });
+
+    //crashed-popup buttons
+    $('#crashed-try-again').click(function() {
+        $('#crashed-popup').hide();
+        startPlaying();
+        resetLevel();
+    });
+    $('#crashed-quit').click(resetApp);
+
+    
 });
 
 function everythingLoaded() {
