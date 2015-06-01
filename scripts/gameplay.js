@@ -159,20 +159,21 @@ function checkCollision() {
     var distance;
 
     //Check collision with exit sign
-    distance = Math.pow(app.levels[0].exit.position[0] - app.ship.position[0], 2) +
-               Math.pow(app.levels[0].exit.position[2] - app.ship.position[2], 2);
+    var l = app.currentLevel;
+    distance = Math.pow(app.levels[l].exit.position[0] - app.ship.position[0], 2) +
+               Math.pow(app.levels[l].exit.position[2] - app.ship.position[2], 2);
     // Compare against square of sum of radii
-    if (distance <= Math.pow(app.ship.radius + app.levels[0].exit.size, 2)) {
+    if (distance <= Math.pow(app.ship.radius + app.levels[l].exit.size, 2)) {
         crash();
     }
     
     // Loop through all planet positions and check against ship position
-    for (var i = 0; i < app.levels[0].planets.length; i++) {
+    for (var i = 0; i < app.levels[l].planets.length; i++) {
         // Calculate distance to planet
-        distance = Math.pow(app.levels[0].planets[i].position[0] - app.ship.position[0], 2) +
-                   Math.pow(app.levels[0].planets[i].position[2] - app.ship.position[2], 2);
+        distance = Math.pow(app.levels[l].planets[i].position[0] - app.ship.position[0], 2) +
+                   Math.pow(app.levels[l].planets[i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
-        if (distance <= Math.pow(app.ship.radius + app.levels[0].planets[i].size, 2)) {
+        if (distance <= Math.pow(app.ship.radius + app.levels[l].planets[i].size, 2)) {
             crash();
         }
     }
