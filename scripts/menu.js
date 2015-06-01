@@ -32,7 +32,7 @@ $(document).ready(function() {
         min: 0,
         max: 100,
         step: 10,
-        slide: function( event, ui ) {
+        slide: function(event, ui) {
             $("#sensitivity-slider").parent().siblings(".option-value").text(ui.value);
             app.rotationSensitivity = ui.value;
         }
@@ -43,7 +43,7 @@ $(document).ready(function() {
         min: 0,
         max: 4,
         step: 1,
-        slide: function( event, ui ) {
+        slide: function(event, ui) {
             $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[ui.value]);
             app.textureQuality = ui.value;
             initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
