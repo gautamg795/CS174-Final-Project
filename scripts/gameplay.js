@@ -84,7 +84,7 @@ function drawSpace() {
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
-    modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
+    modelMatrix = mult(translate(scaleVec(-1, app.levels[app.currentLevel].exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
@@ -158,18 +158,31 @@ function moveShip() {
     }
 }
 
-// IN PROGRESS
-function checkCollision() {
-    // Loop through all planet positions and check against ship position
+/**
+ * Checks to see ship is colliding with specific object
+ * @param {Array} thing     Object that will be tested for collision with ship
+ */
+function checkCollisionwith(thing) {
     var distance;
-    for (var i = 0; i < app.levels[0].planets.length; i++) {
-        // Calculate distance to planet
-        distance = Math.pow(app.levels[0].planets[i].position[0] - app.ship.position[0], 2) +
-            Math.pow(app.levels[0].planets[i].position[2] - app.ship.position[2], 2);
-        // Compare against square of sum of radii
-        if (distance <= Math.pow(app.ship.radius + app.levels[0].planets[i].size, 2)) {
-            crash();
-        }
+    distance = Math.pow(thing.position[0] - app.ship.position[0], 2) +
+               Math.pow(thing.position[2] - app.ship.position[2], 2);
+    // Compare against square of sum of radii
+    if (distance <= Math.pow(app.ship.radius + thing.size, 2)) {
+        crash();
+    }
+}
+
+/**
+ * Checks to see if a collision is occurring
+ */
+function checkCollision() {
+
+    //Check collision with exit sign
+    checkCollisionwith(app.levels[app.currentLevel].exit);
+    
+    // Loop through all planet positions and check against ship position
+    for (var i = 0; i < app.levels[app.currentLevel].planets.length; i++) {
+        checkCollisionwith(app.levels[app.currentLevel].planets[i])
     }
 
     //Calculate if ship is nearing skybox

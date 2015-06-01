@@ -19,7 +19,6 @@ app.camera = {
     position: [0.0, -12.0, -50.0],
     heading: 0.0,
     fovy: 50,
-    aspect: undefined,
     near: .1,
     far: 80000.0
 };
@@ -94,5 +93,6 @@ app.levels[0] = {
     exit: {
         position: [0, 0, 0],
         theta: 0,
+        size: 21,
     }
 };
