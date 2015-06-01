@@ -1,4 +1,12 @@
-# Amazing NASA Universe Simulator™ (ANUS)
+# Amazing NASA Universe Simulator™
+### Team 21 Term Project
+
+#### Instructions
+If `python --version` returns a version `< 3.0`, run `python -m SimpleHTTPSever` from the project directory, then go to [localhost:8000](http://localhost:8000) to access the project.
+If your version is `>= 3.0`, run `python -m http.server` and go to the [same URL](http://localhost:8000).
+
+Controls for the game are provided on the menu screen.
+ * * *
 #### TODO:
   * Requirements:
     * Lighting
