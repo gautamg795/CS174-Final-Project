@@ -79,7 +79,7 @@ app.levels[0] = {
         textureNum: 0,
         mass: 300,
     }, {
-        position: [-20, 0, -10],
+        position: [0, 0, -500],
         size: 15,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
