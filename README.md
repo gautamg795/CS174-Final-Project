@@ -4,7 +4,7 @@
 #### Instructions
 If `python --version` returns a version `< 3.0`, run `python -m SimpleHTTPSever` from the project directory, then go to [localhost:8000](http://localhost:8000) to access the project.
 If your version is `>= 3.0`, run `python -m http.server` and go to the [same URL](http://localhost:8000).
-
+Or on Mac/Linux, `if [ $(python --version 2>&1 | tr -dc '0-9') -lt 300 ]; then python -m SimpleHTTPServer; else python -m http.server; fi`
 Controls for the game are provided on the menu screen.
  * * *
 #### TODO:
