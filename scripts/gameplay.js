@@ -183,6 +183,7 @@ function checkCollision() {
             $('#finished-game-popup').css('display','block');
         }
         else {
+            app.sounds["levelFinished"].play();
             $('#finished-level-popup').css('display', 'block');
         }
     }
@@ -209,6 +210,7 @@ function checkCollision() {
  * If we decide to add an explosion, do that here
  */
 function crash() {
+    app.sounds["explosion"].play();
     stopPlaying();
     $('#crashed-popup').css('display', 'block');
 }

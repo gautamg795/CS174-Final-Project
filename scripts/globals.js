@@ -44,6 +44,7 @@ app.meshes = {};
 app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg", "assets/textures/nebula.png",
     "assets/textures/mercury.jpg", "assets/textures/jupiter.jpg", "assets/textures/earthy.jpg", "assets/textures/sun.jpg"
 ];
+app.sounds = {};
 app.levels = [];
 app.currentLevel = 0;
 app.keysPressed = {};
