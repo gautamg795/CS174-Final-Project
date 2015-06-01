@@ -41,6 +41,7 @@ function resetLevel() {
 function resetApp() {
     stopPlaying();
     app.currentLevel = 0;
+    app.score = 0;
     resetLevel();
     $('#crashed-popup').hide();
     $('#finished-level-popup').hide();
@@ -190,8 +191,13 @@ function checkCollision() {
 
     //Check collision with exit sign
     if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
+        var levelScore = (500 + 100 * Math.round(app.ship.fuel));
+        app.score += levelScore;
+        $(".score").text("Level Score: " + levelScore);
+        $(".total-score").text("Total Score: " + app.score);
         stopPlaying();
         if(app.currentLevel == app.levels.length - 1) {
+            app.sounds["gameFinished"].play();
             $('#finished-game-popup').css('display','block');
         }
         else {
