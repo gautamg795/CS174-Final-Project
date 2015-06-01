@@ -153,29 +153,30 @@ function moveShip() {
 }
 
 /**
+ * Checks to see ship is colliding with specific object
+ * @param {Array} thing     Object that will be tested for collision with ship
+ */
+function checkCollisionwith(thing) {
+    var distance;
+    distance = Math.pow(thing.position[0] - app.ship.position[0], 2) +
+               Math.pow(thing.position[2] - app.ship.position[2], 2);
+    // Compare against square of sum of radii
+    if (distance <= Math.pow(app.ship.radius + thing.size, 2)) {
+        crash();
+    }
+}
+
+/**
  * Checks to see if a collision is occurring
  */
 function checkCollision() {
-    var distance;
 
     //Check collision with exit sign
-    var l = app.currentLevel;
-    distance = Math.pow(app.levels[l].exit.position[0] - app.ship.position[0], 2) +
-               Math.pow(app.levels[l].exit.position[2] - app.ship.position[2], 2);
-    // Compare against square of sum of radii
-    if (distance <= Math.pow(app.ship.radius + app.levels[l].exit.size, 2)) {
-        crash();
-    }
+    checkCollisionwith(app.levels[app.currentLevel].exit);
     
     // Loop through all planet positions and check against ship position
-    for (var i = 0; i < app.levels[l].planets.length; i++) {
-        // Calculate distance to planet
-        distance = Math.pow(app.levels[l].planets[i].position[0] - app.ship.position[0], 2) +
-                   Math.pow(app.levels[l].planets[i].position[2] - app.ship.position[2], 2);
-        // Compare against square of sum of radii
-        if (distance <= Math.pow(app.ship.radius + app.levels[l].planets[i].size, 2)) {
-            crash();
-        }
+    for (var i = 0; i < app.levels[app.currentLevel].planets.length; i++) {
+        checkCollisionwith(app.levels[app.currentLevel].planets[i])
     }
 
     //Calculate if ship is nearing skybox
