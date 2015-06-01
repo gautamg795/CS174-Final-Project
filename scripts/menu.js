@@ -58,6 +58,7 @@ $(document).ready(function() {
     $('#finished-level-next-level').click(function() {
         $('#finished-level-popup').hide();
         app.currentLevel++;
+        startPlaying();
         resetLevel();
     });
 

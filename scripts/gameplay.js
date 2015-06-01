@@ -179,7 +179,12 @@ function checkCollision() {
     //Check collision with exit sign
     if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
         stopPlaying();
-        $('#finished-level-popup').css('display', 'block');
+        if(app.currentLevel == app.levels.length - 1) {
+            $('#finished-game-popup').css('display','block');
+        }
+        else {
+            $('#finished-level-popup').css('display', 'block');
+        }
     }
     
     // Loop through all planet positions and check against ship position
