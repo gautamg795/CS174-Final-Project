@@ -93,5 +93,6 @@ app.levels[0] = {
     exit: {
         position: [0, 0, -500],
         theta: 0,
+        size: 21,
     }
 };

@@ -138,7 +138,7 @@ function moveShip() {
         app.ship.position[i] += app.ship.velocity[i] * app.elapsed / 1000.0;
     }
     // Decrement fuel proportionally to your thrust (1000 is just an arbitrary constant that works for now)
-    app.ship.fuel -= app.ship.thrust / 1000.0;
+    //app.ship.fuel -= app.ship.thrust / 1000.0;
     // No fuel == no thrust
     if (app.ship.fuel <= 0)
         app.ship.thrust = 0;
@@ -154,12 +154,21 @@ function moveShip() {
 
 // IN PROGRESS
 function checkCollision() {
-    // Loop through all planet positions and check against ship position
     var distance;
+
+    //Check collision with exit sign
+    distance = Math.pow(app.levels[0].exit.position[0] - app.ship.position[0], 2) +
+               Math.pow(app.levels[0].exit.position[2] - app.ship.position[2], 2);
+    // Compare against square of sum of radii
+    if (distance <= Math.pow(app.ship.radius + app.levels[0].exit.size, 2)) {
+        crash();
+    }
+    
+    // Loop through all planet positions and check against ship position
     for (var i = 0; i < app.levels[0].planets.length; i++) {
         // Calculate distance to planet
         distance = Math.pow(app.levels[0].planets[i].position[0] - app.ship.position[0], 2) +
-            Math.pow(app.levels[0].planets[i].position[2] - app.ship.position[2], 2);
+                   Math.pow(app.levels[0].planets[i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
         if (distance <= Math.pow(app.ship.radius + app.levels[0].planets[i].size, 2)) {
             crash();
