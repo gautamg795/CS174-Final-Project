@@ -50,7 +50,7 @@ $(document).ready(function() {
         startPlaying();
         resetLevel();
     });
-    $('#crashed-quit').click(resetApp);
+    $('#quit').click(resetApp);
 
     //level-finished buttons
     $('#finished-level-next-level').click(function() {
@@ -58,6 +58,7 @@ $(document).ready(function() {
         app.currentLevel++;
         resetLevel();
     });
+    $('#finished-level-quit').click(resetApp);
 
     
 });

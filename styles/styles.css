@@ -36,7 +36,7 @@ sup {
     font-size: 40px;
 }
 
-.menu-button {
+.menu-button, .quit-button {
     padding: 20px;
     background-color: #111;
     width: 300px;
