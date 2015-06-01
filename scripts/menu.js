@@ -52,6 +52,13 @@ $(document).ready(function() {
     });
     $('#crashed-quit').click(resetApp);
 
+    //level-finished buttons
+    $('#finished-level-next-level').click(function() {
+        $('#finished-level-popup').hide();
+        app.currentLevel++;
+        resetLevel();
+    });
+
     
 });
 

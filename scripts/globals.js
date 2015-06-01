@@ -93,7 +93,7 @@ app.levels[0] = {
         mass: 100,
     }, ],
     exit: {
-        position: [0, 0, 500],
+        position: [-110, 0, -10],
         theta: 0,
         size: 21,
     }
