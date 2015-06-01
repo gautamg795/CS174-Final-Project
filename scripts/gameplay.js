@@ -155,16 +155,16 @@ function checkCollision() {
         distance = Math.pow(app.levels[0][i].position[0] - app.ship.position[0], 2) +
             Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
-        if (distance <= Math.pow(18 + app.levels[0][i].size, 2)) {
+        if (distance <= Math.pow(app.ship.radius + app.levels[0][i].size, 2)) {
             crash();
         }
     }
 
     //Calculate if ship is nearing skybox
-    if (18 + Math.abs(app.ship.position[0]) >= 3000 || 18 + Math.abs(app.ship.position[2]) >= 3000) {
+    if (app.ship.radius + Math.abs(app.ship.position[0]) >= 3000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 3000) {
         // Show warning popup at this point?
         //Calculate if ship is hitting skybox
-        if (18 + Math.abs(app.ship.position[0]) >= 6000 || 18 + Math.abs(app.ship.position[2]) >= 6000) {
+        if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {
             crash();
         }
     }

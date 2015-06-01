@@ -34,7 +34,8 @@ app.ship = {
         specular: [1.0, 1.0, 1.0, 1.0],
         shininess: 100.0
     },
-    mass: 20
+    mass: 20,
+    radius: 18
 };
 
 app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
