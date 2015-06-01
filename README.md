@@ -19,10 +19,10 @@ Controls for the game are provided on the menu screen.
     * Populate level data
      * Game entrance/exit 
     * Determine if game is fun; if not, make it fun
-    * Add some concept of score (fuel remaining? time taken?)
+    * ~~Add some concept of score (fuel remaining? time taken?)~~
   * Optional
     * Thrust flame
     * Ship rotation (roll) when turning
-    * Powerups? Fuel pick-ups? 
+    * Powerups? Fuel pick-ups?
     * ???
      
