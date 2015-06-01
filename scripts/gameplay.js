@@ -152,7 +152,9 @@ function moveShip() {
     }
 }
 
-// IN PROGRESS
+/**
+ * Checks to see if a collision is occurring
+ */
 function checkCollision() {
     var distance;
 
