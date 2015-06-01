@@ -41,7 +41,9 @@ app.textureQuality = 4;
 
 app.models = {};
 app.meshes = {};
-app.textures = {};
+app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg", "assets/textures/nebula.png",
+    "assets/textures/mercury.jpg", "assets/textures/jupiter.jpg", "assets/textures/earthy.jpg", "assets/textures/sun.jpg"
+];
 app.levels = [];
 app.currentLevel = 0;
 app.keysPressed = {};
@@ -75,10 +77,10 @@ app.levels[1] = {
         position: [180, 0, 0],
         size: 40,
         textureNum: 2,
-        mass: 200,
+        mass: 240,
     }, {
         position: [-120, 0, 400],
-        size: 180,
+        size: 133,
         textureNum: 6,
         mass: 800,
     }],
