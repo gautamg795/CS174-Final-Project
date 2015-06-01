@@ -47,6 +47,7 @@ app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg",
 app.sounds = {};
 app.levels = [];
 app.currentLevel = 0;
+app.score = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
 app.elapsed = 0;
