@@ -68,8 +68,8 @@ function initMinimap(level) {
     // Initialize planets
     app.levels[level].forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
-        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 6000) / 120)));
-        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 6000) / 120)));
+        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 6000) / 60)));
+        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 6000) / 60)));
         $("#minimap-planet-" + i).css("width", planet.size / 5);
         $("#minimap-planet-" + i).css("height", planet.size / 5);
     });
@@ -119,8 +119,8 @@ function setThrust(val) {
 
 function setMinimap(posX, posZ, heading) {
     // Set position of ship on map
-    var convertedX = 25 + ((posX + 3000) / 60);
-    var convertedZ = 25 + ((posZ + 3000) / 60);
+    var convertedX = 25 + ((posX + 6000) / 60);
+    var convertedZ = 25 + ((posZ + 6000) / 60);
     $("#minimap-ship").css("left", convertedX);
     $("#minimap-ship").css("top", convertedZ);
 
