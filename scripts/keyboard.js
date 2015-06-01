@@ -10,8 +10,15 @@ $("#hud").mousedown(function(event) {
     var x = event.offsetX;
     var y = event.offsetY;
 
+    x = (x / canvas.width) - 0.5;
+    x = (x * 1000 * canvas.width / canvas.height) + 300; 
+
+    y = (y / canvas.height) - 0.5;
+    y *= 1000;
+
+
     app.levels[app.currentLevel].planets.push({
-        position: [0, 0, 0],
+        position: [-y, 0, x],
         size: 0,
         material: {
             ambient: [1.0, 1.0, 1.0, 1.0],
@@ -117,9 +124,9 @@ function handleKeysPressed() {
     else if (app.mode == GAMESTATE_PLACING) {
         //mouse click
         if (app.keysPressed[-1] !== undefined){
-            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 1;
-            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 5;
-
+            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
+            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
+            checkPlacementCollision();
         } 
     }
     else

@@ -58,11 +58,16 @@ function drawSpace() {
     // update heading buffer
     app.headingBuffer.unshift(app.ship.heading);
 
-    //var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
-    var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 500);
-    var extraMatrix = mult(translate(-450, 0, 0), rotate(-90, [0, 0, 1]));
-    extraMatrix = mult(extraMatrix, rotate(90, [1, 0, 0]));
-    gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(mult(pMatrix, extraMatrix)));
+    var pMatrix;
+    if(app.mode == GAMESTATE_PLAYING)
+        pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
+    else if(app.mode == GAMESTATE_PLACING){
+        var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 500);
+        var extraMatrix = mult(translate(-600, 0, 0), rotate(-90, [0, 0, 1]));
+        extraMatrix = mult(extraMatrix, rotate(90, [1, 0, 0]));
+        pMatrix = mult(pMatrix, extraMatrix);
+    }
+    gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
 
     var viewMatrix = translate(app.camera.position);
     gl.uniformMatrix4fv(shaderProgram.lightMatrix, false, flatten(viewMatrix));
@@ -76,7 +81,7 @@ function drawSpace() {
     app.levels[app.currentLevel].planets.forEach(function(planet) {
         modelMatrix = scale(planet.size, planet.size, planet.size);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
-        modelMatrix = mult(translate(scaleVec(-1, planet.position)), modelMatrix);
+        modelMatrix = mult(translate(negate(planet.position)), modelMatrix);
         modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
         mvMatrix = mult(viewMatrix, modelMatrix);
         drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
@@ -84,7 +89,7 @@ function drawSpace() {
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
-    modelMatrix = mult(translate(scaleVec(-1, app.levels[app.currentLevel].exit.position)), modelMatrix);
+    modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
@@ -193,6 +198,30 @@ function checkCollision() {
             crash();
         }
     }
+}
+
+function checkPlacementCollision(){
+    var addedPlanet = app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1];
+    for(var i = 0; i < app.levels[app.currentLevel].planets.length - 1; i++){
+        var planet = app.levels[app.currentLevel].planets[i];
+
+        distance = Math.pow(addedPlanet.position[0] - planet.position[0], 2) +
+                   Math.pow(addedPlanet.position[2] - planet.position[2], 2);
+        if(distance <= Math.pow(addedPlanet.size + planet.size, 2)) {
+            app.keysPressed[-1] = undefined;
+        }
+    }
+
+    var distance;
+    distance = Math.pow(addedPlanet.position[0] - app.ship.position[0], 2) +
+               Math.pow(addedPlanet.position[2] - app.ship.position[2], 2);
+    // Compare against square of sum of radii
+    if (distance <= Math.pow(app.ship.radius + addedPlanet.size, 2)) {
+        //TODO: REPLACE THE USERS MASS
+        app.keysPressed[-1] = undefined;
+        app.levels[app.currentLevel].planets.pop();
+    }
+
 }
 
 /**
