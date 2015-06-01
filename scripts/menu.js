@@ -44,13 +44,15 @@ $(document).ready(function() {
         }
     });
 
+    //quit button interaction
+    $('.quit-button').click(resetApp);
+
     //crashed-popup buttons
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
         startPlaying();
         resetLevel();
     });
-    $('#quit').click(resetApp);
 
     //level-finished buttons
     $('#finished-level-next-level').click(function() {
@@ -58,7 +60,6 @@ $(document).ready(function() {
         app.currentLevel++;
         resetLevel();
     });
-    $('#finished-level-quit').click(resetApp);
 
     
 });
