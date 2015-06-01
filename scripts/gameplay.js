@@ -138,7 +138,7 @@ function moveShip() {
         app.ship.position[i] += app.ship.velocity[i] * app.elapsed / 1000.0;
     }
     // Decrement fuel proportionally to your thrust (1000 is just an arbitrary constant that works for now)
-    //app.ship.fuel -= app.ship.thrust / 1000.0;
+    app.ship.fuel -= app.ship.thrust / 1000.0;
     // No fuel == no thrust
     if (app.ship.fuel <= 0)
         app.ship.thrust = 0;
