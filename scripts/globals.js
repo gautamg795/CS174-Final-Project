@@ -9,6 +9,7 @@ var X = 0,
 var GAMESTATE_LOADING = 0,
     GAMESTATE_LOADED = 1,
     GAMESTATE_PLAYING = 2;
+    GAMESTATE_PLACING = 3;
 var gl;
 var canvas;
 
@@ -91,7 +92,7 @@ app.levels[0] = {
         mass: 100,
     }, ],
     exit: {
-        position: [0, 0, -500],
+        position: [0, 0, 0],
         theta: 0,
     }
 };

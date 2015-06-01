@@ -3,7 +3,7 @@
  */
 function startPlaying() {
     if (app.mode != GAMESTATE_PLAYING) {
-        app.mode = GAMESTATE_PLAYING;
+        app.mode = GAMESTATE_PLACING;
         app.drawScene = drawSpace;
         app.lastTime = window.performance.now();
         requestAnimFrame(tick);
@@ -58,8 +58,11 @@ function drawSpace() {
     // update heading buffer
     app.headingBuffer.unshift(app.ship.heading);
 
-    var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
-    gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(pMatrix));
+    //var pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
+    var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 500);
+    var extraMatrix = mult(translate(-450, 0, 0), rotate(-90, [0, 0, 1]));
+    extraMatrix = mult(extraMatrix, rotate(90, [1, 0, 0]));
+    gl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, flatten(mult(pMatrix, extraMatrix)));
 
     var viewMatrix = translate(app.camera.position);
     gl.uniformMatrix4fv(shaderProgram.lightMatrix, false, flatten(viewMatrix));
@@ -81,7 +84,7 @@ function drawSpace() {
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
-    modelMatrix = mult(translate(app.levels[app.currentLevel].exit.position), modelMatrix);
+    modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
@@ -92,8 +95,11 @@ function drawSpace() {
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture, false);
     gl.uniform1f(shaderProgram.textureScaleUniform, 1.0);
-    moveShip();
-    checkCollision();
+    //Only move the ship if playing. (dont move if placing mass)
+    if (app.mode == GAMESTATE_PLAYING){
+        moveShip();
+        checkCollision();
+    }
     updateUI();
 }
 

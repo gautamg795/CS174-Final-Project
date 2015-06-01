@@ -6,14 +6,26 @@ window.onkeyup = function(event) {
 }
 
 $("#hud").mousedown(function(event) {
-    app.keysPressed[-1] = {
-        x: event.offsetX,
-        y: event.offsetY,
-    }
+    app.keysPressed[-1] = true;
+    var x = event.offsetX;
+    var y = event.offsetY;
+
+    app.levels[app.currentLevel].planets.push({
+        position: [0, 0, 0],
+        size: 0,
+        material: {
+            ambient: [1.0, 1.0, 1.0, 1.0],
+            diffuse: [1.0, 1.0, 1.0, 1.0],
+            specular: [1.0, 1.0, 1.0, 1.0],
+            shininess: 100.0
+        },
+        textureNum: 0,
+        mass: 0,
+    })
 });
 
 $("#hud").mouseup(function(event) {
-    app.keysPressed[-1] = false;
+    app.keysPressed[-1] = undefined;
 });
 
 /**
@@ -101,7 +113,16 @@ function handleKeysPressed() {
         if (app.keysPressed[82] === true) {
             resetLevel();
         }
-    } else {
-        // Do something for the other game state(s)
     }
+    else if (app.mode == GAMESTATE_PLACING) {
+        //mouse click
+        if (app.keysPressed[-1] !== undefined){
+            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 1;
+            app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 5;
+
+        } 
+    }
+    else
+        ;
+        // Do something for the other game state(s)
 }
