@@ -47,6 +47,9 @@ function handleKeysPressed() {
 
         // z
         if (app.keysPressed[90] === true) {
+            if (app.ship.damping)
+                return;
+            app.ship.damping = true;
             app.ship.thrust = 0;
             if (app.ship.fuel <= 0)
                 return;
@@ -76,6 +79,9 @@ function handleKeysPressed() {
                 step: function() {
                     app.ship.velocity = [this.x, this.y, this.z];
                     app.ship.fuel = this.fuel;
+                },
+                complete: function() {
+                    app.ship.damping = false;
                 }
             });
         }
