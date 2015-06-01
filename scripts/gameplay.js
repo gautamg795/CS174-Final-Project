@@ -90,7 +90,7 @@ function drawSpace() {
         drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
     });
 
-    modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
+    modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [app.mode == GAMESTATE_PLACING, 1, app.mode == GAMESTATE_PLACING]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
     modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
