@@ -35,7 +35,8 @@ app.ship = {
         shininess: 100.0
     },
     mass: 20,
-    radius: 18
+    radius: 18,
+    damping: false
 };
 
 app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
