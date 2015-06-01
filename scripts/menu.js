@@ -66,7 +66,7 @@ function everythingLoaded() {
 
 function initMinimap(level) {
     // Initialize planets
-    app.levels[level].forEach(function(planet, i) {
+    app.levels[level].planets.forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
         $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 6000) / 60)));
         $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 6000) / 60)));

@@ -70,7 +70,7 @@ function drawSpace() {
 
     drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture, false);
 
-    app.levels[app.currentLevel].forEach(function(planet) {
+    app.levels[app.currentLevel].planets.forEach(function(planet) {
         modelMatrix = scale(planet.size, planet.size, planet.size);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
         modelMatrix = mult(translate(scaleVec(-1, planet.position)), modelMatrix);
@@ -79,6 +79,12 @@ function drawSpace() {
         drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
     });
 
+    modelMatrix = mult(scale(.1, .1, .1), rotate((app.levels[app.currentLevel].exit.theta += app.elapsed / 10), [0, 1, 0]));
+    modelMatrix = mult(translate(app.ship.position), modelMatrix);
+    modelMatrix = mult(translate(app.levels[app.currentLevel].exit.position), modelMatrix);
+    modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
+    mvMatrix = mult(viewMatrix, modelMatrix);
+    drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
 
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
     modelMatrix = mult(translate(app.ship.position), scale(6000, 6000, 6000));
@@ -150,12 +156,12 @@ function moveShip() {
 function checkCollision() {
     // Loop through all planet positions and check against ship position
     var distance;
-    for (var i = 0; i < app.levels[0].length; i++) {
+    for (var i = 0; i < app.levels[0].planets.length; i++) {
         // Calculate distance to planet
-        distance = Math.pow(app.levels[0][i].position[0] - app.ship.position[0], 2) +
-            Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
+        distance = Math.pow(app.levels[0].planets[i].position[0] - app.ship.position[0], 2) +
+            Math.pow(app.levels[0].planets[i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
-        if (distance <= Math.pow(app.ship.radius + app.levels[0][i].size, 2)) {
+        if (distance <= Math.pow(app.ship.radius + app.levels[0].planets[i].size, 2)) {
             crash();
         }
     }
@@ -188,7 +194,7 @@ function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     var gravityVector = [0.0, 0.0, 0.0];
 
-    app.levels[app.currentLevel].forEach(function(planet) {
+    app.levels[app.currentLevel].planets.forEach(function(planet) {
         var vec_to_planet = subtract(vec3(planet.position), vec3(app.ship.position));
         var unit_vec = normalize(vec_to_planet, false);
         var dist_squared = dot(vec_to_planet, vec_to_planet);

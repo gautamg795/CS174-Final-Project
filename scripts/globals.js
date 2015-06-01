@@ -66,7 +66,8 @@ app.lastTime = window.performance.now();
 app.drawScene = function() {};
 
 // Level 1
-app.levels[0] = [{
+app.levels[0] = {
+    planets: [{
         position: [110, 0, -20],
         size: 50,
         material: {
@@ -88,6 +89,9 @@ app.levels[0] = [{
         },
         textureNum: 2,
         mass: 100,
-    },
-
-];
+    }, ],
+    exit: {
+        position: [0, 0, -500],
+        theta: 0,
+    }
+};

@@ -60,7 +60,7 @@ function drawSpace() {
 
     mvMatrix = mult(viewMatrix, mvMatrix);
     drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture);
-    app.levels[app.currentLevel].forEach(function(planet) {
+    app.levels[app.currentLevel].planets.forEach(function(planet) {
         mvMatrix = scale(planet.size, planet.size, planet.size);
         mvMatrix = mult(translate(planet.position), mvMatrix);
         mvMatrix = mult(viewMatrix, mvMatrix);
@@ -131,10 +131,10 @@ function moveShip() {
 function checkCollision() {
     // Loop through all planet positions and check against ship position
     var distance;
-    for (var i = 0; i < app.levels[0].length; i++) {
+    for (var i = 0; i < app.levels[0].planets.length; i++) {
         // Calculate distance to planet
-        distance = Math.pow(app.levels[0][i].position[0] - app.ship.position[0], 2) +
-            Math.pow(app.levels[0][i].position[2] - app.ship.position[2], 2);
+        distance = Math.pow(app.levels[0].planets.[i].position[0] - app.ship.position[0], 2) +
+            Math.pow(app.levels[0].planets.[i].position[2] - app.ship.position[2], 2);
         // Compare against square of sum of radii
         if (distance <= Math.pow(25 + app.levels[0][i].size, 2)) {
             //TODO: "stopPlaying" but still make the try again button act as a 'R' press
@@ -157,7 +157,7 @@ function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     var gravityVector = [0.0, 0.0, 0.0];
 
-    app.levels[app.currentLevel].forEach(function(planet) {
+    app.levels[app.currentLevel].planets.forEach(function(planet) {
         var vec_to_planet = subtract(vec3(planet.position), vec3(app.ship.position));
         var unit_vec = normalize(vec_to_planet, false);
         var dist_squared = dot(vec_to_planet, vec_to_planet);
