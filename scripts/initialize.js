@@ -183,7 +183,7 @@ function handleLoadedTexture(texture) {
 function initSounds() {
     app.sounds["explosion"] = new Howl({urls: ['assets/sounds/explosion.wav']});
     app.sounds["levelFinished"] = new Howl({urls: ['assets/sounds/levelFinished.wav']});
-    app.sounds["gameFinished"] = null;
+    app.sounds["gameFinished"] = new Howl({urls: ['assets/sounds/gameFinished.wav']});
     app.sounds["thrust"] = null;
     app.sounds["placePlanet"] = new Howl({urls: ['assets/sounds/bloop.wav']});
 }

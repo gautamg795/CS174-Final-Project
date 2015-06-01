@@ -180,6 +180,7 @@ function checkCollision() {
     if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
         stopPlaying();
         if(app.currentLevel == app.levels.length - 1) {
+            app.sounds["gameFinished"].play();
             $('#finished-game-popup').css('display','block');
         }
         else {
