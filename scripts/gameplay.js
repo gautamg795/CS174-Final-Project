@@ -162,7 +162,10 @@ function checkCollisionwith(thing) {
                Math.pow(thing.position[2] - app.ship.position[2], 2);
     // Compare against square of sum of radii
     if (distance <= Math.pow(app.ship.radius + thing.size, 2)) {
-        crash();
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -172,11 +175,15 @@ function checkCollisionwith(thing) {
 function checkCollision() {
 
     //Check collision with exit sign
-    checkCollisionwith(app.levels[app.currentLevel].exit);
+    if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
+        crash();
+    }
     
     // Loop through all planet positions and check against ship position
     for (var i = 0; i < app.levels[app.currentLevel].planets.length; i++) {
-        checkCollisionwith(app.levels[app.currentLevel].planets[i])
+        if(checkCollisionwith(app.levels[app.currentLevel].planets[i])) {
+            crash();
+        }
     }
 
     //Calculate if ship is nearing skybox
