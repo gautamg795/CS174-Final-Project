@@ -43,6 +43,8 @@ function resetApp() {
     app.currentLevel = 0;
     resetLevel();
     $('#crashed-popup').hide();
+    $('#finished-level-popup').hide();
+    $('#finished-game-popup').hide();
     $('#gl-canvas').hide();
     $('#hud').hide();
     $('#menu').css('display','block');
@@ -174,7 +176,10 @@ function checkCollisionwith(thing) {
                Math.pow(thing.position[2] - app.ship.position[2], 2);
     // Compare against square of sum of radii
     if (distance <= Math.pow(app.ship.radius + thing.size, 2)) {
-        crash();
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
@@ -184,11 +189,21 @@ function checkCollisionwith(thing) {
 function checkCollision() {
 
     //Check collision with exit sign
-    checkCollisionwith(app.levels[app.currentLevel].exit);
+    if(checkCollisionwith(app.levels[app.currentLevel].exit)) {
+        stopPlaying();
+        if(app.currentLevel == app.levels.length - 1) {
+            $('#finished-game-popup').css('display','block');
+        }
+        else {
+            $('#finished-level-popup').css('display', 'block');
+        }
+    }
     
     // Loop through all planet positions and check against ship position
     for (var i = 0; i < app.levels[app.currentLevel].planets.length; i++) {
-        checkCollisionwith(app.levels[app.currentLevel].planets[i])
+        if(checkCollisionwith(app.levels[app.currentLevel].planets[i])) {
+            crash();
+        }
     }
 
     //Calculate if ship is nearing skybox

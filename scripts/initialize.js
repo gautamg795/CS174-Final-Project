@@ -127,7 +127,7 @@ function initTextures() {
     initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
     console.log("Using ship-" + app.textureQuality + ".png");
     initTexture(app.models.skybox, "assets/textures/sky.jpg");
-    initTexture(app.models.planet, ["assets/textures/moon.gif", "assets/textures/neptune.jpg", "assets/textures/nebula.png", "assets/textures/mercury.jpg"]);
+    initTexture(app.models.planet, app.planetTextures);
     initTexture(app.models.exit, "assets/textures/exit-sign.png");
 }
 

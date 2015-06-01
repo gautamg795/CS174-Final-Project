@@ -28,12 +28,6 @@ app.ship = {
     heading: 0.0,
     fuel: 100.0,
     thrust: 0.0,
-    material: {
-        ambient: [1.0, 1.0, 1.0, 1.0],
-        diffuse: [1.0, 1.0, 1.0, 1.0],
-        specular: [1.0, 1.0, 1.0, 1.0],
-        shininess: 100.0
-    },
     mass: 20,
     radius: 18,
     damping: false
@@ -41,12 +35,6 @@ app.ship = {
 
 app.headingBuffer = [0.0, 0.0, 0.0, 0.0, 0.0];
 
-app.globalLight = {
-    position: [0.0, 20.0, 0.0],
-    ambient: [0.3, 0.3, 0.3, 0.3],
-    diffuse: [1.0, 1.0, 1.0, 1.0],
-    specular: [1.0, 1.0, 1.0, 1.0],
-};
 app.textureCount = 0;
 app.rotationSensitivity = 50;
 app.textureQualityOptions = ["Very Low", "Low", "Normal", "High", "Very High"];
@@ -54,7 +42,9 @@ app.textureQuality = 4;
 
 app.models = {};
 app.meshes = {};
-app.textures = {};
+app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg", "assets/textures/nebula.png",
+    "assets/textures/mercury.jpg", "assets/textures/jupiter.jpg", "assets/textures/earthy.jpg", "assets/textures/sun.jpg"
+];
 app.levels = [];
 app.currentLevel = 0;
 app.keysPressed = {};
@@ -66,32 +56,38 @@ app.lastTime = window.performance.now();
 app.drawScene = function() {};
 
 // Level 1
+
+//positive x is in the left direction
+//positive z is into the screen
 app.levels[0] = {
     planets: [{
-        position: [-110, 0, -20],
+        position: [0, 0, -20],
         size: 50,
-        material: {
-            ambient: [1.0, 1.0, 1.0, 1.0],
-            diffuse: [1.0, 1.0, 1.0, 1.0],
-            specular: [1.0, 1.0, 1.0, 1.0],
-            shininess: 100.0
-        },
         textureNum: 0,
         mass: 300,
-    }, {
-        position: [20, 0, -10],
-        size: 15,
-        material: {
-            ambient: [1.0, 1.0, 1.0, 1.0],
-            diffuse: [1.0, 1.0, 1.0, 1.0],
-            specular: [1.0, 1.0, 1.0, 1.0],
-            shininess: 100.0
-        },
-        textureNum: 2,
-        mass: 100,
-    }, ],
+    }],
     exit: {
-        position: [0, 0, 0],
+        position: [0, 0, 200],
+        theta: 0,
+        size: 21,
+    },
+    massLeft: 500,
+};
+
+app.levels[1] = {
+    planets: [{
+        position: [180, 0, 0],
+        size: 40,
+        textureNum: 2,
+        mass: 240,
+    }, {
+        position: [-120, 0, 400],
+        size: 133,
+        textureNum: 6,
+        mass: 800,
+    }],
+    exit: {
+        position: [160, 0, 200],
         theta: 0,
         size: 21,
     },

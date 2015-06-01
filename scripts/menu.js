@@ -19,12 +19,6 @@ $(document).ready(function() {
         $('#menu').css('display', 'block');
         $('#options-menu').hide();
     });
-    $('#crashed-try-again').click(function() {
-        $('#crashed-popup').hide();
-        startPlaying();
-        resetLevel();
-    });
-    $('#crashed-quit').click(resetApp);
 
     // Option settings
     $("#sensitivity-slider").slider({
@@ -32,7 +26,7 @@ $(document).ready(function() {
         min: 0,
         max: 100,
         step: 10,
-        slide: function( event, ui ) {
+        slide: function(event, ui) {
             $("#sensitivity-slider").parent().siblings(".option-value").text(ui.value);
             app.rotationSensitivity = ui.value;
         }
@@ -43,12 +37,32 @@ $(document).ready(function() {
         min: 0,
         max: 4,
         step: 1,
-        slide: function( event, ui ) {
+        slide: function(event, ui) {
             $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[ui.value]);
             app.textureQuality = ui.value;
             initTexture(app.models.spaceship, "assets/textures/ship-" + app.textureQuality + ".png");
         }
     });
+
+    //quit button interaction
+    $('.quit-button').click(resetApp);
+
+    //crashed-popup buttons
+    $('#crashed-try-again').click(function() {
+        $('#crashed-popup').hide();
+        startPlaying();
+        resetLevel();
+    });
+
+    //level-finished buttons
+    $('#finished-level-next-level').click(function() {
+        $('#finished-level-popup').hide();
+        app.currentLevel++;
+        startPlaying();
+        resetLevel();
+    });
+
+    
 });
 
 function everythingLoaded() {
