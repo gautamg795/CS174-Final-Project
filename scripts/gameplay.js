@@ -194,8 +194,13 @@ function checkCollision() {
     //Check collision with exit sign
     if(checkCollisionwith(app.levels[app.currentLevel].exit, app.ship)) {
         stopPlaying();
+        var levelScore = (500 + 100 * Math.round(app.ship.fuel));
+        app.score += levelScore;
+        $(".score").text("Level Score: " + levelScore);
+        $(".total-score").text("Total Score: " + app.score);
         if(app.currentLevel == app.levels.length - 1) {
-            app.sounds["gameFinished"].play();
+            
+            //app.sounds["gameFinished"].play();
             $('#finished-game-popup').css('display','block');
         }
         else {
@@ -229,13 +234,20 @@ function checkCollision() {
  * don't allow the planet to grow any more.
  * Skybox collision not needed (placement area much smaller than skybox size)
  */
-function checkPlacementCollision(){
+function checkPlacementCollision(firstPlacement){
     var addedPlanet = app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1];
     for(var i = 0; i < app.levels[app.currentLevel].planets.length - 1; i++){
         var planet = app.levels[app.currentLevel].planets[i];
 
-        if(checkCollisionwith(addedPlanet, planet))
+        if(checkCollisionwith(addedPlanet, planet)){
             app.keysPressed[-1] = undefined;
+            if(firstPlacement == true){
+                planet = app.levels[app.currentLevel].planets.pop();
+                app.levels[app.currentLevel].massLeft += planet.mass;
+                app.levels[app.currentLevel].nPlanetsAdded--;
+            }
+        }
+
     }
 
 

@@ -24,7 +24,8 @@ $("#hud").mousedown(function(event) {
             textureNum: Math.floor(Math.random() * app.planetTextures.length),
             mass: 0,
         })
-        
+        checkPlacementCollision(true);
+
     }
 });
 
@@ -123,13 +124,14 @@ function handleKeysPressed() {
         if(app.skill == MODE_SKILL){
             if (app.keysPressed[-1] !== undefined){
 
-                //FIX PLANETS BEING PLACED ON FIRST CLICK EVEN IF INSIDE A PLANET
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
                 app.levels[app.currentLevel].massLeft -= 6.0;
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
+
                 if(app.levels[app.currentLevel].massLeft <= 0)
                     //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
                     app.mode = GAMESTATE_PLAYING;
+
                 checkPlacementCollision();
             } 
         }
