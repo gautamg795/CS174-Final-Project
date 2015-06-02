@@ -84,6 +84,7 @@ $(document).ready(function() {
 
     $('#skill-normal').click(function() {
         app.skill = MODE_NORMAL;
+        $('#mass-bar-container').hide();
 
         $('#gl-canvas').css('display', 'block');
         $('#skill-menu').hide();
@@ -94,6 +95,7 @@ $(document).ready(function() {
 
     $('#skill-skilled').click(function() {
         app.skill = MODE_SKILL;
+        $('#mass-bar-container').css('display', 'block');
 
         $('#gl-canvas').css('display', 'block');
         $('#skill-menu').hide();
