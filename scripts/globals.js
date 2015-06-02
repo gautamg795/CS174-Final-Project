@@ -64,8 +64,9 @@ app.lastTime = window.performance.now();
 // Set this variable to the current drawing function dependent on the mode (2d vs 3d)
 app.drawScene = function() {};
 
-// Level 1
+var fuelSize = 22;
 
+// Level 1
 //positive x is in the left direction
 //positive z is into the screen
 app.levels[0] = {
@@ -102,6 +103,7 @@ app.levels[1] = {
     fuel: [{
         position: [-120, 0, 700],
         collected: false,
+        size: fuelSize,
     }, ],
     massLeft: 500,
 };

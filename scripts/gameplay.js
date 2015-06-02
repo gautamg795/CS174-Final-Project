@@ -230,6 +230,15 @@ function checkCollision() {
             $('#finished-level-popup').css('display', 'block');
         }
     }
+
+    // Loop through all planet positions and check against ship position
+    for (var i = 0; i < app.currentLevel.fuel.length; i++) {
+        if(checkCollisionwith(app.currentLevel.fuel[i], app.ship)) {
+            $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
+            app.ship.fuel += 50;
+            app.currentLevel.fuel[i].collected = true;
+        }
+    }
     
     // Loop through all planet positions and check against ship position
     for (var i = 0; i < app.currentLevel.planets.length; i++) {
