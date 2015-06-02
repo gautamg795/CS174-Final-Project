@@ -18,6 +18,7 @@ function startPlaying() {
  * Used for end of level or end of game score screen
  */
 function stopPlaying() {
+    app.sounds["thrust"].volume(0);
     cleanUpPlanets();
     app.mode = GAMESTATE_LOADED;
     app.drawScene = function() {};

@@ -35,6 +35,7 @@ function tick(timeNow) {
     app.elapsed = Math.min(timeNow - app.lastTime, 30);
     app.lastTime = timeNow;
     app.theta += app.elapsed / 10
+    app.sounds["thrust"].volume(app.ship.thrust / 100.0);
     app.drawScene();
     handleKeysPressed();
 }
