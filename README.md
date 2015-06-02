@@ -17,3 +17,14 @@ You can choose one of two modes to start the simulation in: Normal Mode and Skil
 To fill up on fuel, pick up any of the fuel pick-ups that are placed in the level. Points will be awarded based on conservative fuel usage and pick-ups obtained. Points will directly be viewed by supervisors as a measure of your aptitude.
 
 _Minimal points may result in your immediate suspension from the NASA training program._
+
+#### Controls
+|Key | Function |
+|-------- | ----------------|
+|`UP ARROW`|Increase thrust|
+|`DOWN ARROW` | Decrease thrust|
+|`LEFT ARROW` | Rotate heading left|
+|`RIGHT ARROW` | Rotate heading right|
+|`Z` | Inertial dampeners|
+|`X` | Reset thrust|
+|`R` | Reset level|
