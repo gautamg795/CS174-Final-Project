@@ -299,6 +299,32 @@ sup {
     text-align: center;
 }
 
+#skill-menu {
+    display: none;
+    background-color: #444;
+    width: 1240px;
+    height: 680px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+#skill-container {
+    display: block;
+    margin: 20px auto;
+    width: 1200px;
+}
+
+.skill {
+    float: left;
+    width: 50%;
+    padding-top: 200px;
+}
+
+.skill-description {
+    margin: 10px auto;
+    text-align: center;
+}
+
 #controls-menu {
     display: none;
     background-color: #444;

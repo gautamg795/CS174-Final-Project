@@ -81,17 +81,34 @@ $(document).ready(function() {
         app.mode = GAMESTATE_PLAYING;
         $('#start-game-popup').hide();
     });
+
+    $('#skill-normal').click(function() {
+        app.skill = MODE_NORMAL;
+
+        $('#gl-canvas').css('display', 'block');
+        $('#skill-menu').hide();
+        $('#mass-left').css('display', 'block');
+        startPlaying();
+        resetLevel(false);
+    });
+
+    $('#skill-skilled').click(function() {
+        app.skill = MODE_SKILL;
+
+        $('#gl-canvas').css('display', 'block');
+        $('#skill-menu').hide();
+        $('#mass-left').css('display', 'block');
+        startPlaying();
+        resetLevel(false);
+    });
 });
 
 function everythingLoaded() {
     $("#start-button").removeAttr('style');
     $("#start-button").text("START");
     $('#start-button').click(function() {
-        $('#gl-canvas').css('display', 'block');
         $('#menu').hide();
-        $('#mass-left').css('display', 'block');
-        startPlaying();
-        resetLevel(false);
+        $('#skill-menu').css('display', 'block');
     });
 }
 
