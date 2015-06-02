@@ -125,7 +125,11 @@ function handleKeysPressed() {
         }
     }
     else if (app.mode == GAMESTATE_PLACING) {
-        //mouse click
+        //space bar
+        if (app.keysPressed[32] === true) {
+            $('#mass-continue-button').click();
+        }
+
         if (app.skill == MODE_SKILL){
             if (app.keysPressed[-1] !== undefined && app.currentLevel.massLeft >= 6.0) {
                 app.currentLevel.planets[app.currentLevel.planets.length - 1].mass += 6.0;
@@ -135,6 +139,12 @@ function handleKeysPressed() {
                 checkPlacementCollision();
                 setMass(app.currentLevel.massLeft);
             } 
+        }
+    }
+    else if (app.mode == GAMESTATE_WAITING) {
+        //space bar
+        if (app.keysPressed[32] === true) {
+            $('#start-game-button').click();
         }
     }
     else

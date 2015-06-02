@@ -43,6 +43,7 @@ function resetLevel(fullReset) {
         $('#mass-left').css('display', 'block');
     }
     setMass(app.currentLevel.massLeft);
+    app.currentLevel = JSON.parse(JSON.stringify(app.levels[app.currentLevelNum]));
 }
 
 /**
