@@ -9,7 +9,7 @@ var X = 0,
 var GAMESTATE_LOADING = 0,
     GAMESTATE_LOADED = 1,
     GAMESTATE_PLAYING = 2,
-    GAMESTATE_PLACING = 3
+    GAMESTATE_PLACING = 3,
     GAMESTATE_WAITING = 4,
     MODE_NORMAL = 5,
     MODE_SKILL = 6;
@@ -54,6 +54,7 @@ app.currentLevel = 0;
 app.score = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
+app.skill = MODE_NORMAL;
 
 app.theta = 0;
 app.elapsed = 0;
