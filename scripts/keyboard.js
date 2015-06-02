@@ -127,6 +127,7 @@ function handleKeysPressed() {
     else if (app.mode == GAMESTATE_PLACING) {
         //space bar
         if (app.keysPressed[32] === true) {
+            app.keysPressed[32] = false;
             $('#mass-continue-button').click();
         }
 
@@ -144,6 +145,7 @@ function handleKeysPressed() {
     else if (app.mode == GAMESTATE_WAITING) {
         //space bar
         if (app.keysPressed[32] === true) {
+            app.keysPressed[32] = false;
             $('#start-game-button').click();
         }
     }
