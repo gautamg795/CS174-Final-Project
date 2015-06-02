@@ -238,6 +238,7 @@ function checkCollision() {
             $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
             app.ship.fuel += 50;
             app.currentLevel.fuel[i].collected = true;
+            $("#minimap-fuel-" + i).hide();
         }
     }
     

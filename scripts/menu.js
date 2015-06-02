@@ -117,6 +117,7 @@ function everythingLoaded() {
 function initMinimap() {
     // Clear planets
     $("#minimap-planets").empty();
+    $("#minimap-fuels").empty();
 
     // Initialize planets
     app.currentLevel.planets.forEach(function(planet, i) {
@@ -126,6 +127,15 @@ function initMinimap() {
         $("#minimap-planet-" + i).css("width", planet.size / 5);
         $("#minimap-planet-" + i).css("height", planet.size / 5);
     });
+
+    // Initialize fuel
+    app.currentLevel.fuel.forEach(function(fuel, i) {
+        $("#minimap-fuel-" + i).show();
+        $("#minimap-fuels").append("<div class='minimap-fuel' id='minimap-fuel-" + i + "'></div>");
+        $("#minimap-fuel-" + i).css("left", 25 + (200 - (fuel.position[0] + 1000) / 10));
+        $("#minimap-fuel-" + i).css("top", 25 + (200 - (fuel.position[2] + 1000) / 10));
+    });
+
 
     // Initialize exit
     $("#minimap-exit").css("left", 25 + (200 - (app.currentLevel.exit.position[0] + 1000) / 10));
