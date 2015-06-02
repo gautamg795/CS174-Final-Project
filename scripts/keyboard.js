@@ -26,7 +26,7 @@ $("#gl-canvas").mousedown(function(event) {
             mass: 0,
         })
 
-        checkPlacementCollision();
+        checkPlacementCollision(true);
         var nPlanetsAfter = app.currentLevel.planets.length;
         if(nPlanetsAfter > nPlanets)
             app.sounds["placePlanet"].play();

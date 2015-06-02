@@ -28,7 +28,6 @@ function stopPlaying() {
  * Reset the current level to its original state
  */
 function resetLevel(fullReset) {
-    cleanUpPlanets();
     app.keysPressed[-1] = undefined;
     app.mode = GAMESTATE_PLACING;
     $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
