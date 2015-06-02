@@ -165,9 +165,9 @@ sup {
     position: absolute;
     width: 0; 
     height: 0; 
-    border-left: 5px solid #111;
-    border-right: 5px solid #111;
-    border-bottom: 10px solid #CCC;
+    border-left: 3px solid #111;
+    border-right: 3px solid #111;
+    border-bottom: 8px solid #CCC;
     background-color: #CCC;
     -webkit-transform: rotate(0deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
     -ms-transform: rotate(0deg);
@@ -181,6 +181,13 @@ sup {
     height: 5px; 
     border-radius: 50%;
     background-color: #888;
+}
+
+#minimap-exit {
+    position: absolute;
+    width: 5px; 
+    height: 5px; 
+    background-color: #458B00;
 }
 
 #thrust-bar {

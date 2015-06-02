@@ -44,17 +44,18 @@ $(document).ready(function() {
         }
     });
 
-    //quit button interaction
+    // quit button interaction
     $('.quit-button').click(resetApp);
 
-    //crashed-popup buttons
+    // crashed-popup buttons
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
+        $('#hud').hide();
         startPlaying();
         resetLevel();
     });
 
-    //level-finished buttons
+    // level-finished buttons
     $('#finished-level-next-level').click(function() {
         $('#finished-level-popup').hide();
         app.currentLevel++;
@@ -70,23 +71,28 @@ function everythingLoaded() {
     $("#start-button").text("START");
     $('#start-button').click(function() {
         $('#gl-canvas').css('display', 'block');
-        $('#hud').css('display', 'block');
         $('#menu').hide();
         startPlaying();
         resetLevel();
-        initMinimap(0); // Pass level as parameter
     });
 }
 
 function initMinimap(level) {
+    // Clear planets
+    $("#minimap-planets").empty();
+
     // Initialize planets
     app.levels[level].planets.forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
-        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 6000) / 60)));
-        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 6000) / 60)));
+        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 1000) / 10)));
+        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 1000) / 10)));
         $("#minimap-planet-" + i).css("width", planet.size / 5);
         $("#minimap-planet-" + i).css("height", planet.size / 5);
     });
+
+    // Initialize exit
+    $("#minimap-exit").css("left", 25 + (((app.levels[level].exit.position[0] + 1000) / 10)));
+    $("#minimap-exit").css("top", 25 + (((app.levels[level].exit.position[2] + 1000) / 10)));
 }
 
 /**
@@ -133,8 +139,8 @@ function setThrust(val) {
 
 function setMinimap(posX, posZ, heading) {
     // Set position of ship on map
-    var convertedX = 25 + ((posX + 6000) / 60);
-    var convertedZ = 25 + ((posZ + 6000) / 60);
+    var convertedX = 25 + ((posX + 1000) / 10);
+    var convertedZ = 25 + ((posZ + 1000) / 10);
     $("#minimap-ship").css("left", convertedX);
     $("#minimap-ship").css("top", convertedZ);
 

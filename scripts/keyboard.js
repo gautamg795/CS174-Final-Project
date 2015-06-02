@@ -5,7 +5,7 @@ window.onkeyup = function(event) {
     app.keysPressed[event.keyCode] = false;
 }
 
-$("#hud").mousedown(function(event) {
+$("#gl-canvas").mousedown(function(event) {
     if(app.skill == MODE_SKILL){
         app.keysPressed[-1] = true;
         var x = event.offsetX;
@@ -29,7 +29,7 @@ $("#hud").mousedown(function(event) {
     }
 });
 
-$("#hud").mouseup(function(event) {
+$("#gl-canvas").mouseup(function(event) {
     app.keysPressed[-1] = undefined;
 });
 
@@ -121,15 +121,18 @@ function handleKeysPressed() {
     }
     else if (app.mode == GAMESTATE_PLACING) {
         //mouse click
-        if(app.skill == MODE_SKILL){
+        if (app.skill == MODE_SKILL){
             if (app.keysPressed[-1] !== undefined){
 
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
                 app.levels[app.currentLevel].massLeft -= 6.0;
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
 
-                if(app.levels[app.currentLevel].massLeft <= 0){
+                if (app.levels[app.currentLevel].massLeft <= 0) {
+                    //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
                     app.mode = GAMESTATE_PLAYING;
+                    $('#hud').css('display', 'block');
+                    initMinimap(app.currentLevel);
                 }
 
                 checkPlacementCollision();
