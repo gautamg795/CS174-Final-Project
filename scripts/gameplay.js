@@ -177,8 +177,9 @@ function moveShip() {
 }
 
 /**
- * Checks to see ship is colliding with specific object
- * @param {Array} thing     Object that will be tested for collision with ship
+ * Checks to see if two objects are colliding
+ * @param {Array} thing1    Object that will be tested for collision with thing2
+ * @param {Array} thing2    Object that will be tested for collision with thing1
  */
 function checkCollisionwith(thing1, thing2) {
     var distance;
@@ -223,13 +224,18 @@ function checkCollision() {
         }
     }
 
-    //Calculate if ship is nearing skybox
-    if (app.ship.radius + Math.abs(app.ship.position[0]) >= 3000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 3000) {
-        // Show warning popup at this point?
-        //Calculate if ship is hitting skybox
-        if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {
+    // //Calculate if ship is nearing skybox
+    // if (app.ship.radius + Math.abs(app.ship.position[0]) >= 3000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 3000) {
+    //     // Show warning popup at this point?
+    //     //Calculate if ship is hitting skybox
+    //     if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {
+    //         crash();
+    //     }
+    // }
+
+    //Calculate if ship will crash against skybox
+    if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {
             crash();
-        }
     }
 }
 

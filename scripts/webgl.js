@@ -1,7 +1,6 @@
 /**
  * WebGL Setup Code
  */
-
 function meshesLoaded(meshes) {
     app.meshes = meshes;
     app.mode = GAMESTATE_LOADED;
@@ -16,8 +15,6 @@ function meshesLoaded(meshes) {
     gl.enable(gl.DEPTH_TEST);
 }
 
-
-
 window.onload = function() {
     OBJ.downloadMeshes({
             'spaceship': 'assets/models/higher-poly-spaceship-narrow.obj',
@@ -31,7 +28,6 @@ window.onload = function() {
 /**
  * Animation Code
  */
-
 function tick(timeNow) {
     app.animFrame = requestAnimFrame(tick);
     // Clamp elapsed time (dt) to 30 msec so that switching tabs (and pausing render)
