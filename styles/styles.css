@@ -333,7 +333,7 @@ sup {
     text-align: center;
 }
 
-#controls-menu {
+#instructions-menu {
     display: none;
     background-color: #444;
     width: 1240px;
@@ -342,7 +342,7 @@ sup {
     padding: 20px;
 }
 
-#controls-container {
+#instructions-container {
     display: block;
     margin: 20px auto;
     width: 700px;

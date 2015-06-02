@@ -3,13 +3,13 @@ $(document).ready(function() {
     $("#texture-slider").parent().siblings(".option-value").text(app.textureQualityOptions[app.textureQuality]);
 
     // Menu button interactions
-    $('#controls-button').click(function() {
-        $('#controls-menu').css('display', 'block');
+    $('#instructions-button').click(function() {
+        $('#instructions-menu').css('display', 'block');
         $('#menu').hide();
     });
-    $('#back-controls-button').click(function() {
+    $('#back-instructions-button').click(function() {
         $('#menu').css('display', 'block');
-        $('#controls-menu').hide();
+        $('#instructions-menu').hide();
     });
     $('#options-button').click(function() {
         $('#options-menu').css('display', 'block');
