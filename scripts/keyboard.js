@@ -24,7 +24,7 @@ $("#hud").mousedown(function(event) {
             textureNum: Math.floor(Math.random() * app.planetTextures.length),
             mass: 0,
         })
-        checkPlacementCollision(true);
+        checkPlacementCollision();
 
     }
 });

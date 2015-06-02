@@ -69,7 +69,7 @@ function drawSpace() {
     if(app.mode == GAMESTATE_PLAYING)
         pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     else if(app.mode == GAMESTATE_PLACING){
-        var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 500);
+        var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 1100);
         var extraMatrix = mult(translate(-600, 0, 0), rotate(-90, [0, 0, 1]));
         extraMatrix = mult(extraMatrix, rotate(90, [1, 0, 0]));
         pMatrix = mult(pMatrix, extraMatrix);
@@ -102,7 +102,7 @@ function drawSpace() {
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
 
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
-    modelMatrix = mult(translate(app.ship.position), scale(6000, 6000, 6000));
+    modelMatrix = mult(translate(app.ship.position), (app.mode == GAMESTATE_PLACING) ? scale(1000, 1000, 1000) : scale(6000, 6000, 6000));
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.skybox, mvMatrix, app.models.skybox.texture, false);
@@ -200,7 +200,7 @@ function checkCollision() {
         $(".total-score").text("Total Score: " + app.score);
         if(app.currentLevel == app.levels.length - 1) {
             
-            //app.sounds["gameFinished"].play();
+            app.sounds["gameFinished"].play();
             $('#finished-game-popup').css('display','block');
         }
         else {
