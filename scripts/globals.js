@@ -9,9 +9,10 @@ var X = 0,
 var GAMESTATE_LOADING = 0,
     GAMESTATE_LOADED = 1,
     GAMESTATE_PLAYING = 2,
-    GAMESTATE_PLACING = 3,
-    MODE_NORMAL = 4,
-    MODE_SKILL = 5;
+    GAMESTATE_PLACING = 3
+    GAMESTATE_WAITING = 4,
+    MODE_NORMAL = 5,
+    MODE_SKILL = 6;
 var gl;
 var canvas;
 

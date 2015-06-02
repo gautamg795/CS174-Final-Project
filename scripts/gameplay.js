@@ -70,7 +70,7 @@ function drawSpace() {
     app.headingBuffer.unshift(app.ship.heading);
 
     var pMatrix;
-    if(app.mode == GAMESTATE_PLAYING)
+    if(app.mode == GAMESTATE_PLAYING || app.mode == GAMESTATE_WAITING)
         pMatrix = perspective(50, canvas.width / canvas.height, app.camera.near, app.camera.far);
     else if(app.mode == GAMESTATE_PLACING){
         var pMatrix = ortho(-500 * canvas.width / canvas.height, 500 * canvas.width / canvas.height, -500, 500, -500, 1400);
