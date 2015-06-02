@@ -110,36 +110,43 @@ app.levels[1] = {
 
 app.levels[2] = {
     planets: [{
-        position: [300, 0, 0],
-        size: 50,
-        textureNum: 5,
-        mass: 1000,
-    }, {
-        position: [-300, 0, 100],
-        size: 50,
-        textureNum: 6,
-        mass: 200,
-    }, {
-        position: [250, 0, 200],
-        size: 50,
-        textureNum: 1,
-        mass: 100,
-    }, {
-        position: [-200, 0, 300],
-        size: 50,
-        textureNum: 4,
-        mass: 800,
-    }, {
-        position: [150, 0, 400],
-        size: 50,
-        textureNum: 3,
-        mass: 200,
-    }, {
-        position: [-100, 0, 500],
-        size: 50,
-        textureNum: 2,
-        mass: 1000,
-    }],
+            position: [300, 0, 0],
+            size: 50,
+            textureNum: 5,
+            mass: 1000,
+        }, {
+            position: [-300, 0, 100],
+            size: 50,
+            textureNum: 6,
+            mass: 200,
+        }, {
+            position: [250, 0, 200],
+            size: 50,
+            textureNum: 1,
+            mass: 100,
+        }, {
+            position: [-200, 0, 300],
+            size: 50,
+            textureNum: 4,
+            mass: 800,
+        }, {
+            position: [-100, 0, 500],
+            size: 50,
+            textureNum: 2,
+            mass: 1000,
+        }, {
+            position: [0, 0, 550],
+            size: 40,
+            textureNum: 0,
+            mass: 200,
+        }, {
+            position: [400, 0, 800],
+            size: 70,
+            textureNum: 0,
+            mass: 1200,
+        },
+
+    ],
     exit: {
         position: [0, 0, 700],
         size: 21,
