@@ -58,6 +58,7 @@ $(document).ready(function() {
     // level-finished buttons
     $('#finished-level-next-level').click(function() {
         $('#finished-level-popup').hide();
+        $('#hud').hide();
         app.currentLevel++;
         $('#hud').hide();
         startPlaying();
@@ -85,15 +86,15 @@ function initMinimap(level) {
     // Initialize planets
     app.levels[level].planets.forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
-        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 1000) / 10)));
-        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 1000) / 10)));
+        $("#minimap-planet-" + i).css("left", 25 + (200 - (((planet.position[0] + 1000) / 10))));
+        $("#minimap-planet-" + i).css("top", 25 + (200 - (((planet.position[2] + 1000) / 10))));
         $("#minimap-planet-" + i).css("width", planet.size / 5);
         $("#minimap-planet-" + i).css("height", planet.size / 5);
     });
 
     // Initialize exit
-    $("#minimap-exit").css("left", 25 + (((app.levels[level].exit.position[0] + 1000) / 10)));
-    $("#minimap-exit").css("top", 25 + (((app.levels[level].exit.position[2] + 1000) / 10)));
+    $("#minimap-exit").css("left", 25 + (200 - (((app.levels[level].exit.position[0] + 1000) / 10))));
+    $("#minimap-exit").css("top", 25 + (200 - (((app.levels[level].exit.position[2] + 1000) / 10))));
 }
 
 /**
@@ -140,16 +141,16 @@ function setThrust(val) {
 
 function setMinimap(posX, posZ, heading) {
     // Set position of ship on map
-    var convertedX = 25 + ((posX + 1000) / 10);
-    var convertedZ = 25 + ((posZ + 1000) / 10);
+    var convertedX = 25 + (200 - ((posX + 1000) / 10));
+    var convertedZ = 25 + (200 - ((posZ + 1000) / 10));
     $("#minimap-ship").css("left", convertedX);
     $("#minimap-ship").css("top", convertedZ);
 
     // Set rotation of ship on map
-    $("#minimap-ship").css("-webkit-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("-ms-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("-moz-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("transform", "rotate(" + (heading + 180) + "deg)");
+    $("#minimap-ship").css("-webkit-transform", "rotate(" + (heading) + "deg)");
+    $("#minimap-ship").css("-ms-transform", "rotate(" + (heading) + "deg)");
+    $("#minimap-ship").css("-moz-transform", "rotate(" + (heading) + "deg)");
+    $("#minimap-ship").css("transform", "rotate(" + (heading) + "deg)");
 }
 
 /**
