@@ -55,10 +55,7 @@ app.score = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;
 
-//CHANGE THIS ASDFASDF
-app.skill = MODE_SKILL;
-
-
+app.theta = 0;
 app.elapsed = 0;
 app.lastTime = window.performance.now();
 
@@ -78,7 +75,6 @@ app.levels[0] = {
     }],
     exit: {
         position: [0, 0, 200],
-        theta: 0,
         size: 21,
     },
     massLeft: 500,
@@ -98,7 +94,6 @@ app.levels[1] = {
     }],
     exit: {
         position: [160, 0, 200],
-        theta: 0,
         size: 21,
     },
     massLeft: 500,

@@ -34,6 +34,7 @@ function tick(timeNow) {
     // doesn't cause a jump when switching back
     app.elapsed = Math.min(timeNow - app.lastTime, 30);
     app.lastTime = timeNow;
+    app.theta += app.elapsed / 10
     app.drawScene();
     handleKeysPressed();
 }
