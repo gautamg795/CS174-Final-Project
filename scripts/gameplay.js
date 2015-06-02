@@ -3,6 +3,7 @@
  */
 function startPlaying() {
     if (app.mode != GAMESTATE_PLAYING) {
+        $('#mass-left').css('display', 'block');
         app.mode = GAMESTATE_PLACING;
         app.levels[app.currentLevel].nPlanetsAdded = 0;
         app.drawScene = drawSpace;
@@ -37,7 +38,6 @@ function resetLevel() {
     app.ship.heading = 0;
     app.headingBuffer = [0, 0, 0, 0, 0];
     $('#hud').hide();
-    $('#mass-left').css('display', 'block');
     setMass(app.levels[app.currentLevel].massLeft);
 }
 
