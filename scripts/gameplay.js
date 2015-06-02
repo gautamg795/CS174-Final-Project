@@ -5,7 +5,7 @@ function startPlaying() {
     if (app.mode != GAMESTATE_PLAYING) {
         $('#mass-left').css('display', 'block');
         app.mode = GAMESTATE_PLACING;
-        app.currentLevel = app.levels[app.currentLevelNum];
+        app.currentLevel = JSON.parse(JSON.stringify(app.levels[app.currentLevelNum]));
         app.currentLevel.nPlanetsAdded = 0;
         app.drawScene = drawSpace;
         app.lastTime = window.performance.now();
