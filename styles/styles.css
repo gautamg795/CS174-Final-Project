@@ -337,7 +337,7 @@ canvas {
     display: none;
     background-color: #444;
     width: 1240px;
-    height: 680px;
+    height: 740px;
     margin: 20px auto;
     padding: 20px;
 }
@@ -346,10 +346,13 @@ canvas {
     display: block;
     margin: 20px auto;
     width: 700px;
+    font-size: initial;
 }
 
 .control {
     padding: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .control-key {
