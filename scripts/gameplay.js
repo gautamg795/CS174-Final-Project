@@ -110,6 +110,8 @@ function drawSpace() {
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
 
     app.currentLevel.fuel.forEach(function(fuel) {
+        if (fuel.collected)
+            return;
         modelMatrix = mult(rotate((app.theta), [0, 1, 0]), rotate(30, [0, 0, 1]));
         modelMatrix = mult(scale(.1, .1, .1), modelMatrix);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
