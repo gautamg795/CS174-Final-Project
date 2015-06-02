@@ -54,7 +54,7 @@ $(document).ready(function() {
         $('#mass-left').css('display', 'block');
         setMass(app.levels[app.currentLevel].massLeft);
         startPlaying();
-        resetLevel();
+        resetLevel(false);
     });
 
     // level-finished buttons
@@ -65,7 +65,7 @@ $(document).ready(function() {
         setMass(app.levels[app.currentLevel].massLeft);
         app.currentLevel++;
         startPlaying();
-        resetLevel();
+        resetLevel(false);
     });
 
     $('#mass-continue-button').click(function() {
@@ -91,7 +91,7 @@ function everythingLoaded() {
         $('#menu').hide();
         $('#mass-left').css('display', 'block');
         startPlaying();
-        resetLevel();
+        resetLevel(false);
     });
 }
 

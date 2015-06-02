@@ -26,7 +26,7 @@ function stopPlaying() {
 /**
  * Reset the current level to its original state
  */
-function resetLevel() {
+function resetLevel(fullReset) {
     cleanUpPlanets();
     app.keysPressed[-1] = undefined;
     app.mode = GAMESTATE_PLACING;
@@ -38,7 +38,9 @@ function resetLevel() {
     app.ship.heading = 0;
     app.headingBuffer = [0, 0, 0, 0, 0];
     $('#hud').hide();
-    $('#mass-left').css('display', 'block');
+    if (!fullReset) {
+        $('#mass-left').css('display', 'block');
+    }
     setMass(app.levels[app.currentLevel].massLeft);
 }
 
@@ -50,7 +52,7 @@ function resetApp() {
     stopPlaying();
     app.currentLevel = 0;
     app.score = 0;
-    resetLevel();
+    resetLevel(true);
     $('#crashed-popup').hide();
     $('#finished-level-popup').hide();
     $('#finished-game-popup').hide();
