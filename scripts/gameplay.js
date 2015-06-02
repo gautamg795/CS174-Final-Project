@@ -237,6 +237,7 @@ function checkCollision() {
         if(app.currentLevel.fuel[i].collected === false && checkCollisionwith(app.currentLevel.fuel[i], app.ship)) {
             $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
             app.ship.fuel += 50;
+            app.sounds["powerup"].play();
             app.currentLevel.fuel[i].collected = true;
             $("#minimap-fuel-" + i).hide();
         }

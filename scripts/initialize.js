@@ -185,7 +185,8 @@ function initSounds() {
     app.sounds["theme"] = new Howl({urls: ['assets/sounds/theme.mp3'], autoplay: true, loop: true});
     app.sounds["explosion"] = new Howl({urls: ['assets/sounds/explosion.wav'], volume: .5});
     app.sounds["levelFinished"] = new Howl({urls: ['assets/sounds/levelFinished.wav']});
-    app.sounds["gameFinished"] = new Howl({urls: ['assets/sounds/gameFinished.wav']});
+    app.sounds["gameFinished"] = new Howl({urls: ['assets/sounds/gameFinished.wav'], volume: 0.6});
     app.sounds["thrust"] = new Howl({urls: ['assets/sounds/thrust.wav'], autoplay: true, volume: 0.0, loop: true});
     app.sounds["placePlanet"] = new Howl({urls: ['assets/sounds/bloop.wav'], volume: 0.2});
+    app.sounds["powerup"] = new Howl({urls: ['assets/sounds/powerup.wav']});
 }
