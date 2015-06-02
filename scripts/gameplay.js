@@ -233,7 +233,7 @@ function checkCollision() {
 
     // Loop through all planet positions and check against ship position
     for (var i = 0; i < app.currentLevel.fuel.length; i++) {
-        if(checkCollisionwith(app.currentLevel.fuel[i], app.ship)) {
+        if(app.currentLevel.fuel[i].collected === false && checkCollisionwith(app.currentLevel.fuel[i], app.ship)) {
             $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
             app.ship.fuel += 50;
             app.currentLevel.fuel[i].collected = true;
@@ -247,15 +247,6 @@ function checkCollision() {
             crash();
         }
     }
-
-    // //Calculate if ship is nearing skybox
-    // if (app.ship.radius + Math.abs(app.ship.position[0]) >= 3000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 3000) {
-    //     // Show warning popup at this point?
-    //     //Calculate if ship is hitting skybox
-    //     if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {
-    //         crash();
-    //     }
-    // }
 
     //Calculate if ship will crash against skybox
     if (app.ship.radius + Math.abs(app.ship.position[0]) >= 6000 || app.ship.radius + Math.abs(app.ship.position[2]) >= 6000) {

@@ -101,7 +101,7 @@ app.levels[1] = {
         size: 21,
     },
     fuel: [{
-        position: [-120, 0, 700],
+        position: [-120, 0, 900],
         collected: false,
         size: fuelSize,
     }, ],
