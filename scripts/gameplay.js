@@ -100,7 +100,7 @@ function drawSpace() {
         modelMatrix = mult(translate(negate(planet.position)), modelMatrix);
         modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
         mvMatrix = mult(viewMatrix, modelMatrix);
-        drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], true);
+        drawObject(app.models.planet, mvMatrix, app.models.planet.texture[planet.textureNum], app.mode != GAMESTATE_PLACING);
     });
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.theta), [app.mode == GAMESTATE_PLACING, 1, app.mode == GAMESTATE_PLACING]));
