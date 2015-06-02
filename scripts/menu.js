@@ -114,12 +114,12 @@ function everythingLoaded() {
     });
 }
 
-function initMinimap(level) {
+function initMinimap() {
     // Clear planets
     $("#minimap-planets").empty();
 
     // Initialize planets
-    app.levels[level].planets.forEach(function(planet, i) {
+    app.currentLevel.planets.forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
         $("#minimap-planet-" + i).css("left", 25 + (200 - (planet.position[0] + 1000) / 10));
         $("#minimap-planet-" + i).css("top", 25 + (200 - (planet.position[2] + 1000) / 10));
@@ -128,8 +128,8 @@ function initMinimap(level) {
     });
 
     // Initialize exit
-    $("#minimap-exit").css("left", 25 + (200 - (app.levels[level].exit.position[0] + 1000) / 10));
-    $("#minimap-exit").css("top", 25 + (200 - (app.levels[level].exit.position[2] + 1000) / 10));
+    $("#minimap-exit").css("left", 25 + (200 - (app.currentLevel.exit.position[0] + 1000) / 10));
+    $("#minimap-exit").css("top", 25 + (200 - (app.currentLevel.exit.position[2] + 1000) / 10));
 }
 
 /**
