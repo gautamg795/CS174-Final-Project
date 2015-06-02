@@ -50,7 +50,7 @@ app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg",
 ];
 app.sounds = {};
 app.levels = [];
-app.currentLevelNum = 0;
+app.currentLevelNum = 2;
 app.currentLevel = {};
 app.score = 0;
 app.keysPressed = {};
@@ -107,3 +107,48 @@ app.levels[1] = {
     }, ],
     massLeft: 600,
 };
+
+app.levels[2] = {
+    planets: [{
+        position: [300, 0, 0],
+        size: 50,
+        textureNum: 5,
+        mass: 1000,
+    }, {
+        position: [-300, 0, 100],
+        size: 50,
+        textureNum: 6,
+        mass: 200,
+    }, {
+        position: [250, 0, 200],
+        size: 50,
+        textureNum: 1,
+        mass: 100,
+    }, {
+        position: [-200, 0, 300],
+        size: 50,
+        textureNum: 4,
+        mass: 800,
+    }, {
+        position: [150, 0, 400],
+        size: 50,
+        textureNum: 3,
+        mass: 200,
+    }, {
+        position: [-100, 0, 500],
+        size: 50,
+        textureNum: 2,
+        mass: 1000,
+    }],
+    exit: {
+        position: [0, 0, 700],
+        size: 21,
+    },
+    fuel: [{
+        position: [0, 0, 900],
+        collected: false,
+        size: fuelSize,
+    }, ],
+    massLeft: 600,
+
+}
