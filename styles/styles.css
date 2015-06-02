@@ -385,6 +385,26 @@ sup {
     padding: 30px;
 }
 
+#start-game-popup {
+    background-color: #444;
+    position: absolute;
+    display: none;
+    margin: 20px auto;
+    width: 420px;
+    height: 200px;
+    padding: 20px;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+}
+
+#start-game-title {
+    text-align: center;
+    font-size: 36px;
+    padding: 10px;
+}
+
+
 #finished-level-popup {
     background-color: #444;
     position: absolute;

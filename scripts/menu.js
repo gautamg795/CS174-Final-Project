@@ -68,7 +68,13 @@ $(document).ready(function() {
         resetLevel();
     });
 
-    
+    $('#start-game-button').click(function() {
+        app.mode = GAMESTATE_PLAYING;
+        $('#mass-left').hide();
+        $('#hud').css('display', 'block');
+        initMinimap(app.currentLevel);
+        $('#start-game-popup').hide();
+    });
 });
 
 function everythingLoaded() {

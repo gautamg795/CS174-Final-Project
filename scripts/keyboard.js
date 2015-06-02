@@ -139,9 +139,7 @@ function handleKeysPressed() {
                     drawSpace();
 
                     //put the button for ready (or timer) here, on click, set to GAMESTATE_PLAYING
-                    $('#mass-left').hide();
-                    $('#hud').css('display', 'block');
-                    initMinimap(app.currentLevel);
+                    $('#start-game-popup').css('display', 'block');
                 }
 
                 checkPlacementCollision();
