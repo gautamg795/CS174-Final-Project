@@ -5,7 +5,8 @@ function startPlaying() {
     if (app.mode != GAMESTATE_PLAYING) {
         $('#mass-left').css('display', 'block');
         app.mode = GAMESTATE_PLACING;
-        app.levels[app.currentLevel].nPlanetsAdded = 0;
+        app.currentLevel = app.levels[app.currentLevelNum];
+        app.currentLevel.nPlanetsAdded = 0;
         app.drawScene = drawSpace;
         app.lastTime = window.performance.now();
         requestAnimFrame(tick);
@@ -41,7 +42,7 @@ function resetLevel(fullReset) {
     if (!fullReset) {
         $('#mass-left').css('display', 'block');
     }
-    setMass(app.levels[app.currentLevel].massLeft);
+    setMass(app.currentLevel.massLeft);
 }
 
 /**
@@ -50,7 +51,7 @@ function resetLevel(fullReset) {
  */
 function resetApp() {
     stopPlaying();
-    app.currentLevel = 0;
+    app.currentLevelNum = 0;
     app.score = 0;
     resetLevel(true);
     $('#crashed-popup').hide();
@@ -92,7 +93,7 @@ function drawSpace() {
 
     drawObject(app.models.spaceship, mvMatrix, app.models.spaceship.texture, false);
 
-    app.levels[app.currentLevel].planets.forEach(function(planet) {
+    app.currentLevel.planets.forEach(function(planet) {
         modelMatrix = scale(planet.size, planet.size, planet.size);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
         modelMatrix = mult(translate(negate(planet.position)), modelMatrix);
@@ -103,12 +104,14 @@ function drawSpace() {
 
     modelMatrix = mult(scale(.1, .1, .1), rotate((app.theta), [app.mode == GAMESTATE_PLACING, 1, app.mode == GAMESTATE_PLACING]));
     modelMatrix = mult(translate(app.ship.position), modelMatrix);
-    modelMatrix = mult(translate(negate(app.levels[app.currentLevel].exit.position)), modelMatrix);
+    modelMatrix = mult(translate(negate(app.currentLevel.exit.position)), modelMatrix);
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
 
-    app.levels[app.currentLevel].fuel.forEach(function(fuel) {
+    app.currentLevel.fuel.forEach(function(fuel) {
+        if (fuel.collected)
+            return;
         modelMatrix = mult(rotate((app.theta), [0, 1, 0]), rotate(30, [0, 0, 1]));
         modelMatrix = mult(scale(.1, .1, .1), modelMatrix);
         modelMatrix = mult(translate(app.ship.position), modelMatrix);
@@ -211,13 +214,13 @@ function checkCollisionwith(thing1, thing2) {
 function checkCollision() {
 
     //Check collision with exit sign
-    if(checkCollisionwith(app.levels[app.currentLevel].exit, app.ship)) {
+    if(checkCollisionwith(app.currentLevel.exit, app.ship)) {
         stopPlaying();
         var levelScore = (500 + 100 * Math.round(app.ship.fuel));
         app.score += levelScore;
         $(".score").text("Level Score: " + levelScore);
         $(".total-score").text("Total Score: " + app.score);
-        if(app.currentLevel == app.levels.length - 1) {
+        if(app.currentLevelNum == app.levels.length - 1) {
             
             app.sounds["gameFinished"].play();
             $('#finished-game-popup').css('display','block');
@@ -229,8 +232,8 @@ function checkCollision() {
     }
     
     // Loop through all planet positions and check against ship position
-    for (var i = 0; i < app.levels[app.currentLevel].planets.length; i++) {
-        if(checkCollisionwith(app.levels[app.currentLevel].planets[i], app.ship)) {
+    for (var i = 0; i < app.currentLevel.planets.length; i++) {
+        if(checkCollisionwith(app.currentLevel.planets[i], app.ship)) {
             crash();
         }
     }
@@ -259,27 +262,27 @@ function checkCollision() {
  * Skybox collision not needed (placement area much smaller than skybox size)
  */
 function checkPlacementCollision(firstPlacement){
-    var addedPlanet = app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1];
-    for(var i = 0; i < app.levels[app.currentLevel].planets.length - 1; i++){
-        var planet = app.levels[app.currentLevel].planets[i];
+    var addedPlanet = app.currentLevel.planets[app.currentLevel.planets.length - 1];
+    for(var i = 0; i < app.currentLevel.planets.length - 1; i++){
+        var planet = app.currentLevel.planets[i];
 
         if(checkCollisionwith(addedPlanet, planet)){
             app.keysPressed[-1] = undefined;
             if(firstPlacement == true){
-                planet = app.levels[app.currentLevel].planets.pop();
-                app.levels[app.currentLevel].massLeft += planet.mass;
-                app.levels[app.currentLevel].nPlanetsAdded--;
+                planet = app.currentLevel.planets.pop();
+                app.currentLevel.massLeft += planet.mass;
+                app.currentLevel.nPlanetsAdded--;
             }
         }
 
     }
 
 
-    if (checkCollisionwith(app.ship, addedPlanet) || checkCollisionwith(app.levels[app.currentLevel].exit, addedPlanet)) {
+    if (checkCollisionwith(app.ship, addedPlanet) || checkCollisionwith(app.currentLevel.exit, addedPlanet)) {
         app.keysPressed[-1] = undefined;
-        planet = app.levels[app.currentLevel].planets.pop();
-        app.levels[app.currentLevel].massLeft += planet.mass;
-        app.levels[app.currentLevel].nPlanetsAdded--;
+        planet = app.currentLevel.planets.pop();
+        app.currentLevel.massLeft += planet.mass;
+        app.currentLevel.nPlanetsAdded--;
     }
 
 }
@@ -295,11 +298,11 @@ function crash() {
 }
 
 function cleanUpPlanets(){
-    for (var i = 0; i < app.levels[app.currentLevel].nPlanetsAdded; i++){
-        planet = app.levels[app.currentLevel].planets.pop();
-        app.levels[app.currentLevel].massLeft += planet.mass;
+    for (var i = 0; i < app.currentLevel.nPlanetsAdded; i++){
+        planet = app.currentLevel.planets.pop();
+        app.currentLevel.massLeft += planet.mass;
     }
-    app.levels[app.currentLevel].nPlanetsAdded = 0;
+    app.currentLevel.nPlanetsAdded = 0;
 }
 
 /**
@@ -311,7 +314,7 @@ function calculateAcceleration() {
     var thrustVector = vec3(app.ship.thrust / 60 * Math.sin(radians(-app.ship.heading)), 0, app.ship.thrust / 60 * Math.cos(radians(-app.ship.heading)));
     var gravityVector = [0.0, 0.0, 0.0];
 
-    app.levels[app.currentLevel].planets.forEach(function(planet) {
+    app.currentLevel.planets.forEach(function(planet) {
         var vec_to_planet = subtract(vec3(planet.position), vec3(app.ship.position));
         var unit_vec = normalize(vec_to_planet, false);
         var dist_squared = dot(vec_to_planet, vec_to_planet);
