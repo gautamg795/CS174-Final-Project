@@ -127,20 +127,10 @@ function handleKeysPressed() {
     else if (app.mode == GAMESTATE_PLACING) {
         //mouse click
         if (app.skill == MODE_SKILL){
-            if (app.keysPressed[-1] !== undefined){
-
+            if (app.keysPressed[-1] !== undefined && app.levels[app.currentLevel].massLeft >= 6.0) {
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
                 app.levels[app.currentLevel].massLeft -= 6.0;
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
-
-                if (app.levels[app.currentLevel].massLeft <= 0) {
-                    //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
-                    app.mode = GAMESTATE_WAITING;
-                    drawSpace();
-
-                    //put the button for ready (or timer) here, on click, set to GAMESTATE_PLAYING
-                    $('#start-game-popup').css('display', 'block');
-                }
 
                 checkPlacementCollision();
                 setMass(app.levels[app.currentLevel].massLeft);

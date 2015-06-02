@@ -68,11 +68,17 @@ $(document).ready(function() {
         resetLevel();
     });
 
+    $('#mass-continue-button').click(function() {
+        app.mode = GAMESTATE_WAITING;
+        $('#mass-left').hide();
+        drawSpace();
+        initMinimap(app.currentLevel);
+        $('#hud').css('display', 'block');
+        $('#start-game-popup').css('display', 'block');
+    });
+
     $('#start-game-button').click(function() {
         app.mode = GAMESTATE_PLAYING;
-        $('#mass-left').hide();
-        $('#hud').css('display', 'block');
-        initMinimap(app.currentLevel);
         $('#start-game-popup').hide();
     });
 });
