@@ -101,6 +101,7 @@ app.levels[1] = {
     },
     fuel: [{
         position: [-120, 0, 700],
+        collected: false,
     }, ],
     massLeft: 500,
 };
