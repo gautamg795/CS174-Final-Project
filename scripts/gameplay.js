@@ -278,12 +278,20 @@ function checkPlacementCollision(firstPlacement){
 
     }
 
-
     if (checkCollisionwith(app.ship, addedPlanet) || checkCollisionwith(app.currentLevel.exit, addedPlanet)) {
         app.keysPressed[-1] = undefined;
         planet = app.currentLevel.planets.pop();
         app.currentLevel.massLeft += planet.mass;
         app.currentLevel.nPlanetsAdded--;
+    }
+
+    for (var i = 0; i < app.currentLevel.fuel.length; i++){
+        if(checkCollisionwith(addedPlanet, app.currentLevel.fuel[i])){
+            app.keysPressed[-1] = undefined;
+            planet = app.currentLevel.planets.pop();
+            app.currentLevel.massLeft += planet.mass;
+            app.currentLevel.nPlanetsAdded--;
+        }
     }
 
 }
