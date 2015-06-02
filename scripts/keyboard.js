@@ -17,6 +17,7 @@ $("#gl-canvas").mousedown(function(event) {
         y = (y / canvas.height) - 0.5;
         y *= 1000;
 
+        var nPlanets = app.levels[app.currentLevel].planets.length;
         app.levels[app.currentLevel].nPlanetsAdded++;
         app.levels[app.currentLevel].planets.push({
             position: [-y, 0, x],
@@ -24,7 +25,11 @@ $("#gl-canvas").mousedown(function(event) {
             textureNum: Math.floor(Math.random() * app.planetTextures.length),
             mass: 0,
         })
+
         checkPlacementCollision();
+        var nPlanetsAfter = app.levels[app.currentLevel].planets.length;
+        if(nPlanetsAfter > nPlanets)
+            app.sounds["placePlanet"].play();
 
     }
 });
