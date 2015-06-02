@@ -129,6 +129,7 @@ function initTextures() {
     initTexture(app.models.skybox, "assets/textures/sky.jpg");
     initTexture(app.models.planet, app.planetTextures);
     initTexture(app.models.exit, "assets/textures/exit-sign.png");
+    initTexture(app.models.fuel, "assets/textures/fuel-bottle.png");
 }
 
 /**

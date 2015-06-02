@@ -108,6 +108,17 @@ function drawSpace() {
     mvMatrix = mult(viewMatrix, modelMatrix);
     drawObject(app.models.exit, mvMatrix, app.models.exit.texture, false);
 
+    app.levels[app.currentLevel].fuel.forEach(function(fuel) {
+        modelMatrix = mult(rotate((app.theta), [0, 1, 0]), rotate(30, [0, 0, 1]));
+        modelMatrix = mult(scale(.1, .1, .1), modelMatrix);
+        modelMatrix = mult(translate(app.ship.position), modelMatrix);
+        modelMatrix = mult(translate(negate(fuel.position)), modelMatrix);
+        modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);
+        mvMatrix = mult(viewMatrix, modelMatrix);
+        drawObject(app.models.fuel, mvMatrix, app.models.fuel.texture, false);
+    });
+
+
     gl.uniform1f(shaderProgram.textureScaleUniform, 8.0);
     modelMatrix = mult(translate(app.ship.position), (app.mode == GAMESTATE_PLACING) ? scale(1300, 1300, 1300) : scale(6000, 6000, 6000));
     modelMatrix = mult(rotate(app.ship.heading, [0, 1, 0]), modelMatrix);

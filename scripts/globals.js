@@ -77,6 +77,7 @@ app.levels[0] = {
         position: [0, 0, 200],
         size: 21,
     },
+    fuel: [],
     massLeft: 500,
 };
 
@@ -96,5 +97,8 @@ app.levels[1] = {
         position: [160, 0, 200],
         size: 21,
     },
+    fuel: [{
+        position: [-120, 0, 700],
+    }, ],
     massLeft: 500,
 };
