@@ -36,6 +36,9 @@ function resetLevel() {
     app.ship.thrust = 0.0;
     app.ship.heading = 0;
     app.headingBuffer = [0, 0, 0, 0, 0];
+    $('#hud').hide();
+    $('#mass-left').css('display', 'block');
+    setMass(app.levels[app.currentLevel].massLeft);
 }
 
 /**

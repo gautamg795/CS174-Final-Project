@@ -131,11 +131,13 @@ function handleKeysPressed() {
                 if (app.levels[app.currentLevel].massLeft <= 0) {
                     //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
                     app.mode = GAMESTATE_PLAYING;
+                    $('#mass-left').hide();
                     $('#hud').css('display', 'block');
                     initMinimap(app.currentLevel);
                 }
 
                 checkPlacementCollision();
+                setMass(app.levels[app.currentLevel].massLeft);
             } 
         }
     }

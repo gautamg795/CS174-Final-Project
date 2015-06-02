@@ -51,6 +51,8 @@ $(document).ready(function() {
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
         $('#hud').hide();
+        $('#mass-left').css('display', 'block');
+        setMass(app.levels[app.currentLevel].massLeft);
         startPlaying();
         resetLevel();
     });
@@ -59,8 +61,9 @@ $(document).ready(function() {
     $('#finished-level-next-level').click(function() {
         $('#finished-level-popup').hide();
         $('#hud').hide();
+        $('#mass-left').css('display', 'block');
+        setMass(app.levels[app.currentLevel].massLeft);
         app.currentLevel++;
-        $('#hud').hide();
         startPlaying();
         resetLevel();
     });
@@ -74,6 +77,7 @@ function everythingLoaded() {
     $('#start-button').click(function() {
         $('#gl-canvas').css('display', 'block');
         $('#menu').hide();
+        $('#mass-left').css('display', 'block');
         startPlaying();
         resetLevel();
     });
@@ -137,6 +141,19 @@ function setThrust(val) {
     $("#thrust-bar").css("-ms-transform", "scale(1, " + val / 100.0 + ")");
     $("#thrust-bar").css("-moz-transform", "scale(1, " + val / 100.0 + ")");
     $("#thrust-bar").css("transform", "scale(1, " + val / 100.0 + ")");
+}
+
+/**
+ * Updates the mass UI element
+ * @param {[float]} val Mass from 0 to 500
+ */
+function setMass(val) {
+    // clamp val to [0, 500] range
+    val = val < 0 ? 0 : (val > 500 ? 500 : val);
+    $("#mass-bar").css("-webkit-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("-ms-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("-moz-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("transform", "scale(1, " + val / 500.0 + ")");
 }
 
 function setMinimap(posX, posZ, heading) {
