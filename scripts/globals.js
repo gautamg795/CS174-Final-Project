@@ -50,7 +50,8 @@ app.planetTextures = ["assets/textures/moon.gif", "assets/textures/neptune.jpg",
 ];
 app.sounds = {};
 app.levels = [];
-app.currentLevel = 0;
+app.currentLevelNum = 0;
+app.currentLevel = {};
 app.score = 0;
 app.keysPressed = {};
 app.mode = GAMESTATE_LOADING;

@@ -52,7 +52,7 @@ $(document).ready(function() {
         $('#crashed-popup').hide();
         $('#hud').hide();
         $('#mass-left').css('display', 'block');
-        setMass(app.levels[app.currentLevel].massLeft);
+        setMass(app.currentLevel.massLeft);
         startPlaying();
         resetLevel(false);
     });
@@ -62,8 +62,8 @@ $(document).ready(function() {
         $('#finished-level-popup').hide();
         $('#hud').hide();
         $('#mass-left').css('display', 'block');
-        setMass(app.levels[app.currentLevel].massLeft);
-        app.currentLevel++;
+        setMass(app.currentLevel.massLeft);
+        app.currentLevelNum++;
         startPlaying();
         resetLevel(false);
     });
@@ -72,7 +72,7 @@ $(document).ready(function() {
         app.mode = GAMESTATE_WAITING;
         $('#mass-left').hide();
         drawSpace();
-        initMinimap(app.currentLevel);
+        initMinimap(app.currentLevelNum);
         $('#hud').css('display', 'block');
         $('#start-game-popup').css('display', 'block');
     });

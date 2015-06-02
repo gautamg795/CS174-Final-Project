@@ -17,9 +17,9 @@ $("#gl-canvas").mousedown(function(event) {
         y = (y / canvas.height) - 0.5;
         y *= 1000;
 
-        var nPlanets = app.levels[app.currentLevel].planets.length;
-        app.levels[app.currentLevel].nPlanetsAdded++;
-        app.levels[app.currentLevel].planets.push({
+        var nPlanets = app.currentLevel.planets.length;
+        app.currentLevel.nPlanetsAdded++;
+        app.currentLevel.planets.push({
             position: [-y, 0, x],
             size: 0,
             textureNum: Math.floor(Math.random() * app.planetTextures.length),
@@ -27,7 +27,7 @@ $("#gl-canvas").mousedown(function(event) {
         })
 
         checkPlacementCollision();
-        var nPlanetsAfter = app.levels[app.currentLevel].planets.length;
+        var nPlanetsAfter = app.currentLevel.planets.length;
         if(nPlanetsAfter > nPlanets)
             app.sounds["placePlanet"].play();
 
@@ -127,13 +127,13 @@ function handleKeysPressed() {
     else if (app.mode == GAMESTATE_PLACING) {
         //mouse click
         if (app.skill == MODE_SKILL){
-            if (app.keysPressed[-1] !== undefined && app.levels[app.currentLevel].massLeft >= 6.0) {
-                app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].mass += 6.0;
-                app.levels[app.currentLevel].massLeft -= 6.0;
-                app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
+            if (app.keysPressed[-1] !== undefined && app.currentLevel.massLeft >= 6.0) {
+                app.currentLevel.planets[app.currentLevel.planets.length - 1].mass += 6.0;
+                app.currentLevel.massLeft -= 6.0;
+                app.currentLevel.planets[app.currentLevel.planets.length - 1].size += 1.0;
 
                 checkPlacementCollision();
-                setMass(app.levels[app.currentLevel].massLeft);
+                setMass(app.currentLevel.massLeft);
             } 
         }
     }
