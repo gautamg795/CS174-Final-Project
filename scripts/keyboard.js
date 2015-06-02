@@ -128,9 +128,9 @@ function handleKeysPressed() {
                 app.levels[app.currentLevel].massLeft -= 6.0;
                 app.levels[app.currentLevel].planets[app.levels[app.currentLevel].planets.length - 1].size += 1.0;
 
-                if(app.levels[app.currentLevel].massLeft <= 0)
-                    //TODO: DISPLAY READY BUTTON AND WAIT FOR INPUT
+                if(app.levels[app.currentLevel].massLeft <= 0){
                     app.mode = GAMESTATE_PLAYING;
+                }
 
                 checkPlacementCollision();
             } 

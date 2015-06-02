@@ -27,6 +27,7 @@ function stopPlaying() {
  */
 function resetLevel() {
     cleanUpPlanets();
+    app.keysPressed[-1] = undefined;
     app.mode = GAMESTATE_PLACING;
     $("#fuel-bar").css("background-color", "rgb(255, 255, 255)");
     app.ship.velocity = [0.0, 0.0, 0.0];
