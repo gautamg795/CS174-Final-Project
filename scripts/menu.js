@@ -44,49 +44,92 @@ $(document).ready(function() {
         }
     });
 
-    //quit button interaction
+    // quit button interaction
     $('.quit-button').click(resetApp);
 
-    //crashed-popup buttons
+    // crashed-popup buttons
     $('#crashed-try-again').click(function() {
         $('#crashed-popup').hide();
+        $('#hud').hide();
+        $('#mass-left').css('display', 'block');
+        setMass(app.levels[app.currentLevel].massLeft);
         startPlaying();
-        resetLevel();
+        resetLevel(false);
     });
 
-    //level-finished buttons
+    // level-finished buttons
     $('#finished-level-next-level').click(function() {
         $('#finished-level-popup').hide();
+        $('#hud').hide();
+        $('#mass-left').css('display', 'block');
+        setMass(app.levels[app.currentLevel].massLeft);
         app.currentLevel++;
         startPlaying();
-        resetLevel();
+        resetLevel(false);
     });
 
-    
+    $('#mass-continue-button').click(function() {
+        app.mode = GAMESTATE_WAITING;
+        $('#mass-left').hide();
+        drawSpace();
+        initMinimap(app.currentLevel);
+        $('#hud').css('display', 'block');
+        $('#start-game-popup').css('display', 'block');
+    });
+
+    $('#start-game-button').click(function() {
+        app.mode = GAMESTATE_PLAYING;
+        $('#start-game-popup').hide();
+    });
+
+    $('#skill-normal').click(function() {
+        app.skill = MODE_NORMAL;
+        $('#mass-bar-container').hide();
+
+        $('#gl-canvas').css('display', 'block');
+        $('#skill-menu').hide();
+        $('#mass-left').css('display', 'block');
+        startPlaying();
+        resetLevel(false);
+    });
+
+    $('#skill-skilled').click(function() {
+        app.skill = MODE_SKILL;
+        $('#mass-bar-container').css('display', 'block');
+
+        $('#gl-canvas').css('display', 'block');
+        $('#skill-menu').hide();
+        $('#mass-left').css('display', 'block');
+        startPlaying();
+        resetLevel(false);
+    });
 });
 
 function everythingLoaded() {
     $("#start-button").removeAttr('style');
     $("#start-button").text("START");
     $('#start-button').click(function() {
-        $('#gl-canvas').css('display', 'block');
-        $('#hud').css('display', 'block');
         $('#menu').hide();
-        startPlaying();
-        resetLevel();
-        initMinimap(0); // Pass level as parameter
+        $('#skill-menu').css('display', 'block');
     });
 }
 
 function initMinimap(level) {
+    // Clear planets
+    $("#minimap-planets").empty();
+
     // Initialize planets
     app.levels[level].planets.forEach(function(planet, i) {
         $("#minimap-planets").append("<div class='minimap-planet' id='minimap-planet-" + i + "'></div>");
-        $("#minimap-planet-" + i).css("left", 25 + (((planet.position[0] + 6000) / 60)));
-        $("#minimap-planet-" + i).css("top", 25 + (((planet.position[2] + 6000) / 60)));
+        $("#minimap-planet-" + i).css("left", 25 + (200 - (planet.position[0] + 1000) / 10));
+        $("#minimap-planet-" + i).css("top", 25 + (200 - (planet.position[2] + 1000) / 10));
         $("#minimap-planet-" + i).css("width", planet.size / 5);
         $("#minimap-planet-" + i).css("height", planet.size / 5);
     });
+
+    // Initialize exit
+    $("#minimap-exit").css("left", 25 + (200 - (app.levels[level].exit.position[0] + 1000) / 10));
+    $("#minimap-exit").css("top", 25 + (200 - (app.levels[level].exit.position[2] + 1000) / 10));
 }
 
 /**
@@ -131,18 +174,31 @@ function setThrust(val) {
     $("#thrust-bar").css("transform", "scale(1, " + val / 100.0 + ")");
 }
 
+/**
+ * Updates the mass UI element
+ * @param {[float]} val Mass from 0 to 500
+ */
+function setMass(val) {
+    // clamp val to [0, 500] range
+    val = val < 0 ? 0 : (val > 500 ? 500 : val);
+    $("#mass-bar").css("-webkit-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("-ms-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("-moz-transform", "scale(1, " + val / 500.0 + ")");
+    $("#mass-bar").css("transform", "scale(1, " + val / 500.0 + ")");
+}
+
 function setMinimap(posX, posZ, heading) {
     // Set position of ship on map
-    var convertedX = 25 + ((posX + 6000) / 60);
-    var convertedZ = 25 + ((posZ + 6000) / 60);
+    var convertedX = 25 + (200 - (posX + 1000) / 10);
+    var convertedZ = 25 + (200 - (posZ + 1000) / 10);
     $("#minimap-ship").css("left", convertedX);
     $("#minimap-ship").css("top", convertedZ);
 
     // Set rotation of ship on map
-    $("#minimap-ship").css("-webkit-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("-ms-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("-moz-transform", "rotate(" + (heading + 180) + "deg)");
-    $("#minimap-ship").css("transform", "rotate(" + (heading + 180) + "deg)");
+    $("#minimap-ship").css("-webkit-transform", "rotate(" + heading + "deg)");
+    $("#minimap-ship").css("-ms-transform", "rotate(" + heading + "deg)");
+    $("#minimap-ship").css("-moz-transform", "rotate(" + heading + "deg)");
+    $("#minimap-ship").css("transform", "rotate(" + heading + "deg)");
 }
 
 /**

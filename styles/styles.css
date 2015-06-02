@@ -46,6 +46,71 @@ sup {
     cursor: pointer;
 }
 
+#mass-bar {
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    bottom: 60px;
+    left: 60px;
+    background-color: #EEE;
+    -webkit-transform: scale(1, 1); 
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform: scale(1, 1);
+    -ms-transform-origin: 100% 100%;
+    -moz-transform: scale(1, 1);
+    -moz-transform-origin: 100% 100%;
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+}
+
+#mass-left {
+    pointer-events: none;
+    display: none;
+    margin: 20px auto;
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#mass-continue-button {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    background-color: #444;
+    pointer-events: auto;
+}
+
+#mass-bar-inner {
+    position: absolute;
+    width: 60px;
+    height: 110px;
+    bottom: 55px;
+    left: 55px;
+    background-color: #333;
+}
+
+#mass-bar-outer {
+    position: absolute;
+    width: 70px;
+    height: 120px;
+    bottom: 50px;
+    left: 50px;
+    background-color: #EEE;
+}
+
+#mass-label {
+    height: 20px;
+    width: 70px;
+    position: absolute;
+    bottom: 25px;
+    left: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+
 #hud {
     display: none;
     margin: 20px auto;
@@ -165,9 +230,9 @@ sup {
     position: absolute;
     width: 0; 
     height: 0; 
-    border-left: 5px solid #111;
-    border-right: 5px solid #111;
-    border-bottom: 10px solid #CCC;
+    border-left: 3px solid #111;
+    border-right: 3px solid #111;
+    border-bottom: 8px solid #CCC;
     background-color: #CCC;
     -webkit-transform: rotate(0deg); /* The rotate parameter is how many degrees it is clockwise from 0. */
     -ms-transform: rotate(0deg);
@@ -181,6 +246,13 @@ sup {
     height: 5px; 
     border-radius: 50%;
     background-color: #888;
+}
+
+#minimap-exit {
+    position: absolute;
+    width: 5px; 
+    height: 5px; 
+    background-color: #458B00;
 }
 
 #thrust-bar {
@@ -224,6 +296,32 @@ sup {
     position: absolute;
     bottom: 25px;
     left: 130px;
+    text-align: center;
+}
+
+#skill-menu {
+    display: none;
+    background-color: #444;
+    width: 1240px;
+    height: 680px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+#skill-container {
+    display: block;
+    margin: 20px auto;
+    width: 1200px;
+}
+
+.skill {
+    float: left;
+    width: 50%;
+    padding-top: 200px;
+}
+
+.skill-description {
+    margin: 10px auto;
     text-align: center;
 }
 
@@ -320,6 +418,26 @@ sup {
     font-size: 36px;
     padding: 30px;
 }
+
+#start-game-popup {
+    background-color: #444;
+    position: absolute;
+    display: none;
+    margin: 20px auto;
+    width: 420px;
+    height: 200px;
+    padding: 20px;
+    top: 50px;
+    left: 0px;
+    right: 0px;
+}
+
+#start-game-title {
+    text-align: center;
+    font-size: 36px;
+    padding: 10px;
+}
+
 
 #finished-level-popup {
     background-color: #444;
