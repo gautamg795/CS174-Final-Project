@@ -17,19 +17,22 @@ $("#gl-canvas").mousedown(function(event) {
         y = (y / canvas.height) - 0.5;
         y *= 1000;
 
-        var nPlanets = app.currentLevel.planets.length;
-        app.currentLevel.nPlanetsAdded++;
-        app.currentLevel.planets.push({
-            position: [-y, 0, x],
-            size: 0,
-            textureNum: Math.floor(Math.random() * app.planetTextures.length),
-            mass: 0,
-        })
+        if(app.currentLevel.massLeft > 0) {
+            var nPlanets = app.currentLevel.planets.length;
+            
+            app.currentLevel.nPlanetsAdded++;
+            app.currentLevel.planets.push({
+                position: [-y, 0, x],
+                size: 0,
+                textureNum: Math.floor(Math.random() * app.planetTextures.length),
+                mass: 0,
+            })
 
-        checkPlacementCollision(true);
-        var nPlanetsAfter = app.currentLevel.planets.length;
-        if(nPlanetsAfter > nPlanets)
-            app.sounds["placePlanet"].play();
+            checkPlacementCollision(true);
+            var nPlanetsAfter = app.currentLevel.planets.length;
+            if(nPlanetsAfter > nPlanets)
+                app.sounds["placePlanet"].play();
+        }
 
     }
 });

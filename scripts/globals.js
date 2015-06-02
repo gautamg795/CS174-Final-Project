@@ -81,7 +81,7 @@ app.levels[0] = {
         size: 21,
     },
     fuel: [],
-    massLeft: 500,
+    massLeft: 600,
 };
 
 app.levels[1] = {
@@ -105,5 +105,5 @@ app.levels[1] = {
         collected: false,
         size: fuelSize,
     }, ],
-    massLeft: 500,
+    massLeft: 600,
 };
